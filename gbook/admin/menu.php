@@ -58,4 +58,3 @@ $adminmenu[] = array(
     'title' => _AM_MODULEADMIN_ABOUT,
     'link'  => 'admin/about.php',
     'icon'  => $pathIcon32 . '/about.png');
-
