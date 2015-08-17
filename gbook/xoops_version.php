@@ -20,99 +20,133 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *  ---------------------------------------------------------------------------
- *  @copyright       Ingo H. de Boer (http://www.winshell.org)
- *  @license         GNU General Public License (GPL)
- *  @package         GBook
- *  @author          Ingo H. de Boer (idb@winshell.org)
+ *
+ * @copyright       Ingo H. de Boer (http://www.winshell.org)
+ * @license         GNU General Public License (GPL)
+ * @package         GBook
+ * @author          Ingo H. de Boer (idb@winshell.org)
  *
  *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
-$dirname = basename( dirname( __FILE__ ) ) ;
+$moduleDirName = basename(__DIR__);
 
-$modversion = array();
-$modversion['name']     = _GBOOK_MI_NAME;
-$modversion['version']			= "1.0";
-$modversion['description']		= _GBOOK_MI_DESC;
-$modversion['author']			= "Ingo H. de Boer";
-$modversion['help']			= 'page=help';
-$modversion['license']			= 'GNU GPL 2.0';
-$modversion['license_url']		= "www.gnu.org/licenses/gpl-2.0.html/";
-$modversion['image']			= "images/gbook.png";
-$modversion['dirname']			= $dirname;
-$modversion['dirmoduleadmin']		= 'Frameworks/moduleclasses';
-$modversion['icons16']			= 'Frameworks/moduleclasses/icons/16';
-$modversion['icons32']			= 'Frameworks/moduleclasses/icons/32';
-$modversion['credits']			= "MyGuestbook (Narga)";
+// ------------------- Informations ------------------- //
+$modversion = array(
+    'name'                => _GBOOK_MI_NAME,
+    'description'         => _GBOOK_MI_DESC,
+    'official'            => 0, //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
+    'author'              => 'Ingo H. de Boer',
+    'author_mail'         => 'author-email',
+    'author_website_url'  => 'www.winshell.org',
+    'author_website_name' => 'WinShell',
+    'credits'             => 'MyGuestbook (Narga), XOOPS Development Team',
+    'license'             => 'GPL 2.0 or later',
+    'license_url'         => 'www.gnu.org/licenses/gpl-2.0.html/',
+    'help'                => 'page=help',
+    //
+    'release_info'        => 'Changelog',
+    'release_file'        => XOOPS_URL . "/modules/$moduleDirName/docs/changelog file",
+    //
+    'manual'              => 'link to manual file',
+    'manual_file'         => XOOPS_URL . "/modules/$moduleDirName/docs/install.txt",
+    'min_php'             => '5.3.7',
+    'min_xoops'           => '2.5.7.1',
+    'min_admin'           => '1.1',
+    'min_db'              => array('mysql' => '5.0.7', 'mysqli' => '5.0.7'),
+    // images
+    'image'               => 'assets/images/module_logo.png',
+    'iconsmall'           => 'assets/images/iconsmall.png',
+    'iconbig'             => 'assets/images/iconbig.png',
+    'dirname'             => $moduleDirName,
+    //Frameworks
+    'dirmoduleadmin'      => 'Frameworks/moduleclasses/moduleadmin',
+    'sysicons16'          => 'Frameworks/moduleclasses/icons/16',
+    'sysicons32'          => 'Frameworks/moduleclasses/icons/32',
+    // Local path icons
+    'modicons16'          => 'assets/images/icons/16',
+    'modicons32'          => 'assets/images/icons/32',
+    //About
+    'version'             => 1.10,
+    'module_status'       => 'Beta 1',
+    'release_date'        => '2015/08/03', //yyyy/mm/dd
+    //    'release'             => '2015-04-04',
+    'demo_site_url'       => 'http://www.xoops.org',
+    'demo_site_name'      => 'XOOPS Site',
+    'support_url'         => 'http://xoops.org/modules/newbb',
+    'support_name'        => 'Support Forum',
+    'module_website_url'  => 'www.xoops.org',
+    'module_website_name' => 'XOOPS Project',
+    // paypal
+    //    'paypal' => array(
+    //        'business'      => 'XXX@email.com',
+    //        'item_name'     => 'Donation : ' . _AM_MODULE_DESC,
+    //        'amount'        => 0,
+    //        'currency_code' => 'USD'),
 
-//about
-$modversion['demo_site_url']		= "www.winshell.org";
-$modversion['demo_site_name']		= "WinShell";
-$modversion["author_website_url"]	= "www.winshell.org";
-$modversion["author_website_name"]	= "WinShell";
-$modversion["module_website_url"]	= "www.winshell.org";
-$modversion["module_website_name"]	= "WinShell";
-$modversion['release_date']		= "2012/06/17";
-$modversion['module_status'] 		= "Final";
-$modversion['min_php']			= "5.2";
-$modversion['min_xoops']		= "2.5.5";
+    // Admin system menu
+    'system_menu'         => 1,
+    // Admin menu
+    'hasAdmin'            => 1,
+    'adminindex'          => 'admin/index.php',
+    'adminmenu'           => 'admin/menu.php',
+    // Main menu
+    'hasMain'             => 1,
+    //Search & Comments
+    //    'hasSearch'           => 1,
+    //    'search'              => array(
+    //        'file'   => 'include/search.inc.php',
+    //        'func'   => 'XXXX_search'),
+    //    'hasComments'         => 1,
+    //    'comments'              => array(
+    //        'pageName'   => 'index.php',
+    //        'itemName'   => 'id'),
 
-// Admin menu
-$modversion['system_menu']		= 1;
+    // Install/Update
+    //    'onInstall'           => 'include/oninstall.php',
+    //    'onUpdate'            => 'include/onupdate.php'
+    //  'onUninstall'         => 'include/onuninstall.php'
 
-// Admin things
-$modversion['hasAdmin']			= 1;
-$modversion['adminindex']		= "admin/index.php";
-$modversion['adminmenu']		= "admin/menu.php";
+);
 
-// Menu
-$modversion['hasMain']			= 1;
-
-// Mysql file
-$modversion['sqlfile']['mysql']		= "sql/mysql.sql";
+// ------------------- Mysql ------------------- //
+$modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 
 // Tables created by sql file (without prefix!)
-$modversion['tables'][1]		= "gbook_entries";
+$modversion['tables'] = array(
+    $moduleDirName . '_' . 'entries');
 
-// Config items
-$modversion['config'][1]['name']	= 'num_entries';
-$modversion['config'][1]['title']	= '_GBOOK_MI_NUM_TITLE';
-$modversion['config'][1]['description']	= '_GBOOK_MI_NUM_DESCRIPTION';
-$modversion['config'][1]['formtype']	= 'textbox';
-$modversion['config'][1]['valuetype']	= 'int';
-$modversion['config'][1]['default']	= 5;
+// ------------------- Templates ------------------- //
 
-$modversion['config'][2]['name']	= 'order_entries';
-$modversion['config'][2]['title']	= '_GBOOK_MI_ORDER_TITLE';
-$modversion['config'][2]['description']	= '_GBOOK_MI_ORDER_DESCRIPTION';
-$modversion['config'][2]['formtype']	= 'select';
-$modversion['config'][2]['valuetype']	= 'text';
-$modversion['config'][2]['default']	= 'DESC';
-$modversion['config'][2]['options']	= array('_GBOOK_MI_ORDER_ASC' => 'ASC', '_GBOOK_MI_ORDER_DESC' => 'DESC');
+$modversion['templates'] = array(
+    array('file' => 'gbook_admin_entries.tpl', 'description' => 'Admin list to manage entries.'),
+    array('file' => 'gbook_view_entries.tpl', 'description' => 'Shows entries of guestbook.'),
+    array('file' => 'gbook_sign.tpl', 'description' => 'Sign the guestbook.'));
 
-$modversion['config'][3]['name']	= 'date_format';
-$modversion['config'][3]['title']	= '_GBOOK_MI_DFORMAT_TITLE';
-$modversion['config'][3]['description']	= '_GBOOK_MI_DFORMAT_DESCRIPTION';
-$modversion['config'][3]['formtype']	= 'select';
-$modversion['config'][3]['valuetype']	= 'text';
-$modversion['config'][3]['default']	= 'Y-m-d';
-$modversion['config'][3]['options']	= array('Y-m-d' => 'Y-m-d', 'd-m-Y' => 'd-m-Y', 'Y/m/d' => 'Y/m/d');
+// ------------------- Config Options ------------------- //
+$modversion['config'][] = array(
+    'name'        => 'num_entries',
+    'title'       => '_GBOOK_MI_NUM_TITLE',
+    'description' => '_GBOOK_MI_NUM_DESCRIPTION',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 5);
 
-// Templates
-$i = 0;
+$modversion['config'][] = array(
+    'name'        => 'order_entries',
+    'title'       => '_GBOOK_MI_ORDER_TITLE',
+    'description' => '_GBOOK_MI_ORDER_DESCRIPTION',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'DESC',
+    'options'     => array('_GBOOK_MI_ORDER_ASC' => 'ASC', '_GBOOK_MI_ORDER_DESC' => 'DESC'));
 
-$i++;
-$modversion['templates'][$i]['file']		= 'gbook_admin_entries.html';
-$modversion['templates'][$i]['description']	= 'Admin list to manage entries.';
-
-$i++;
-$modversion['templates'][$i]['file']		= 'gbook_view_entries.html';
-$modversion['templates'][$i]['description']	= 'Shows entries of guestbook.';
-
-$i++;
-$modversion['templates'][$i]['file']		= 'gbook_sign.html';
-$modversion['templates'][$i]['description']	= 'Sign the guestbook.';
-
-unset($i);
-?>
+$modversion['config'][] = array(
+    'name'        => 'date_format',
+    'title'       => '_GBOOK_MI_DFORMAT_TITLE',
+    'description' => '_GBOOK_MI_DFORMAT_DESCRIPTION',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'Y-m-d',
+    'options'     => array('Y-m-d' => 'Y-m-d', 'd-m-Y' => 'd-m-Y', 'Y/m/d' => 'Y/m/d'));

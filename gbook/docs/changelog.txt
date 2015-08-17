@@ -1,4 +1,9 @@
-Version 1.0
+1.10 Beta 1      2015-08-17
+---------------------------
+- cosmetic changes (mamba)
+- conversion to XoopsRequest (mamba)
+
+1.00
 -------------------
 - first release
 

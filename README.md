@@ -1,2 +1,2 @@
 # gbook
-Simple Guest Book
+Simple Guest Book for XOOPS CMS

@@ -20,29 +20,28 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *  ---------------------------------------------------------------------------
- *  @copyright       Ingo H. de Boer (http://www.winshell.org)
- *  @license         GNU General Public License (GPL)
- *  @package         GBook
- *  @author          Ingo H. de Boer (idb@winshell.org)
+ *
+ * @copyright       Ingo H. de Boer (http://www.winshell.org)
+ * @license         GNU General Public License (GPL)
+ * @package         GBook
+ * @author          Ingo H. de Boer (idb@winshell.org)
  *
  *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
-define("_GBOOK_AM_HOME",		"Home");
-define("_GBOOK_AM_MANAGE_ENTRIES",	"Manage Entries");
-define("_GBOOK_AM_ABOUT",		"About");
+define('_GBOOK_AM_HOME', 'Home');
+define('_GBOOK_AM_MANAGE_ENTRIES', 'Manage Entries');
+define('_GBOOK_AM_ABOUT', 'About');
 
-define("_GBOOK_AM_NAME",		"Name");
-define("_GBOOK_AM_MESSAGE",		"Message");
-define("_GBOOK_AM_ACTION",		"Action");
-define("_GBOOK_AM_EMAIL",		"EMail");
-define("_GBOOK_AM_URL",			"URL");
-define("_GBOOK_AM_NOTE",		"Note");
+define('_GBOOK_AM_NAME', 'Name');
+define('_GBOOK_AM_MESSAGE', 'Message');
+define('_GBOOK_AM_ACTION', 'Action');
+define('_GBOOK_AM_EMAIL', 'EMail');
+define('_GBOOK_AM_URL', 'URL');
+define('_GBOOK_AM_NOTE', 'Note');
 
-define("_GBOOK_AM_DELETE_SUCCESS",	"Entry from '%s' successfully deleted.");
-define("_GBOOK_AM_DELETE_SURE",		"Are you sure you want to delete entry from '%s'?");
-define("_GBOOK_AM_ENTRY_EDIT",		"Edit Entry");
-define("_GBOOK_AM_ENTRY_EDITED",	"Entry successfully edited.");
-
-?>
+define('_GBOOK_AM_DELETE_SUCCESS', 'Entry from \'%s\' successfully deleted.');
+define('_GBOOK_AM_DELETE_SURE', 'Are you sure you want to delete entry from \'%s\'?');
+define('_GBOOK_AM_ENTRY_EDIT', 'Edit Entry');
+define('_GBOOK_AM_ENTRY_EDITED', 'Entry successfully edited.');

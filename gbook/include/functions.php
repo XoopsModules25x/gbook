@@ -20,24 +20,34 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *  ---------------------------------------------------------------------------
- *  @copyright       Ingo H. de Boer (http://www.winshell.org)
- *  @license         GNU General Public License (GPL)
- *  @package         GBook
- *  @author          Ingo H. de Boer (idb@winshell.org)
+ *
+ * @copyright       Ingo H. de Boer (http://www.winshell.org)
+ * @license         GNU General Public License (GPL)
+ * @package         GBook
+ * @author          Ingo H. de Boer (idb@winshell.org)
  *
  *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
-if (!defined("XOOPS_ROOT_PATH")) exit();
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
 
-function gbookSignForm($name_tmp, $email_tmp, $url_tmp, $message_tmp){
-    $name      = new XoopsFormText(_GBOOK_NAME, "Name", 43, 100, $name_tmp);
-    $email     = new XoopsFormText(_GBOOK_EMAIL, "Email", 43, 100, $email_tmp);
-    $url       = new XoopsFormText(_GBOOK_URL, "URL", 43, 100, $url_tmp);
-    $message   = new XoopsFormTextArea(_GBOOK_MESSAGE, "Message", $message_tmp);
-    $submit    = new XoopsFormButton("", "submit", _GBOOK_SUBMIT, "submit");
-    $gbookform = new XoopsThemeForm(_GBOOK_SIGN, "gbookform", "sign.php");
+/**
+ * @param $name_tmp
+ * @param $email_tmp
+ * @param $url_tmp
+ * @param $message_tmp
+ *
+ * @return XoopsThemeForm
+ */
+function gbookSignForm($name_tmp, $email_tmp, $url_tmp, $message_tmp)
+{
+    $name      = new XoopsFormText(_GBOOK_NAME, 'Name', 43, 100, $name_tmp);
+    $email     = new XoopsFormText(_GBOOK_EMAIL, 'Email', 43, 100, $email_tmp);
+    $url       = new XoopsFormText(_GBOOK_URL, 'URL', 43, 100, $url_tmp);
+    $message   = new XoopsFormTextArea(_GBOOK_MESSAGE, 'Message', $message_tmp);
+    $submit    = new XoopsFormButton('', 'submit', _GBOOK_SUBMIT, 'submit');
+    $gbookform = new XoopsThemeForm(_GBOOK_SIGN, 'gbookform', 'sign.php');
 
     $gbookform->addElement($name, true);
     $gbookform->addElement($email);
@@ -45,21 +55,27 @@ function gbookSignForm($name_tmp, $email_tmp, $url_tmp, $message_tmp){
     $gbookform->addElement($message, true);
     $gbookform->addElement(new XoopsFormCaptcha(), true);
     $gbookform->addElement($submit);
-    
+
     return $gbookform;
 }
 
-function gbookIP() {
-   $ip;
-   if (getenv("HTTP_CLIENT_IP"))
-      $ip = getenv("HTTP_CLIENT_IP");
-   else if(getenv("HTTP_X_FORWARDED_FOR"))
-      $ip = getenv("HTTP_X_FORWARDED_FOR");
-   else if(getenv("REMOTE_ADDR"))
-      $ip = getenv("REMOTE_ADDR");
-   else
-      $ip = "UNKNOWN";
-   return $ip;
-}
+/**
+ * @return string
+ */
+function gbookIP()
+{
+    $ip = 'UNKNOWN';
+    if (getenv('HTTP_CLIENT_IP')) {
+        $ip = getenv('HTTP_CLIENT_IP');
+    } else {
+        if (getenv('HTTP_X_FORWARDED_FOR')) {
+            $ip = getenv('HTTP_X_FORWARDED_FOR');
+        } else {
+            if (getenv('REMOTE_ADDR')) {
+                $ip = getenv('REMOTE_ADDR');
+            }
+        }
+    }
 
-?>
+    return $ip;
+}

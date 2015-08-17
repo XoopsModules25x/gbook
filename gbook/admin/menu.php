@@ -20,35 +20,42 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *  ---------------------------------------------------------------------------
- *  @copyright       Ingo H. de Boer (http://www.winshell.org)
- *  @license         GNU General Public License (GPL)
- *  @package         GBook
- *  @author          Ingo H. de Boer (idb@winshell.org)
+ * @copyright       Ingo H. de Boer (http://www.winshell.org)
+ * @license         GNU General Public License (GPL)
+ * @package         GBook
+ * @author          Ingo H. de Boer (idb@winshell.org)
  *
  *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
-$dirname = basename(dirname(dirname(__FILE__)));
-$module_handler = xoops_gethandler('module');
-$module = $module_handler->getByDirname($dirname);
-$pathIcon32 = $module->getInfo('icons32');
+$moduleDirName = basename(dirname(__DIR__));
 
-xoops_loadLanguage('admin', $dirname);
+$moduleHandler = &xoops_gethandler('module');
+$module        = $moduleHandler->getByDirname($moduleDirName);
+$pathIcon32    = '../../' . $module->getInfo('sysicons32');
+xoops_loadLanguage('modinfo', $module->dirname());
 
-$i = 0;
+$xoopsModuleAdminPath = XOOPS_ROOT_PATH . '/' . $module->getInfo('dirmoduleadmin');
+if (!file_exists($fileinc = $xoopsModuleAdminPath . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/' . 'main.php')) {
+    $fileinc = $xoopsModuleAdminPath . '/language/english/main.php';
+}
+include_once $fileinc;
 
-// Index
-$adminmenu[$i]['title']	= _GBOOK_AM_HOME;
-$adminmenu[$i]['link']	= 'admin/index.php';
-$adminmenu[$i]['icon']	= '../../'.$pathIcon32.'/home.png';
-$i++;
+xoops_loadLanguage('admin', $moduleDirName);
 
-$adminmenu[$i]['title']	= _GBOOK_AM_MANAGE_ENTRIES;
-$adminmenu[$i]['link']	= 'admin/entries.php';
-$adminmenu[$i]['icon']	= '../../'.$pathIcon32.'/manage.png';
+$adminmenu[] = array(
+    'title' => _GBOOK_AM_HOME,
+    'link'  => 'admin/index.php',
+    'icon'  => $pathIcon32 . '/home.png');
 
-$i++;
-$adminmenu[$i]['title']	= _GBOOK_AM_ABOUT;
-$adminmenu[$i]['link']	=  'admin/about.php';
-$adminmenu[$i]['icon']	= '../../'.$pathIcon32.'/about.png';
+$adminmenu[] = array(
+    'title' => _GBOOK_AM_MANAGE_ENTRIES,
+    'link'  => 'admin/entries.php',
+    'icon'  => $pathIcon32 . '/manage.png');
+
+$adminmenu[] = array(
+    'title' => _AM_MODULEADMIN_ABOUT,
+    'link'  => 'admin/about.php',
+    'icon'  => $pathIcon32 . '/about.png');
+

@@ -20,17 +20,17 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *  ---------------------------------------------------------------------------
- *  @copyright       Ingo H. de Boer (http://www.winshell.org)
- *  @license         GNU General Public License (GPL)
- *  @package         GBook
- *  @author          Ingo H. de Boer (idb@winshell.org)
+ * @copyright       Ingo H. de Boer (http://www.winshell.org)
+ * @license         GNU General Public License (GPL)
+ * @package         GBook
+ * @author          Ingo H. de Boer (idb@winshell.org)
  *
  *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
-require_once '../../../include/cp_header.php';
-include 'admin_header.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
+include __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 $indexAdmin = new ModuleAdmin();
@@ -38,5 +38,4 @@ $indexAdmin = new ModuleAdmin();
 echo $indexAdmin->addNavigation('index.php');
 echo $indexAdmin->renderIndex();
 
-include "admin_footer.php";
-?>
+include 'admin_footer.php';

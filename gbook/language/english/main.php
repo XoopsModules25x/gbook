@@ -20,25 +20,24 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *  ---------------------------------------------------------------------------
- *  @copyright       Ingo H. de Boer (http://www.winshell.org)
- *  @license         GNU General Public License (GPL)
- *  @package         GBook
- *  @author          Ingo H. de Boer (idb@winshell.org)
+ *
+ * @copyright       Ingo H. de Boer (http://www.winshell.org)
+ * @license         GNU General Public License (GPL)
+ * @package         GBook
+ * @author          Ingo H. de Boer (idb@winshell.org)
  *
  *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
-define("_GBOOK_SIGN",		"Sign the Guestbook");
-define("_GBOOK_TOTAL_ENTRIES",	"There are %s entries in total.");
-define("_GBOOK_BACK",		"Back to the Guestbook");
-define("_GBOOK_NAME",		"Name");
-define("_GBOOK_EMAIL",		"EMail");
-define("_GBOOK_URL",		"URL");
-define("_GBOOK_MESSAGE",	"Message");
-define("_GBOOK_SUBMIT",		"Submit");
-define("_GBOOK_DESC",		"Please complete the form in order to sign the Guestbook.");
-define("_GBOOK_SIGNED",		"Thank you for signing the Guestbook.");
-define("_GBOOK_EMAIL_INVALID",	"Invalid EMail!");
-
-?>
+define('_GBOOK_SIGN', 'Sign the Guestbook');
+define('_GBOOK_TOTAL_ENTRIES', 'There are %s entries in total.');
+define('_GBOOK_BACK', 'Back to the Guestbook');
+define('_GBOOK_NAME', 'Name');
+define('_GBOOK_EMAIL', 'EMail');
+define('_GBOOK_URL', 'URL');
+define('_GBOOK_MESSAGE', 'Message');
+define('_GBOOK_SUBMIT', 'Submit');
+define('_GBOOK_DESC', 'Please complete the form in order to sign the Guestbook.');
+define('_GBOOK_SIGNED', 'Thank you for signing the Guestbook.');
+define('_GBOOK_EMAIL_INVALID', 'Invalid EMail!');
