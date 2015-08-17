@@ -1,0 +1,5 @@
+INSTALL/UNISTALL
+=================
+
+- Extract the /gbook folder into the ../modules directory
+- Install the module through Admin -> System Module -> Modules
