@@ -1,27 +1,27 @@
 .gbook-view {
-    text-align:             center;
+    text-align: center;
 }
 
 .gbook-title {
-    text-align:             left;
-    padding:                5px;
-    font-weight:            bold;
+    text-align: left;
+    padding: 5px;
+    font-weight: bold;
 }
 
 .gbook-entry {
-    text-align:             left;
-    padding:                5px;
+    text-align: left;
+    padding: 5px;
 }
 
 .gbook-note {
-    font-style:             italic;
-    text-align:             left;
-    padding:                10px;
-    font-size:              x-small;
-    line-height:            1.2em;
+    font-style: italic;
+    text-align: left;
+    padding: 10px;
+    font-size: x-small;
+    line-height: 1.2em;
 }
 
 .gbook-sign {
-    text-align:             left;
-    padding:                5px;
+    text-align: left;
+    padding: 5px;
 }

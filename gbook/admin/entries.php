@@ -20,83 +20,91 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *  ---------------------------------------------------------------------------
- *  @copyright       Ingo H. de Boer (http://www.winshell.org)
- *  @license         GNU General Public License (GPL)
- *  @package         GBook
- *  @author          Ingo H. de Boer (idb@winshell.org)
+ *
+ * @copyright       Ingo H. de Boer (http://www.winshell.org)
+ * @license         GNU General Public License (GPL)
+ * @package         GBook
+ * @author          Ingo H. de Boer (idb@winshell.org)
  *
  *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
-include 'admin_header.php';
+include __DIR__ . '/admin_header.php';
 xoops_cp_header();
 $indexAdmin = new ModuleAdmin();
 
-echo $indexAdmin->addNavigation('entries.php');	
+echo $indexAdmin->addNavigation('entries.php');
 echo $indexAdmin->renderButton('right', '');
 
-$op = isset($_REQUEST['op']) ? $_REQUEST['op'] : (isset($_REQUEST['id']) ? "edit" : "list");
+$tempId = XoopsRequest::getInt('id', 0, 'GET');
+$tempOp = XoopsRequest::getCmd('op', XoopsRequest::getCmd('op', '', 'POST'), 'GET');
+
+$op = '' !== $tempOp ? $tempOp : (0 !== $tempId ? 'edit' : 'list');
 
 $handler =& xoops_getmodulehandler('entries');
 
-switch($op ) {
-default:
-case "list":
-    $criteria = new CriteriaCompo();
-    $criteria->setSort('id');
-    $criteria->setOrder('DESC');
-    $GLOBALS['xoopsTpl']->assign('entries', $handler->getObjects($criteria, true, false) );
-    $template_main = "gbook_admin_entries.html";
-    break;
+switch ($op) {
+    default:
+    case 'list':
+        $criteria = new CriteriaCompo();
+        $criteria->setSort('id');
+        $criteria->setOrder('DESC');
+        $GLOBALS['xoopsTpl']->assign('entries', $handler->getObjects($criteria, true, false));
+        $template_main = 'gbook_admin_entries.tpl';
+        break;
 
-case "edit":
-    $obj = $handler->get($_REQUEST['id']);
-    $form = $obj->getForm();
-    $form->display();
-    break;
+    case 'edit':
+        $obj  = $handler->get(XoopsRequest::getInt('id', '', 'GET'));
+        $form = $obj->getForm();
+        $form->display();
+        break;
 
-case "save":
-    if ( !$GLOBALS['xoopsSecurity']->check()  ) {
-        redirect_header('entries.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors() ));
-    }
-    if ( isset($_REQUEST['id'])  ) {
-        $obj =& $handler->get($_REQUEST['id']);
-    } else {
-        $obj =& $handler->create();
-    }
-    $obj->setVar('name', $_REQUEST['name']);
-    $obj->setVar('email', $_REQUEST['email']);
-    $obj->setVar('url', $_REQUEST['url']);
-    $obj->setVar('message', $_REQUEST['message']);
-    $obj->setVar('note', $_REQUEST['note']);
-    if ( $handler->insert($obj)  ) {
-        redirect_header('entries.php', 3, _GBOOK_AM_ENTRY_EDITED );
-    }
-    include_once '../include/forms.php';
-    echo $obj->getHtmlErrors();
-    $form =& $obj->getForm();
-    $form->display();
-    break;
-
-case "delete":
-    $obj =& $handler->get($_REQUEST['id']);
-    if ( isset($_REQUEST['ok']) && $_REQUEST['ok'] == 1 ) {
-        if ( !$GLOBALS['xoopsSecurity']->check()  ) {
-            redirect_header('entries.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors() ));
+    case 'save':
+        if (!$GLOBALS['xoopsSecurity']->check()) {
+            redirect_header('entries.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
-        if ( $handler->delete($obj)  ) {
-            redirect_header('entries.php', 3, sprintf(_GBOOK_AM_DELETE_SUCCESS, $obj->getVar('name')) );
+        $tempId = XoopsRequest::getInt('id', 0, 'GET');
+        if (0 !== $tempId) {
+            $obj =& $handler->get($tempId);
         } else {
-            echo $obj->getHtmlErrors();
+            $obj =& $handler->create();
         }
-    } else {
-        xoops_confirm(array('ok' => 1, 'id' => $_REQUEST['id'], 'op' => 'delete'), $_SERVER['REQUEST_URI'], sprintf(_GBOOK_AM_DELETE_SURE, $obj->getVar('name') ));
-    }
-    break;
+        $obj->setVar('name', XoopsRequest::getString('name', '', 'POST'));
+        $obj->setVar('email', XoopsRequest::getString('email', '', 'POST'));
+        $obj->setVar('url', XoopsRequest::getString('url', '', 'POST'));
+        $obj->setVar('message', XoopsRequest::getString('message', '', 'POST'));
+        $obj->setVar('note', XoopsRequest::getString('note', '', 'POST'));
+        if ($handler->insert($obj)) {
+            redirect_header('entries.php', 3, _GBOOK_AM_ENTRY_EDITED);
+        }
+        include_once dirname(__DIR__) . '/include/forms.php';
+        echo $obj->getHtmlErrors();
+        $form =& $obj->getForm();
+        $form->display();
+        break;
+
+    case 'delete':
+        $tempId = XoopsRequest::getInt('id', 0, 'GET');
+        $tempOk = XoopsRequest::getInt('ok', 0, 'POST');
+        $obj    =& $handler->get($tempId);
+
+        if (0 !== $tempOk && $tempOk === 1) {
+            if (!$GLOBALS['xoopsSecurity']->check()) {
+                redirect_header('entries.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+            }
+            if ($handler->delete($obj)) {
+                redirect_header('entries.php', 3, sprintf(_GBOOK_AM_DELETE_SUCCESS, $obj->getVar('name')));
+            } else {
+                echo $obj->getHtmlErrors();
+            }
+        } else {
+            xoops_confirm(array('ok' => 1, 'id' => XoopsRequest::getInt('id', 0, 'GET'), 'op' => 'delete'), XoopsRequest::getString('REQUEST_URI', '', 'SERVER'), sprintf(_GBOOK_AM_DELETE_SURE, $obj->getVar('name')));
+        }
+        break;
 }
 
-if ( isset($template_main)  ) {
+if ('' !== $template_main) {
     $GLOBALS['xoopsTpl']->display("db:{$template_main}");
 }
-include 'admin_footer.php';
+include __DIR__ . '/admin_footer.php';

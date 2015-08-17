@@ -20,22 +20,26 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *  ---------------------------------------------------------------------------
- *  @copyright       Ingo H. de Boer (http://www.winshell.org)
- *  @license         GNU General Public License (GPL)
- *  @package         GBook
- *  @author          Ingo H. de Boer (idb@winshell.org)
+ *
+ * @copyright       Ingo H. de Boer (http://www.winshell.org)
+ * @license         GNU General Public License (GPL)
+ * @package         GBook
+ * @author          Ingo H. de Boer (idb@winshell.org)
  *
  *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
 /**
- * @package kernel
+ * @package   kernel
  * @copyright copyright &copy; 2000 XOOPS.org
  */
 class gbookEntries extends XoopsObject
 {
-    function __construct()
+    /**
+     *
+     */
+    public function __construct()
     {
         $this->initVar('id', XOBJ_DTYPE_INT, null, true);
         $this->initVar('name', XOBJ_DTYPE_TXTBOX);
@@ -49,19 +53,14 @@ class gbookEntries extends XoopsObject
         $this->initVar('admin', XOBJ_DTYPE_TXTBOX);
     }
 
-    function gbookEntries()
-    {
-        $this->__construct();
-    }
-
     /**
-    * Get {@link XoopsThemeForm} for adding/editing categories
-    *
-    * @param mixed $action URL to submit to or false for $_SERVER['REQUEST_URI']
-    *
-    * @return object
-    */
-    function getForm($action = false)
+     * Get {@link XoopsThemeForm} for adding/editing categories
+     *
+     * @param mixed $action URL to submit to or false for $_SERVER['REQUEST_URI']
+     *
+     * @return object
+     */
+    public function getForm($action = false)
     {
         if ($action === false) {
             $action = $_SERVER['REQUEST_URI'];
@@ -78,7 +77,7 @@ class gbookEntries extends XoopsObject
         $form->addElement(new XoopsFormTextArea(_GBOOK_AM_MESSAGE, 'message', $this->getVar('message', 'e')));
         $form->addElement(new XoopsFormTextArea(_GBOOK_AM_NOTE, 'note', $this->getVar('note', 'e')));
 
-        $form->addElement(new XoopsFormHidden('op', 'save') );
+        $form->addElement(new XoopsFormHidden('op', 'save'));
         $form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
 
         return $form;
@@ -86,19 +85,16 @@ class gbookEntries extends XoopsObject
 }
 
 /**
- * @package kernel
+ * @package   kernel
  * @copyright copyright &copy; 2000 XOOPS.org
  */
 class gbookEntriesHandler extends XoopsPersistableObjectHandler
 {
-    function gbookEntriesHandler(&$db)
+    /**
+     * @param null|object $db
+     */
+    public function __construct(&$db)
     {
-        $this->__construct($db);
-    }
-
-    function __construct(&$db)
-    {
-        parent::__construct($db, "gbook_entries", "gbookEntries", "id", "name", "email", "url", "message", "note", "time", "date", "ip", "admin");
+        parent::__construct($db, 'gbook_entries', 'gbookEntries', 'id', 'name', 'email', 'url', 'message', 'note', 'time', 'date', 'ip', 'admin');
     }
 }
-?>

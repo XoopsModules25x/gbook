@@ -20,27 +20,27 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *  ---------------------------------------------------------------------------
- *  @copyright       Ingo H. de Boer (http://www.winshell.org)
- *  @license         GNU General Public License (GPL)
- *  @package         GBook
- *  @author          Ingo H. de Boer (idb@winshell.org)
+ *
+ * @copyright       Ingo H. de Boer (http://www.winshell.org)
+ * @license         GNU General Public License (GPL)
+ * @package         GBook
+ * @author          Ingo H. de Boer (idb@winshell.org)
  *
  *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
-define("_GBOOK_MI_NAME",		"GBook");
-define("_GBOOK_MI_DESC",		"The GBook module is for managing a guestbook.");
+define('_GBOOK_MI_NAME', 'GBook');
+define('_GBOOK_MI_DESC', 'The GBook module is for managing a guestbook.');
 
-define("_GBOOK_MI_NUM_TITLE",		"Entries per page");
-define("_GBOOK_MI_NUM_DESCRIPTION",	"The number of entries shown per page.");
+define('_GBOOK_MI_NUM_TITLE', 'Entries per page');
+define('_GBOOK_MI_NUM_DESCRIPTION', 'The number of entries shown per page.');
 
-define("_GBOOK_MI_ORDER_TITLE",		"Order of entries");
-define("_GBOOK_MI_ORDER_DESCRIPTION",	"The order how the entries are shown.");
+define('_GBOOK_MI_ORDER_TITLE', 'Order of entries');
+define('_GBOOK_MI_ORDER_DESCRIPTION', 'The order how the entries are shown.');
 
-define("_GBOOK_MI_ORDER_ASC",		"Ascending");
-define("_GBOOK_MI_ORDER_DESC",		"Descending");
+define('_GBOOK_MI_ORDER_ASC', 'Ascending');
+define('_GBOOK_MI_ORDER_DESC', 'Descending');
 
-define("_GBOOK_MI_DFORMAT_TITLE",	"Date format");
-define("_GBOOK_MI_DFORMAT_DESCRIPTION",	"The format how the dates are shown.");
-?>
+define('_GBOOK_MI_DFORMAT_TITLE', 'Date format');
+define('_GBOOK_MI_DFORMAT_DESCRIPTION', 'The format how the dates are shown.');

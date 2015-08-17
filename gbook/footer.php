@@ -20,14 +20,14 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *  ---------------------------------------------------------------------------
- *  @copyright       Ingo H. de Boer (http://www.winshell.org)
- *  @license         GNU General Public License (GPL)
- *  @package         GBook
- *  @author          Ingo H. de Boer (idb@winshell.org)
+ *
+ * @copyright       Ingo H. de Boer (http://www.winshell.org)
+ * @license         GNU General Public License (GPL)
+ * @package         GBook
+ * @author          Ingo H. de Boer (idb@winshell.org)
  *
  *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
 include $GLOBALS['xoops']->path('footer.php');
-?>
