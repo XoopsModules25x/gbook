@@ -26,22 +26,21 @@
  * @package         GBook
  * @author          Ingo H. de Boer (idb@winshell.org)
  *
- *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
-include_once 'header.php';
-include_once './include/functions.php';
+include_once __DIR__ . '/header.php';
+include_once __DIR__ . '/class/utilities.php';
 
 //Assign info
-$myts        =& MyTextSanitizer::getInstance();
-//$name_tmp0    = isset($_POST['Name']) ? $myts->stripSlashesGPC(trim($_POST['Name'])) : (null !== $xoopsUser ? $xoopsUser->getVar('uname', 'E') : '');
-$name_tmp    = XoopsRequest::getString('Name', '', 'POST') ? : (null !== $xoopsUser ? $xoopsUser->getVar('uname', 'E') : '');
-$email_tmp   = XoopsRequest::getString('Email', '', 'POST') ? : (null !== $xoopsUser ? $xoopsUser->getVar('email', 'E') : ''); //isset($_POST['Email']) ? $myts->stripSlashesGPC(trim($_POST['Email'])) : (null !== $xoopsUser ? $xoopsUser->getVar('email', 'E') : '');
-$url_tmp     = XoopsRequest::getString('URL', '', 'POST') ? : (null !== $xoopsUser ? $xoopsUser->getVar('url', 'E') : ''); //isset($_POST['URL']) ? $myts->stripSlashesGPC(trim($_POST['URL'])) : (null !== $xoopsUser ? $xoopsUser->getVar('url', 'E') : '');
-$message_tmp = XoopsRequest::getString('Message', '', 'POST') ? : ''; //isset($_POST['Message']) ? $myts->stripSlashesGPC(trim($_POST['Message'])) : '';
-$time_tmp    = time();
-$ip_tmp      = gbookIP();
+$myts = MyTextSanitizer::getInstance();
+//$nameTmp0    = isset($_POST['Name']) ? $myts->stripSlashesGPC(trim($_POST['Name'])) : (null !== $xoopsUser ? $xoopsUser->getVar('uname', 'E') : '');
+$nameTmp    = XoopsRequest::getString('Name', '', 'POST') ?: (null !== $xoopsUser ? $xoopsUser->getVar('uname', 'E') : '');
+$emailTmp   = XoopsRequest::getString('Email', '', 'POST') ?: (null !== $xoopsUser ? $xoopsUser->getVar('email', 'E') : ''); //isset($_POST['Email']) ? $myts->stripSlashesGPC(trim($_POST['Email'])) : (null !== $xoopsUser ? $xoopsUser->getVar('email', 'E') : '');
+$urlTmp     = XoopsRequest::getString('URL', '', 'POST') ?: (null !== $xoopsUser ? $xoopsUser->getVar('url', 'E') : ''); //isset($_POST['URL']) ? $myts->stripSlashesGPC(trim($_POST['URL'])) : (null !== $xoopsUser ? $xoopsUser->getVar('url', 'E') : '');
+$messageTmp = XoopsRequest::getString('Message', '', 'POST') ?: ''; //isset($_POST['Message']) ? $myts->stripSlashesGPC(trim($_POST['Message'])) : '';
+$timeTmp    = time();
+$ipTmp      = GBookUtilities::gbookIP();
 
 $xoopsOption['template_main']       = 'gbook_sign.tpl';
 $xoopsOption['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="templates/gbook.css" />';
@@ -53,34 +52,32 @@ $xoopsTpl->assign('lang_back', _GBOOK_BACK);
 $xoopsTpl->assign('lang_desc', _GBOOK_DESC);
 
 if (empty($_POST['submit'])) {
-    $gbookform = gbookSignForm($name_tmp, $email_tmp, $url_tmp, $message_tmp);
+    $gbookform = GBookUtilities::gbookSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
     $gbookform->assign($xoopsTpl);
 } else {
     $stop = '';
     xoops_load('XoopsCaptcha');
-    $xoopsCaptcha = &XoopsCaptcha::getInstance();
+    $xoopsCaptcha = xoopsCaptcha::getInstance();
     if (!$xoopsCaptcha->verify()) {
         $stop .= $xoopsCaptcha->getMessage();
     }
-    if (!empty($email_tmp)) {
-        if (!checkEmail($email_tmp)) {
+    if (!empty($emailTmp) && !checkEmail($emailTmp)) {
             $stop .= _GBOOK_EMAIL_INVALID;
-        }
     }
     if ('' !== $stop) {
         $stop .= '<br />';
         $GLOBALS['xoopsTpl']->assign('stop', $stop);
-        $gbookform = gbookSignForm($name_tmp, $email_tmp, $url_tmp, $message_tmp);
+        $gbookform = GBookUtilities::gbookSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
         $gbookform->assign($xoopsTpl);
     } else {
-        $handler =& xoops_getmodulehandler('entries');
+        $handler = xoops_getModuleHandler('entries');
         $obj     =& $handler->create();
-        $obj->setVar('name', $name_tmp);
-        $obj->setVar('email', $email_tmp);
-        $obj->setVar('url', formatURL($url_tmp));
-        $obj->setVar('message', $message_tmp);
-        $obj->setVar('time', $time_tmp);
-        $obj->setVar('ip', $ip_tmp);
+        $obj->setVar('name', $nameTmp);
+        $obj->setVar('email', $emailTmp);
+        $obj->setVar('url', formatURL($urlTmp));
+        $obj->setVar('message', $messageTmp);
+        $obj->setVar('time', $timeTmp);
+        $obj->setVar('ip', $ipTmp);
         if ($handler->insert($obj)) {
             redirect_header('index.php', 3, _GBOOK_SIGNED);
         }
@@ -91,4 +88,4 @@ if (empty($_POST['submit'])) {
     }
 }
 
-include_once 'footer.php';
+include_once __DIR__ . '/footer.php';

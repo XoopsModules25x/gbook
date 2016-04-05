@@ -26,18 +26,19 @@
  * @package         GBook
  * @author          Ingo H. de Boer (idb@winshell.org)
  *
- *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
+
+use Xmf\Request;
 
 /**
  * @package   kernel
  * @copyright copyright &copy; 2000 XOOPS.org
  */
-class gbookEntries extends XoopsObject
+class GbookEntries extends XoopsObject
 {
     /**
-     *
+     * Constructor
      */
     public function __construct()
     {
@@ -45,12 +46,18 @@ class gbookEntries extends XoopsObject
         $this->initVar('name', XOBJ_DTYPE_TXTBOX);
         $this->initVar('email', XOBJ_DTYPE_TXTBOX);
         $this->initVar('url', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('message', XOBJ_DTYPE_TXTAREA);
-        $this->initVar('note', XOBJ_DTYPE_TXTAREA);
+        $this->initVar('message', XOBJ_DTYPE_OTHER);
+        $this->initVar('note', XOBJ_DTYPE_OTHER);
         $this->initVar('time', XOBJ_DTYPE_INT);
         $this->initVar('date', XOBJ_DTYPE_TXTBOX);
         $this->initVar('ip', XOBJ_DTYPE_TXTBOX);
         $this->initVar('admin', XOBJ_DTYPE_TXTBOX);
+
+        $this->initVar('dohtml', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('dosmiley', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('doxcode', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('doimage', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('dobr', XOBJ_DTYPE_INT, 1, false);
     }
 
     /**
@@ -58,24 +65,31 @@ class gbookEntries extends XoopsObject
      *
      * @param mixed $action URL to submit to or false for $_SERVER['REQUEST_URI']
      *
-     * @return object
+     * @return XoopsThemeForm
      */
     public function getForm($action = false)
     {
         if ($action === false) {
-            $action = $_SERVER['REQUEST_URI'];
+            $action = Request::getString('REQUEST_URI', '', 'SERVER');
         }
         $title = _GBOOK_AM_ENTRY_EDIT;
 
         include_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
+        include_once dirname(__DIR__) . '/class/utilities.php';
 
         $form = new XoopsThemeForm($title, 'form', $action, 'post', true);
 
         $form->addElement(new XoopsFormText(_GBOOK_AM_NAME, 'name', 35, 255, $this->getVar('name')));
         $form->addElement(new XoopsFormText(_GBOOK_AM_EMAIL, 'email', 35, 255, $this->getVar('email')));
         $form->addElement(new XoopsFormText(_GBOOK_AM_URL, 'url', 35, 255, $this->getVar('url')));
-        $form->addElement(new XoopsFormTextArea(_GBOOK_AM_MESSAGE, 'message', $this->getVar('message', 'e')));
-        $form->addElement(new XoopsFormTextArea(_GBOOK_AM_NOTE, 'note', $this->getVar('note', 'e')));
+
+        $messageEditor = GBookUtilities::getEditor('message', $this->getVar('message', 'e'));
+        //        $form->addElement(new XoopsFormTextArea(_GBOOK_AM_MESSAGE, 'message', $this->getVar('message', 'e')));
+        $form->addElement($messageEditor);
+
+        $noteEditor = GBookUtilities::getEditor('note', $this->getVar('note', 'e'));
+        //        $form->addElement(new XoopsFormTextArea(_GBOOK_AM_NOTE, 'note', $this->getVar('note', 'e')));
+        $form->addElement($noteEditor);
 
         $form->addElement(new XoopsFormHidden('op', 'save'));
         $form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
@@ -88,12 +102,12 @@ class gbookEntries extends XoopsObject
  * @package   kernel
  * @copyright copyright &copy; 2000 XOOPS.org
  */
-class gbookEntriesHandler extends XoopsPersistableObjectHandler
+class GbookEntriesHandler extends XoopsPersistableObjectHandler
 {
     /**
-     * @param null|object $db
+     * @param null|XoopsDatabase $db
      */
-    public function __construct(&$db)
+    public function __construct(XoopsDatabase $db)
     {
         parent::__construct($db, 'gbook_entries', 'gbookEntries', 'id', 'name', 'email', 'url', 'message', 'note', 'time', 'date', 'ip', 'admin');
     }

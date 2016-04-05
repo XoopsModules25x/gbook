@@ -26,7 +26,6 @@
  * @package         GBook
  * @author          Ingo H. de Boer (idb@winshell.org)
  *
- *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
@@ -44,3 +43,8 @@ define('_GBOOK_MI_ORDER_DESC', 'Descending');
 
 define('_GBOOK_MI_DFORMAT_TITLE', 'Date format');
 define('_GBOOK_MI_DFORMAT_DESCRIPTION', 'The format how the dates are shown.');
+
+define('_MI_GBOOK_EDITOR_ADMIN', 'Editor for Admin');
+define('_MI_GBOOK_EDITOR_ADMIN_DESC', 'Select the editor that you would like to use');
+define('_MI_GBOOK_EDITOR_USER', 'Editor for Users');
+define('_MI_GBOOK_EDITOR_USER_DESC', 'Select the editor that you would the users to use');

@@ -10,7 +10,6 @@
  * @lanuage    de
  * @author     Muki - http://www.myxoops.org
  * @date       2014/01/19
- * @version    1.0.0
  */
 
 define('_GBOOK_MI_NAME', 'Gästebuch');

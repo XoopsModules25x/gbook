@@ -26,21 +26,20 @@
  * @package         GBook
  * @author          Ingo H. de Boer (idb@winshell.org)
  *
- *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
 include dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'mainfile.php';
 
-$dirname = basename(dirname(__DIR__));
-xoops_loadLanguage('admin', $dirname);
+$moduleDirName = basename(dirname(__DIR__));
+xoops_loadLanguage('admin', $moduleDirName);
 
-$moduleInfo =& $module_handler->get($xoopsModule->getVar('mid'));
+$moduleInfo = $module_handler->get($xoopsModule->getVar('mid'));
 $pathIcon16 = XOOPS_URL . '/' . $moduleInfo->getInfo('sysicons16');
 
 $xoopsOption['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="templates/gbook.css" />';
 
-$handler =& xoops_getmodulehandler('entries');
+$handler = xoops_getModuleHandler('entries');
 
 $start = isset($_REQUEST['start']) ? $_REQUEST['start'] : 0;
 
@@ -72,7 +71,7 @@ foreach ($all_entries as $entry) {
         if ($xoopsUser && $xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
             $entry['admin'] = "<a href='http://whois.domaintools.com/" . $entry['ip'] . "' target='_blank'><img src='./assets/images/ip.png' border='0' /></a>&nbsp;" . "<a href='admin/entries.php?id=" . $entry['id'] . "'><img src='" . $pathIcon16 . "/edit.png' border='0' /></a>&nbsp;" . "<a href='admin/entries.php?op=delete&id=" . $entry['id'] . "'><img src='" . $pathIcon16 . "/delete.png' border='0' /></a>&nbsp;";
         }
-        $xoopsTpl->append("entries", $entry);
+        $xoopsTpl->append('entries', $entry);
     }
     ++$count;
 }

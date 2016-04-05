@@ -25,7 +25,6 @@
  * @package         GBook
  * @author          Ingo H. de Boer (idb@winshell.org)
  *
- *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
@@ -35,7 +34,7 @@ xoops_cp_header();
 
 $indexAdmin = new ModuleAdmin();
 
-echo $indexAdmin->addNavigation('index.php');
+echo $indexAdmin->addNavigation(basename(__FILE__));
 echo $indexAdmin->renderIndex();
 
-include 'admin_footer.php';
+include __DIR__ . '/admin_footer.php';

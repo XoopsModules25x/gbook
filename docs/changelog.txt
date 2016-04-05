@@ -1,7 +1,13 @@
-1.10 Beta 1      2015-08-17
+1.10 Beta 1      NOT RELEASED
 ---------------------------
-- cosmetic changes (mamba)
+- cosmetic code changes (mamba)
 - conversion to XoopsRequest (mamba)
+- added Utilities class (mamba)
+- added editors (mamba)
+- removed @version (mamba)
+- single quotes (mamba)
+- XOOPS 2.5.8 and PHP 7 (mamba)
+- PSR-2 adjustments (mamba)
 
 1.00
 -------------------

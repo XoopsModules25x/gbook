@@ -26,7 +26,6 @@
  * @package         GBook
  * @author          Ingo H. de Boer (idb@winshell.org)
  *
- *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
@@ -34,15 +33,16 @@ include __DIR__ . '/admin_header.php';
 xoops_cp_header();
 $indexAdmin = new ModuleAdmin();
 
-echo $indexAdmin->addNavigation('entries.php');
+echo $indexAdmin->addNavigation(basename(__FILE__));
 echo $indexAdmin->renderButton('right', '');
 
 $tempId = XoopsRequest::getInt('id', 0, 'GET');
 $tempOp = XoopsRequest::getCmd('op', XoopsRequest::getCmd('op', '', 'POST'), 'GET');
 
+$template_main = '';
 $op = '' !== $tempOp ? $tempOp : (0 !== $tempId ? 'edit' : 'list');
 
-$handler =& xoops_getmodulehandler('entries');
+$handler = xoops_getModuleHandler('entries');
 
 switch ($op) {
     default:
@@ -73,8 +73,8 @@ switch ($op) {
         $obj->setVar('name', XoopsRequest::getString('name', '', 'POST'));
         $obj->setVar('email', XoopsRequest::getString('email', '', 'POST'));
         $obj->setVar('url', XoopsRequest::getString('url', '', 'POST'));
-        $obj->setVar('message', XoopsRequest::getString('message', '', 'POST'));
-        $obj->setVar('note', XoopsRequest::getString('note', '', 'POST'));
+        $obj->setVar('message', XoopsRequest::getText('message', '', 'POST'));
+        $obj->setVar('note', XoopsRequest::getText('note', '', 'POST'));
         if ($handler->insert($obj)) {
             redirect_header('entries.php', 3, _GBOOK_AM_ENTRY_EDITED);
         }

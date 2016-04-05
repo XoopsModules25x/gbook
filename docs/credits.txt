@@ -1,4 +1,5 @@
 Credits
 ===============
 
-- MyGuestbook (Narga)
+Developed by Ingo H. de Boer.
+Based on MyGuestbook (Narga)
