@@ -25,7 +25,6 @@
  * @package         GBook
  * @author          Ingo H. de Boer (idb@winshell.org)
  *
- *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
@@ -36,8 +35,8 @@ xoops_cp_header();
 
 $aboutAdmin = new ModuleAdmin();
 
-echo $aboutAdmin->addNavigation('about.php');
-echo $aboutAdmin->renderabout('', false);
+echo $aboutAdmin->addNavigation(basename(__FILE__));
+echo $aboutAdmin->renderAbout('', false);
 
 include __DIR__ . '/admin_footer.php';
 xoops_cp_footer();

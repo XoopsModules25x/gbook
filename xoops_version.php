@@ -26,7 +26,6 @@
  * @package         GBook
  * @author          Ingo H. de Boer (idb@winshell.org)
  *
- *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
@@ -52,11 +51,11 @@ $modversion = array(
     'manual'              => 'link to manual file',
     'manual_file'         => XOOPS_URL . "/modules/$moduleDirName/docs/install.txt",
     'min_php'             => '5.5',
-    'min_xoops'           => '2.5.7.2',
+    'min_xoops'           => '2.5.8',
     'min_admin'           => '1.1',
     'min_db'              => array('mysql' => '5.0.7', 'mysqli' => '5.0.7'),
     // images
-    'image'               => 'assets/images/module_logo.png',
+    'image'               => 'assets/images/logo_module.png',
     'iconsmall'           => 'assets/images/iconsmall.png',
     'iconbig'             => 'assets/images/iconbig.png',
     'dirname'             => $moduleDirName,
@@ -150,3 +149,26 @@ $modversion['config'][] = array(
     'valuetype'   => 'text',
     'default'     => 'Y-m-d',
     'options'     => array('Y-m-d' => 'Y-m-d', 'd-m-Y' => 'd-m-Y', 'Y/m/d' => 'Y/m/d'));
+
+xoops_load('XoopsEditorHandler');
+$editorHandler = XoopsEditorHandler::getInstance();
+$editorList     = array_flip($editorHandler->getList());
+
+$modversion['config'][] = array(
+    'name'        => 'editorAdmin',
+    'title'       => '_MI_GBOOK_EDITOR_ADMIN',
+    'description' => '_MI_GBOOK_EDITOR_ADMIN_DESC',
+
+    'formtype'  => 'select',
+    'valuetype' => 'text',
+    'options'   => $editorList,
+    'default'   => 'dhtmltextarea');
+
+$modversion['config'][] = array(
+    'name'        => 'editorUser',
+    'title'       => '_MI_GBOOK_EDITOR_USER',
+    'description' => '_MI_GBOOK_EDITOR_USER_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'options'     => $editorList,
+    'default'     => 'dhtmltextarea');

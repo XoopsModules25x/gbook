@@ -26,7 +26,6 @@
  * @package         GBook
  * @author          Ingo H. de Boer (idb@winshell.org)
  *
- *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
@@ -41,10 +40,10 @@ xoops_loadLanguage('modinfo', 'gbook');
 $newXoopsModuleGui = false;
 if (file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php'))) {
     include_once $GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php');
-    $moduleInfo        =& $module_handler->get($xoopsModule->getVar('mid'));
+    $moduleInfo        = $module_handler->get($xoopsModule->getVar('mid'));
     $pathIcon16        = XOOPS_URL . '/' . $moduleInfo->getInfo('icons16');
     $pathIcon32        = XOOPS_URL . '/' . $moduleInfo->getInfo('icons32');
     $newXoopsModuleGui = true;
     $indexAdmin        = new ModuleAdmin();
 }
-$myts = &MyTextSanitizer::getInstance();
+$myts = MyTextSanitizer::getInstance();

@@ -26,37 +26,36 @@
  * @package         GBook
  * @author          Ingo H. de Boer (idb@winshell.org)
  *
- *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
 // defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
 
 /**
- * @param $name_tmp
- * @param $email_tmp
- * @param $url_tmp
- * @param $message_tmp
+ * @param $nameTmp
+ * @param $emailTmp
+ * @param $urlTmp
+ * @param $messageTmp
  *
  * @return XoopsThemeForm
  */
-function gbookSignForm($name_tmp, $email_tmp, $url_tmp, $message_tmp)
+function gbookSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp)
 {
-    $name      = new XoopsFormText(_GBOOK_NAME, 'Name', 43, 100, $name_tmp);
-    $email     = new XoopsFormText(_GBOOK_EMAIL, 'Email', 43, 100, $email_tmp);
-    $url       = new XoopsFormText(_GBOOK_URL, 'URL', 43, 100, $url_tmp);
-    $message   = new XoopsFormTextArea(_GBOOK_MESSAGE, 'Message', $message_tmp);
+    $name      = new XoopsFormText(_GBOOK_NAME, 'Name', 43, 100, $nameTmp);
+    $email     = new XoopsFormText(_GBOOK_EMAIL, 'Email', 43, 100, $emailTmp);
+    $url       = new XoopsFormText(_GBOOK_URL, 'URL', 43, 100, $urlTmp);
+    $message   = new XoopsFormTextArea(_GBOOK_MESSAGE, 'Message', $messageTmp);
     $submit    = new XoopsFormButton('', 'submit', _GBOOK_SUBMIT, 'submit');
-    $gbookform = new XoopsThemeForm(_GBOOK_SIGN, 'gbookform', 'sign.php');
+    $gbookForm = new XoopsThemeForm(_GBOOK_SIGN, 'gbookform', 'sign.php');
 
-    $gbookform->addElement($name, true);
-    $gbookform->addElement($email);
-    $gbookform->addElement($url);
-    $gbookform->addElement($message, true);
-    $gbookform->addElement(new XoopsFormCaptcha(), true);
-    $gbookform->addElement($submit);
+    $gbookForm->addElement($name, true);
+    $gbookForm->addElement($email);
+    $gbookForm->addElement($url);
+    $gbookForm->addElement($message, true);
+    $gbookForm->addElement(new XoopsFormCaptcha(), true);
+    $gbookForm->addElement($submit);
 
-    return $gbookform;
+    return $gbookForm;
 }
 
 /**

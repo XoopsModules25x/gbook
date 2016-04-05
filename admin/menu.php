@@ -25,13 +25,12 @@
  * @package         GBook
  * @author          Ingo H. de Boer (idb@winshell.org)
  *
- *  Version : 1.00 Wed 2012/06/13 22:32:57 : Ingo H. de Boer Exp $
  * ****************************************************************************
  */
 
 $moduleDirName = basename(dirname(__DIR__));
 
-$moduleHandler = &xoops_gethandler('module');
+$moduleHandler = xoops_getHandler('module');
 $module        = $moduleHandler->getByDirname($moduleDirName);
 $pathIcon32    = '../../' . $module->getInfo('sysicons32');
 xoops_loadLanguage('modinfo', $module->dirname());
