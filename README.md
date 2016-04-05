@@ -10,7 +10,7 @@
 
 **gBook** is a simple Guest Book for [XOOPS CMS](http://xoops.org) 
 
-[![Tutorial Available](http://xoops.org/images/tutorial-available-blue.svg)](https://www.gitbook.com/book/xoops/xoops-gbook-module/) Tutorial: see [here](https://www.gitbook.com/book/xoops/xoops-gbook-module-tutorial/).
+[![Tutorial Available](http://xoops.org/images/tutorial-available-blue.svg)](https://www.gitbook.com/book/xoops/xoops-gbook-tutorial/) Tutorial: see [here](https://www.gitbook.com/book/xoops/xoops-gbook-tutorial/).
 To contribute to the Tutorial, [fork it on GitHub](https://github.com/XoopsDocs/gbook-tutorial)
 
 [![Translations on Transifex](http://xoops.org/images/translations-transifex-blue.svg)](https://www.transifex.com/xoops)
