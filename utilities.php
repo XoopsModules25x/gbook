@@ -19,8 +19,6 @@
  *
  */
 
-//include_once dirname(__DIR__) . '/include/common.php';
-
 //namespace GBook;
 
 /**
