@@ -94,6 +94,7 @@ class GBookUtilities
     public static function getEditor($name, $value)
     {
         global $xoopsUser, $xoopsModule, $xoopsModuleConfig;
+        $options = array();
         $isAdmin = $xoopsUser->isAdmin($xoopsModule->getVar('mid'));
 
         if (class_exists('XoopsFormEditor')) {

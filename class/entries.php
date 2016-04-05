@@ -29,15 +29,16 @@
  * ****************************************************************************
  */
 
+use Xmf\Request;
+
 /**
  * @package   kernel
  * @copyright copyright &copy; 2000 XOOPS.org
  */
 class GbookEntries extends XoopsObject
 {
-
     /**
-     *
+     * Constructor
      */
     public function __construct()
     {
@@ -69,7 +70,7 @@ class GbookEntries extends XoopsObject
     public function getForm($action = false)
     {
         if ($action === false) {
-            $action = $_SERVER['REQUEST_URI'];
+            $action = Request::getString('REQUEST_URI', '', 'SERVER');
         }
         $title = _GBOOK_AM_ENTRY_EDIT;
 
