@@ -1,8 +1,8 @@
 <table>
     <tr>
-        <th><{$smarty.const._GBOOK_AM_NAME}></th>
-        <th><{$smarty.const._GBOOK_AM_MESSAGE}></th>
-        <th><{$smarty.const._GBOOK_AM_ACTION}></th>
+        <th><{$smarty.const._AM_GBOOK_NAME}></th>
+        <th><{$smarty.const._AM_GBOOK_MESSAGE}></th>
+        <th><{$smarty.const._AM_GBOOK_ACTION}></th>
     </tr>
     <{foreach item=entry from=$entries}>
     <tr class="<{cycle values='odd, even'}>">

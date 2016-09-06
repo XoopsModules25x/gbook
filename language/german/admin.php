@@ -12,18 +12,18 @@
  * @date       2014/01/19
  */
 
-define('_GBOOK_AM_HOME', 'Index');
-define('_GBOOK_AM_MANAGE_ENTRIES', 'Eintäge Verwalten');
-define('_GBOOK_AM_ABOUT', 'Über');
+//define('_AM_GBOOK_HOME', 'Index');
+//define('_AM_GBOOK_MANAGE_ENTRIES', 'Eintäge Verwalten');
+//define('_AM_GBOOK_ABOUT', 'Über');
 
-define('_GBOOK_AM_NAME', 'Name');
-define('_GBOOK_AM_MESSAGE', 'Eintrag');
-define('_GBOOK_AM_ACTION', 'Aktion');
-define('_GBOOK_AM_EMAIL', 'eMail');
-define('_GBOOK_AM_URL', 'URL');
-define('_GBOOK_AM_NOTE', 'Note');
+define('_AM_GBOOK_NAME', 'Name');
+define('_AM_GBOOK_MESSAGE', 'Eintrag');
+define('_AM_GBOOK_ACTION', 'Aktion');
+define('_AM_GBOOK_EMAIL', 'eMail');
+define('_AM_GBOOK_URL', 'URL');
+define('_AM_GBOOK_NOTE', 'Note');
 
-define('_GBOOK_AM_DELETE_SUCCESS', 'Eintrag von \'%s\' erfolgreich gelöscht.');
-define('_GBOOK_AM_DELETE_SURE', 'Sind Sie sicher den Eintrag von \'%s\' zu löschen?');
-define('_GBOOK_AM_ENTRY_EDIT', 'Eintrag bearbeiten');
-define('_GBOOK_AM_ENTRY_EDITED', 'Eintrag erfolgreich bearbeitet.');
+define('_AM_GBOOK_DELETE_SUCCESS', 'Eintrag von \'%s\' erfolgreich gelöscht.');
+define('_AM_GBOOK_DELETE_SURE', 'Sind Sie sicher den Eintrag von \'%s\' zu löschen?');
+define('_AM_GBOOK_ENTRY_EDIT', 'Eintrag bearbeiten');
+define('_AM_GBOOK_ENTRY_EDITED', 'Eintrag erfolgreich bearbeitet.');

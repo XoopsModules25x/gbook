@@ -28,7 +28,11 @@
  *
  * ****************************************************************************
  */
+use Xmf\Request;
 
-include dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'mainfile.php';
-$xoopsOption['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="templates/style.css" />';
-xoops_load('XoopsRequest');
+include_once __DIR__ . '/../../mainfile.php';
+
+$GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="templates/style.css" />';
+
+$pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);
+$pathIcon32 = \Xmf\Module\Admin::iconUrl('', 32);

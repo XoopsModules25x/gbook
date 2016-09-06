@@ -28,32 +28,22 @@
  * ****************************************************************************
  */
 
-$moduleDirName = basename(dirname(__DIR__));
-
-$moduleHandler = xoops_getHandler('module');
-$module        = $moduleHandler->getByDirname($moduleDirName);
-$pathIcon32    = '../../' . $module->getInfo('sysicons32');
-xoops_loadLanguage('modinfo', $module->dirname());
-
-$xoopsModuleAdminPath = XOOPS_ROOT_PATH . '/' . $module->getInfo('dirmoduleadmin');
-if (!file_exists($fileinc = $xoopsModuleAdminPath . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/' . 'main.php')) {
-    $fileinc = $xoopsModuleAdminPath . '/language/english/main.php';
-}
-include_once $fileinc;
-
-xoops_loadLanguage('admin', $moduleDirName);
+$pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
 
 $adminmenu[] = array(
-    'title' => _GBOOK_AM_HOME,
+    'title' => _AM_MODULEADMIN_HOME,
     'link'  => 'admin/index.php',
-    'icon'  => $pathIcon32 . '/home.png');
+    'icon'  => $pathIcon32 . '/home.png'
+);
 
 $adminmenu[] = array(
-    'title' => _GBOOK_AM_MANAGE_ENTRIES,
+    'title' => _MI_GBOOK_MANAGE_ENTRIES,
     'link'  => 'admin/entries.php',
-    'icon'  => $pathIcon32 . '/manage.png');
+    'icon'  => $pathIcon32 . '/manage.png'
+);
 
 $adminmenu[] = array(
     'title' => _AM_MODULEADMIN_ABOUT,
     'link'  => 'admin/about.php',
-    'icon'  => $pathIcon32 . '/about.png');
+    'icon'  => $pathIcon32 . '/about.png'
+);

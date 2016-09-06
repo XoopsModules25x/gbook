@@ -1,3 +1,20 @@
+1.10 Final        2016-06-10
+=================================
+- code cosmetics (mamba)
+- removed @version (mamba)
+- partial conversion to XMF (mamba)
+- displayNavigation(basename(__FILE__))  (mamba)
+- dirname(__FILE__) to __DIR__ (mamba)
+- XOOPS 2.5.8, PHP 7 (mamba)
+- replaced < b /> with < b > (mamba)
+- Unnecessary double quotes (mamba)
+- reference mismatch (mamba)
+- Hardening to type safe (mamba)
+- updated Help (mamba)
+- renamed function "gbookSignForm" to "getSignForm" (mamba)
+- moved gbook.css to /assets/css (mamba)
+
+
 1.10 Beta 1      NOT RELEASED
 ---------------------------
 - cosmetic code changes (mamba)

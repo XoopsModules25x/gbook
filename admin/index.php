@@ -28,13 +28,11 @@
  * ****************************************************************************
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include __DIR__ . '/admin_header.php';
+include_once __DIR__ . '/admin_header.php';
+// Display Admin header
 xoops_cp_header();
 
-$indexAdmin = new ModuleAdmin();
+echo $adminObject->displayNavigation(basename(__FILE__));
+echo $adminObject->renderIndex();
 
-echo $indexAdmin->addNavigation(basename(__FILE__));
-echo $indexAdmin->renderIndex();
-
-include __DIR__ . '/admin_footer.php';
+include_once __DIR__ . '/admin_footer.php';

@@ -1,12 +1,13 @@
 CREATE TABLE `gbook_entries` (
-  `id`		smallint(5) unsigned	NOT NULL auto_increment,
-  `name`	varchar(128)		NOT NULL default '',
-  `email`	varchar(64)		NOT NULL default '',
-  `url`		varchar(64)		NOT NULL default '',
-  `message`	text,
-  `note`	text,
-  `time`	int(10)			NOT NULL default '0',
-  `ip`		varchar(15)		default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM;
+  `id`      SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name`    VARCHAR(128)         NOT NULL DEFAULT '',
+  `email`   VARCHAR(64)          NOT NULL DEFAULT '',
+  `url`     VARCHAR(64)          NOT NULL DEFAULT '',
+  `message` TEXT,
+  `note`    TEXT,
+  `time`    INT(10)              NOT NULL DEFAULT '0',
+  `ip`      VARCHAR(15)                   DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+  ENGINE = MyISAM;
 

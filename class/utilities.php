@@ -41,7 +41,8 @@ class GBookUtilities
             } else {
                 file_put_contents($folder . '/index.html', '<script>history.go(-1);</script>');
             }
-        } catch (Exception $e) {
+        }
+        catch (Exception $e) {
             echo 'Caught exception: ', $e->getMessage(), "\n", '<br/>';
         }
     }
@@ -112,6 +113,7 @@ class GBookUtilities
         } else {
             $descEditor = new XoopsFormDhtmlTextArea(ucfirst($name), $name, $value, '100%', '100%');
         }
+
         //        $form->addElement($descEditor);
 
         return $descEditor;
@@ -124,14 +126,14 @@ class GBookUtilities
      * @param $messageTmp
      * @return XoopsThemeForm
      */
-    public static function gbookSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp)
+    public static function getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp)
     {
-        $name      = new XoopsFormText(_GBOOK_NAME, 'Name', 43, 100, $nameTmp);
-        $email     = new XoopsFormText(_GBOOK_EMAIL, 'Email', 43, 100, $emailTmp);
-        $url       = new XoopsFormText(_GBOOK_URL, 'URL', 43, 100, $urlTmp);
-        $message   = new XoopsFormTextArea(_GBOOK_MESSAGE, 'Message', $messageTmp);
-        $submit    = new XoopsFormButton('', 'submit', _GBOOK_SUBMIT, 'submit');
-        $gbookform = new XoopsThemeForm(_GBOOK_SIGN, 'gbookform', 'sign.php');
+        $name      = new XoopsFormText(_MD_GBOOK_NAME, 'Name', 43, 100, $nameTmp);
+        $email     = new XoopsFormText(_MD_GBOOK_EMAIL, 'Email', 43, 100, $emailTmp);
+        $url       = new XoopsFormText(_MD_GBOOK_URL, 'URL', 43, 100, $urlTmp);
+        $message   = new XoopsFormTextArea(_MD_GBOOK_MESSAGE, 'Message', $messageTmp);
+        $submit    = new XoopsFormButton('', 'submit', _MD_GBOOK_SUBMIT, 'submit');
+        $gbookform = new XoopsThemeForm(_MD_GBOOK_SIGN, 'gbookform', 'sign.php');
 
         $gbookform->addElement($name, true);
         $gbookform->addElement($email);
