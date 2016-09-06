@@ -29,21 +29,28 @@
  * ****************************************************************************
  */
 
-include(dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php');
-include_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.php';
-include_once XOOPS_ROOT_PATH . '/Frameworks/art/functions.admin.php';
+use Xmf\Request;
 
-xoops_load('XoopsRequest');
-xoops_loadLanguage('main', 'gbook');
-xoops_loadLanguage('modinfo', 'gbook');
+$moduleDirName = basename(dirname(__DIR__));
+include_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
+include_once $GLOBALS['xoops']->path('www/include/cp_functions.php');
+include_once $GLOBALS['xoops']->path('www/include/cp_header.php');
+include_once $GLOBALS['xoops']->path('www/class/xoopsformloader.php');
 
-$newXoopsModuleGui = false;
-if (file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php'))) {
-    include_once $GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php');
-    $moduleInfo        = $module_handler->get($xoopsModule->getVar('mid'));
-    $pathIcon16        = XOOPS_URL . '/' . $moduleInfo->getInfo('icons16');
-    $pathIcon32        = XOOPS_URL . '/' . $moduleInfo->getInfo('icons32');
-    $newXoopsModuleGui = true;
-    $indexAdmin        = new ModuleAdmin();
-}
-$myts = MyTextSanitizer::getInstance();
+xoops_loadLanguage('admin', $moduleDirName);
+xoops_loadLanguage('modinfo', $moduleDirName);
+xoops_loadLanguage('main', $moduleDirName);
+
+$pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);
+$pathIcon32 = \Xmf\Module\Admin::iconUrl('', 32);
+
+/** @var XoopsModuleHandler $moduleHandler */
+$moduleHandler = xoops_getHandler('module');
+$module        = $moduleHandler->getByDirname($moduleDirName);
+$pathModIcon32 = XOOPS_URL . '/' . $module->getInfo('modicons32');
+
+$myts        = MyTextSanitizer::getInstance();
+$adminObject = \Xmf\Module\Admin::getInstance();
+
+
+

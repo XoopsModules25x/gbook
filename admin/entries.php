@@ -28,19 +28,19 @@
  *
  * ****************************************************************************
  */
+use Xmf\Request;
 
 include __DIR__ . '/admin_header.php';
 xoops_cp_header();
-$indexAdmin = new ModuleAdmin();
 
-echo $indexAdmin->addNavigation(basename(__FILE__));
-echo $indexAdmin->renderButton('right', '');
+echo $adminObject->displayNavigation(basename(__FILE__));
+echo $adminObject->renderButton('right', '');
 
-$tempId = XoopsRequest::getInt('id', 0, 'GET');
-$tempOp = XoopsRequest::getCmd('op', XoopsRequest::getCmd('op', '', 'POST'), 'GET');
+$tempId = Request::getInt('id', 0, 'GET');
+$tempOp = Request::getCmd('op', Request::getCmd('op', '', 'POST'), 'GET');
 
 $template_main = '';
-$op = '' !== $tempOp ? $tempOp : (0 !== $tempId ? 'edit' : 'list');
+$op            = '' !== $tempOp ? $tempOp : (0 !== $tempId ? 'edit' : 'list');
 
 $handler = xoops_getModuleHandler('entries');
 
@@ -55,7 +55,7 @@ switch ($op) {
         break;
 
     case 'edit':
-        $obj  = $handler->get(XoopsRequest::getInt('id', '', 'GET'));
+        $obj  = $handler->get(Request::getInt('id', '', 'GET'));
         $form = $obj->getForm();
         $form->display();
         break;
@@ -64,42 +64,44 @@ switch ($op) {
         if (!$GLOBALS['xoopsSecurity']->check()) {
             redirect_header('entries.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
-        $tempId = XoopsRequest::getInt('id', 0, 'GET');
+        $tempId = Request::getInt('id', 0, 'GET');
         if (0 !== $tempId) {
-            $obj =& $handler->get($tempId);
+            $obj = $handler->get($tempId);
         } else {
-            $obj =& $handler->create();
+            $obj = $handler->create();
         }
-        $obj->setVar('name', XoopsRequest::getString('name', '', 'POST'));
-        $obj->setVar('email', XoopsRequest::getString('email', '', 'POST'));
-        $obj->setVar('url', XoopsRequest::getString('url', '', 'POST'));
-        $obj->setVar('message', XoopsRequest::getText('message', '', 'POST'));
-        $obj->setVar('note', XoopsRequest::getText('note', '', 'POST'));
+        $obj->setVar('name', Request::getString('name', '', 'POST'));
+        $obj->setVar('email', Request::getString('email', '', 'POST'));
+        $obj->setVar('url', Request::getString('url', '', 'POST'));
+        $obj->setVar('message', Request::getText('message', '', 'POST'));
+        $obj->setVar('note', Request::getText('note', '', 'POST'));
         if ($handler->insert($obj)) {
-            redirect_header('entries.php', 3, _GBOOK_AM_ENTRY_EDITED);
+            redirect_header('entries.php', 3, _AM_GBOOK_ENTRY_EDITED);
         }
         include_once dirname(__DIR__) . '/include/forms.php';
         echo $obj->getHtmlErrors();
-        $form =& $obj->getForm();
+        $form = $obj->getForm();
         $form->display();
         break;
 
     case 'delete':
-        $tempId = XoopsRequest::getInt('id', 0, 'GET');
-        $tempOk = XoopsRequest::getInt('ok', 0, 'POST');
-        $obj    =& $handler->get($tempId);
+        $tempId = Request::getInt('id', 0, 'GET');
+        $tempOk = Request::getInt('ok', 0, 'POST');
+        $obj    = $handler->get($tempId);
 
         if (0 !== $tempOk && $tempOk === 1) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 redirect_header('entries.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
             }
             if ($handler->delete($obj)) {
-                redirect_header('entries.php', 3, sprintf(_GBOOK_AM_DELETE_SUCCESS, $obj->getVar('name')));
+                redirect_header('entries.php', 3, sprintf(_AM_GBOOK_DELETE_SUCCESS, $obj->getVar('name')));
             } else {
                 echo $obj->getHtmlErrors();
             }
         } else {
-            xoops_confirm(array('ok' => 1, 'id' => XoopsRequest::getInt('id', 0, 'GET'), 'op' => 'delete'), XoopsRequest::getString('REQUEST_URI', '', 'SERVER'), sprintf(_GBOOK_AM_DELETE_SURE, $obj->getVar('name')));
+            xoops_confirm(array('ok' => 1, 'id' => Request::getInt('id', 0, 'GET'), 'op' => 'delete'),
+                          Request::getString('REQUEST_URI', '', 'SERVER'),
+                          sprintf(_AM_GBOOK_DELETE_SURE, $obj->getVar('name')));
         }
         break;
 }

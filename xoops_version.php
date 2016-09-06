@@ -33,8 +33,8 @@ $moduleDirName = basename(__DIR__);
 
 // ------------------- Informations ------------------- //
 $modversion = array(
-    'name'                => _GBOOK_MI_NAME,
-    'description'         => _GBOOK_MI_DESC,
+    'name'                => _MI_GBOOK_NAME,
+    'description'         => _MI_GBOOK_DESC,
     'official'            => 0, //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
     'author'              => 'Ingo H. de Boer',
     'author_mail'         => 'author-email',
@@ -52,7 +52,7 @@ $modversion = array(
     'manual_file'         => XOOPS_URL . "/modules/$moduleDirName/docs/install.txt",
     'min_php'             => '5.5',
     'min_xoops'           => '2.5.8',
-    'min_admin'           => '1.1',
+    'min_admin'           => '1.2',
     'min_db'              => array('mysql' => '5.0.7', 'mysqli' => '5.0.7'),
     // images
     'image'               => 'assets/images/logo_module.png',
@@ -68,8 +68,8 @@ $modversion = array(
     'modicons32'          => 'assets/images/icons/32',
     //About
     'version'             => 1.10,
-    'module_status'       => 'Beta 1',
-    'release_date'        => '2015/08/03', //yyyy/mm/dd
+    'module_status'       => 'Final',
+    'release_date'        => '2016/09/03', //yyyy/mm/dd
     //    'release'             => '2015-04-04',
     'demo_site_url'       => 'http://www.xoops.org',
     'demo_site_name'      => 'XOOPS Site',
@@ -114,45 +114,50 @@ $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 
 // Tables created by sql file (without prefix!)
 $modversion['tables'] = array(
-    $moduleDirName . '_' . 'entries');
+    $moduleDirName . '_' . 'entries'
+);
 
 // ------------------- Templates ------------------- //
 
 $modversion['templates'] = array(
     array('file' => 'gbook_admin_entries.tpl', 'description' => 'Admin list to manage entries.'),
     array('file' => 'gbook_view_entries.tpl', 'description' => 'Shows entries of guestbook.'),
-    array('file' => 'gbook_sign.tpl', 'description' => 'Sign the guestbook.'));
+    array('file' => 'gbook_sign.tpl', 'description' => 'Sign the guestbook.')
+);
 
 // ------------------- Config Options ------------------- //
 $modversion['config'][] = array(
     'name'        => 'num_entries',
-    'title'       => '_GBOOK_MI_NUM_TITLE',
-    'description' => '_GBOOK_MI_NUM_DESCRIPTION',
+    'title'       => '_MI_GBOOK_NUM_TITLE',
+    'description' => '_MI_GBOOK_NUM_DESCRIPTION',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 5);
+    'default'     => 5
+);
 
 $modversion['config'][] = array(
     'name'        => 'order_entries',
-    'title'       => '_GBOOK_MI_ORDER_TITLE',
-    'description' => '_GBOOK_MI_ORDER_DESCRIPTION',
+    'title'       => '_MI_GBOOK_ORDER_TITLE',
+    'description' => '_MI_GBOOK_ORDER_DESCRIPTION',
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'DESC',
-    'options'     => array('_GBOOK_MI_ORDER_ASC' => 'ASC', '_GBOOK_MI_ORDER_DESC' => 'DESC'));
+    'options'     => array('_MI_GBOOK_ORDER_ASC' => 'ASC', '_MI_GBOOK_ORDER_DESC' => 'DESC')
+);
 
 $modversion['config'][] = array(
     'name'        => 'date_format',
-    'title'       => '_GBOOK_MI_DFORMAT_TITLE',
-    'description' => '_GBOOK_MI_DFORMAT_DESCRIPTION',
+    'title'       => '_MI_GBOOK_DFORMAT_TITLE',
+    'description' => '_MI_GBOOK_DFORMAT_DESCRIPTION',
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'Y-m-d',
-    'options'     => array('Y-m-d' => 'Y-m-d', 'd-m-Y' => 'd-m-Y', 'Y/m/d' => 'Y/m/d'));
+    'options'     => array('Y-m-d' => 'Y-m-d', 'd-m-Y' => 'd-m-Y', 'Y/m/d' => 'Y/m/d')
+);
 
 xoops_load('XoopsEditorHandler');
 $editorHandler = XoopsEditorHandler::getInstance();
-$editorList     = array_flip($editorHandler->getList());
+$editorList    = array_flip($editorHandler->getList());
 
 $modversion['config'][] = array(
     'name'        => 'editorAdmin',
@@ -162,7 +167,8 @@ $modversion['config'][] = array(
     'formtype'  => 'select',
     'valuetype' => 'text',
     'options'   => $editorList,
-    'default'   => 'dhtmltextarea');
+    'default'   => 'dhtmltextarea'
+);
 
 $modversion['config'][] = array(
     'name'        => 'editorUser',
@@ -171,4 +177,5 @@ $modversion['config'][] = array(
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'options'     => $editorList,
-    'default'     => 'dhtmltextarea');
+    'default'     => 'dhtmltextarea'
+);

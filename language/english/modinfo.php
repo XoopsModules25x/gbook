@@ -29,22 +29,30 @@
  * ****************************************************************************
  */
 
-define('_GBOOK_MI_NAME', 'GBook');
-define('_GBOOK_MI_DESC', 'The GBook module is for managing a guestbook.');
+define('_MI_GBOOK_NAME', 'GBook');
+define('_MI_GBOOK_DESC', 'The GBook module is for managing a guestbook.');
 
-define('_GBOOK_MI_NUM_TITLE', 'Entries per page');
-define('_GBOOK_MI_NUM_DESCRIPTION', 'The number of entries shown per page.');
+define('_MI_GBOOK_NUM_TITLE', 'Entries per page');
+define('_MI_GBOOK_NUM_DESCRIPTION', 'The number of entries shown per page.');
 
-define('_GBOOK_MI_ORDER_TITLE', 'Order of entries');
-define('_GBOOK_MI_ORDER_DESCRIPTION', 'The order how the entries are shown.');
+define('_MI_GBOOK_ORDER_TITLE', 'Order of entries');
+define('_MI_GBOOK_ORDER_DESCRIPTION', 'The order how the entries are shown.');
 
-define('_GBOOK_MI_ORDER_ASC', 'Ascending');
-define('_GBOOK_MI_ORDER_DESC', 'Descending');
+define('_MI_GBOOK_ORDER_ASC', 'Ascending');
+define('_MI_GBOOK_ORDER_DESC', 'Descending');
 
-define('_GBOOK_MI_DFORMAT_TITLE', 'Date format');
-define('_GBOOK_MI_DFORMAT_DESCRIPTION', 'The format how the dates are shown.');
+define('_MI_GBOOK_DFORMAT_TITLE', 'Date format');
+define('_MI_GBOOK_DFORMAT_DESCRIPTION', 'The format how the dates are shown.');
 
+//1.10
 define('_MI_GBOOK_EDITOR_ADMIN', 'Editor for Admin');
 define('_MI_GBOOK_EDITOR_ADMIN_DESC', 'Select the editor that you would like to use');
 define('_MI_GBOOK_EDITOR_USER', 'Editor for Users');
 define('_MI_GBOOK_EDITOR_USER_DESC', 'Select the editor that you would the users to use');
+
+define('_MI_GBOOK_MANAGE_ENTRIES', 'Manage Entries');
+//Help
+define('_MI_GBOOK_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_GBOOK_HELP_HEADER', __DIR__ . '/help/helpheader.html');
+define('_MI_GBOOK_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_GBOOK_HELP_OVERVIEW', 'Overview');

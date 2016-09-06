@@ -29,14 +29,14 @@
  * ****************************************************************************
  */
 
-define('_GBOOK_SIGN', 'Sign the Guestbook');
-define('_GBOOK_TOTAL_ENTRIES', 'There are %s entries in total.');
-define('_GBOOK_BACK', 'Back to the Guestbook');
-define('_GBOOK_NAME', 'Name');
-define('_GBOOK_EMAIL', 'EMail');
-define('_GBOOK_URL', 'URL');
-define('_GBOOK_MESSAGE', 'Message');
-define('_GBOOK_SUBMIT', 'Submit');
-define('_GBOOK_DESC', 'Please complete the form in order to sign the Guestbook.');
-define('_GBOOK_SIGNED', 'Thank you for signing the Guestbook.');
-define('_GBOOK_EMAIL_INVALID', 'Invalid EMail!');
+define('_MD_GBOOK_SIGN', 'Sign the Guestbook');
+define('_MD_GBOOK_TOTAL_ENTRIES', 'There are %s entries in total.');
+define('_MD_GBOOK_BACK', 'Back to the Guestbook');
+define('_MD_GBOOK_NAME', 'Name');
+define('_MD_GBOOK_EMAIL', 'EMail');
+define('_MD_GBOOK_URL', 'URL');
+define('_MD_GBOOK_MESSAGE', 'Message');
+define('_MD_GBOOK_SUBMIT', 'Submit');
+define('_MD_GBOOK_DESC', 'Please complete the form in order to sign the Guestbook.');
+define('_MD_GBOOK_SIGNED', 'Thank you for signing the Guestbook.');
+define('_MD_GBOOK_EMAIL_INVALID', 'Invalid EMail!');

@@ -72,23 +72,23 @@ class GbookEntries extends XoopsObject
         if ($action === false) {
             $action = Request::getString('REQUEST_URI', '', 'SERVER');
         }
-        $title = _GBOOK_AM_ENTRY_EDIT;
+        $title = _AM_GBOOK_ENTRY_EDIT;
 
         include_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
         include_once dirname(__DIR__) . '/class/utilities.php';
 
         $form = new XoopsThemeForm($title, 'form', $action, 'post', true);
 
-        $form->addElement(new XoopsFormText(_GBOOK_AM_NAME, 'name', 35, 255, $this->getVar('name')));
-        $form->addElement(new XoopsFormText(_GBOOK_AM_EMAIL, 'email', 35, 255, $this->getVar('email')));
-        $form->addElement(new XoopsFormText(_GBOOK_AM_URL, 'url', 35, 255, $this->getVar('url')));
+        $form->addElement(new XoopsFormText(_AM_GBOOK_NAME, 'name', 35, 255, $this->getVar('name')));
+        $form->addElement(new XoopsFormText(_AM_GBOOK_EMAIL, 'email', 35, 255, $this->getVar('email')));
+        $form->addElement(new XoopsFormText(_AM_GBOOK_URL, 'url', 35, 255, $this->getVar('url')));
 
         $messageEditor = GBookUtilities::getEditor('message', $this->getVar('message', 'e'));
-        //        $form->addElement(new XoopsFormTextArea(_GBOOK_AM_MESSAGE, 'message', $this->getVar('message', 'e')));
+        //        $form->addElement(new XoopsFormTextArea(_AM_GBOOK_MESSAGE, 'message', $this->getVar('message', 'e')));
         $form->addElement($messageEditor);
 
         $noteEditor = GBookUtilities::getEditor('note', $this->getVar('note', 'e'));
-        //        $form->addElement(new XoopsFormTextArea(_GBOOK_AM_NOTE, 'note', $this->getVar('note', 'e')));
+        //        $form->addElement(new XoopsFormTextArea(_AM_GBOOK_NOTE, 'note', $this->getVar('note', 'e')));
         $form->addElement($noteEditor);
 
         $form->addElement(new XoopsFormHidden('op', 'save'));

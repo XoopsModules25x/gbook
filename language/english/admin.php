@@ -29,18 +29,14 @@
  * ****************************************************************************
  */
 
-define('_GBOOK_AM_HOME', 'Home');
-define('_GBOOK_AM_MANAGE_ENTRIES', 'Manage Entries');
-define('_GBOOK_AM_ABOUT', 'About');
+define('_AM_GBOOK_NAME', 'Name');
+define('_AM_GBOOK_MESSAGE', 'Message');
+define('_AM_GBOOK_ACTION', 'Action');
+define('_AM_GBOOK_EMAIL', 'EMail');
+define('_AM_GBOOK_URL', 'URL');
+define('_AM_GBOOK_NOTE', 'Note');
 
-define('_GBOOK_AM_NAME', 'Name');
-define('_GBOOK_AM_MESSAGE', 'Message');
-define('_GBOOK_AM_ACTION', 'Action');
-define('_GBOOK_AM_EMAIL', 'EMail');
-define('_GBOOK_AM_URL', 'URL');
-define('_GBOOK_AM_NOTE', 'Note');
-
-define('_GBOOK_AM_DELETE_SUCCESS', 'Entry from \'%s\' successfully deleted.');
-define('_GBOOK_AM_DELETE_SURE', 'Are you sure you want to delete entry from \'%s\'?');
-define('_GBOOK_AM_ENTRY_EDIT', 'Edit Entry');
-define('_GBOOK_AM_ENTRY_EDITED', 'Entry successfully edited.');
+define('_AM_GBOOK_DELETE_SUCCESS', 'Entry from \'%s\' successfully deleted.');
+define('_AM_GBOOK_DELETE_SURE', 'Are you sure you want to delete entry from \'%s\'?');
+define('_AM_GBOOK_ENTRY_EDIT', 'Edit Entry');
+define('_AM_GBOOK_ENTRY_EDITED', 'Entry successfully edited.');
