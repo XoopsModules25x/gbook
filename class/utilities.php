@@ -9,7 +9,7 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 /**
- * GBookUtilities Class
+ * GbookUtilities Class
  *
  * @copyright   XOOPS Project (http://xoops.org)
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
@@ -22,9 +22,9 @@
 //namespace GBook;
 
 /**
- * Class GBookUtilities
+ * Class GbookUtilities
  */
-class GBookUtilities
+class GbookUtilities
 {
     /**
      * Function responsible for checking if a directory exists, we can also write in and create an index.html file

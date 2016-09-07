@@ -83,11 +83,11 @@ class GbookEntries extends XoopsObject
         $form->addElement(new XoopsFormText(_AM_GBOOK_EMAIL, 'email', 35, 255, $this->getVar('email')));
         $form->addElement(new XoopsFormText(_AM_GBOOK_URL, 'url', 35, 255, $this->getVar('url')));
 
-        $messageEditor = GBookUtilities::getEditor('message', $this->getVar('message', 'e'));
+        $messageEditor = GbookUtilities::getEditor('message', $this->getVar('message', 'e'));
         //        $form->addElement(new XoopsFormTextArea(_AM_GBOOK_MESSAGE, 'message', $this->getVar('message', 'e')));
         $form->addElement($messageEditor);
 
-        $noteEditor = GBookUtilities::getEditor('note', $this->getVar('note', 'e'));
+        $noteEditor = GbookUtilities::getEditor('note', $this->getVar('note', 'e'));
         //        $form->addElement(new XoopsFormTextArea(_AM_GBOOK_NOTE, 'note', $this->getVar('note', 'e')));
         $form->addElement($noteEditor);
 
