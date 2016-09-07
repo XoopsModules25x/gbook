@@ -12,10 +12,6 @@
  * @date       2014/01/19
  */
 
-//define('_AM_GBOOK_HOME', 'Index');
-//define('_AM_GBOOK_MANAGE_ENTRIES', 'Eintäge Verwalten');
-//define('_AM_GBOOK_ABOUT', 'Über');
-
 define('_AM_GBOOK_NAME', 'Name');
 define('_AM_GBOOK_MESSAGE', 'Eintrag');
 define('_AM_GBOOK_ACTION', 'Aktion');

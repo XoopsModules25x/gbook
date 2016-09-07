@@ -55,7 +55,7 @@ $modversion = array(
     'min_admin'           => '1.2',
     'min_db'              => array('mysql' => '5.0.7', 'mysqli' => '5.0.7'),
     // images
-    'image'               => 'assets/images/logo_module.png',
+    'image'               => 'assets/images/logoModule.png',
     'iconsmall'           => 'assets/images/iconsmall.png',
     'iconbig'             => 'assets/images/iconbig.png',
     'dirname'             => $moduleDirName,
@@ -67,9 +67,9 @@ $modversion = array(
     'modicons16'          => 'assets/images/icons/16',
     'modicons32'          => 'assets/images/icons/32',
     //About
-    'version'             => 1.10,
-    'module_status'       => 'Final',
-    'release_date'        => '2016/09/03', //yyyy/mm/dd
+    'version'             => 1.11,
+    'module_status'       => 'Beta 1',
+    'release_date'        => '2016/09/06', //yyyy/mm/dd
     //    'release'             => '2015-04-04',
     'demo_site_url'       => 'http://www.xoops.org',
     'demo_site_name'      => 'XOOPS Site',
@@ -77,13 +77,6 @@ $modversion = array(
     'support_name'        => 'Support Forum',
     'module_website_url'  => 'www.xoops.org',
     'module_website_name' => 'XOOPS Project',
-    // paypal
-    //    'paypal' => array(
-    //        'business'      => 'XXX@email.com',
-    //        'item_name'     => 'Donation : ' . _AM_MODULE_DESC,
-    //        'amount'        => 0,
-    //        'currency_code' => 'USD'),
-
     // Admin system menu
     'system_menu'         => 1,
     // Admin menu
@@ -103,8 +96,8 @@ $modversion = array(
     //        'itemName'   => 'id'),
 
     // Install/Update
-    //    'onInstall'           => 'include/oninstall.php',
-    //    'onUpdate'            => 'include/onupdate.php'
+    'onInstall'           => 'include/oninstall.php',
+    'onUpdate'            => 'include/onupdate.php'
     //  'onUninstall'         => 'include/onuninstall.php'
 
 );

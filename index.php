@@ -65,6 +65,7 @@ foreach ($all_entries as $entry) {
     if ($count >= $start && $count < $to) {
         $entry['date'] = formatTimestamp($entry['time'], $xoopsModuleConfig['date_format']);
         if ($xoopsUser && $xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
+            $xoopsTpl->assign('isadmin', '1');
             $entry['admin'] = "<a href='http://whois.domaintools.com/" . $entry['ip']
                               . "' target='_blank'><img src='./assets/images/ip.png' border='0' /></a>&nbsp;"
                               . "<a href='admin/entries.php?id=" . $entry['id'] . "'><img src='" . $pathIcon16

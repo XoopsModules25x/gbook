@@ -1,3 +1,12 @@
+1.11 Beta 1      NOT RELEASED
+---------------------------
+- added oninstall.php, onupdate.php (mamba)
+- added checks for PHP & XOOPS Versions (mamba)
+- email visible only to Admin (mamba)
+- fixed signage for Anonymous (mamba)
+- renamed $handler to $entriesHandler (mamba)
+
+
 1.10 Final        2016-06-10
 =================================
 - code cosmetics (mamba)
