@@ -35,14 +35,11 @@ include_once __DIR__ . '/class/utilities.php';
 
 //Assign info
 $myts = MyTextSanitizer::getInstance();
-//$nameTmp0    = isset($_POST['Name']) ? $myts->stripSlashesGPC(trim($_POST['Name'])) : (null !== $xoopsUser ? $xoopsUser->getVar('uname', 'E') : '');
-$nameTmp    = Request::getString('Name', '', 'POST') ?: (null !== $xoopsUser ? $xoopsUser->getVar('uname', 'E') : '');
-$emailTmp   = Request::getString('Email', '', 'POST') ?: (null !== $xoopsUser ? $xoopsUser->getVar('email',
-                                                                                                   'E') : ''); //isset($_POST['Email']) ? $myts->stripSlashesGPC(trim($_POST['Email'])) : (null !== $xoopsUser ? $xoopsUser->getVar('email', 'E') : '');
-$urlTmp     = Request::getString('URL', '', 'POST') ?: (null !== $xoopsUser ? $xoopsUser->getVar('url',
-                                                                                                 'E') : ''); //isset($_POST['URL']) ? $myts->stripSlashesGPC(trim($_POST['URL'])) : (null !== $xoopsUser ? $xoopsUser->getVar('url', 'E') : '');
-$messageTmp = Request::getString('Message', '',
-                                 'POST') ?: ''; //isset($_POST['Message']) ? $myts->stripSlashesGPC(trim($_POST['Message'])) : '';
+
+$nameTmp    = Request::getString('Name', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('uname', 'E') : '');
+$emailTmp   = Request::getEmail('Email', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('email', 'E') : '');
+$urlTmp     = Request::getUrl('URL', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('url', 'E') : '');
+$messageTmp = Request::getString('Message', '', 'POST') ?: '';
 $timeTmp    = time();
 $ipTmp      = GBookUtilities::gbookIP();
 
