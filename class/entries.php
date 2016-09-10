@@ -47,7 +47,7 @@ class GbookEntries extends XoopsObject
         $this->initVar('email', XOBJ_DTYPE_TXTBOX);
         $this->initVar('url', XOBJ_DTYPE_TXTBOX);
         $this->initVar('message', XOBJ_DTYPE_TXTAREA);
-        $this->initVar('note', XOBJ_DTYPE_OTHER);
+        $this->initVar('note', XOBJ_DTYPE_TXTAREA);
         $this->initVar('time', XOBJ_DTYPE_INT);
         $this->initVar('date', XOBJ_DTYPE_TXTBOX);
         $this->initVar('ip', XOBJ_DTYPE_TXTBOX);
