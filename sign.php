@@ -35,10 +35,10 @@ include_once __DIR__ . '/class/utilities.php';
 global $xoopsUser;
 //Assign info
 $myts = MyTextSanitizer::getInstance();
-$nameTmp    = Request::getString('Name', '', 'POST') ?: ('' !== $xoopsUser ? $xoopsUser->getVar('uname', 'E') : '');
-$emailTmp   = Request::getString('Email', '', 'POST') ?: ('' !== $xoopsUser ? $xoopsUser->getVar('email', 'E') : '');
-$urlTmp     = Request::getString('URL', '', 'POST') ?: ('' !== $xoopsUser ? $xoopsUser->getVar('url', 'E') : '');
-$messageTmp = Request::getString('Message', '', 'POST') ?: '';
+$nameTmp    = Request::getString('Name', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('uname', 'E') : '');
+$emailTmp   = Request::getString('Email', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('email', 'E') : '');
+$urlTmp     = Request::getString('URL', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('url', 'E') : '');
+$messageTmp = Request::getText('Message', '', 'POST') ?: '';
 $timeTmp    = time();
 $ipTmp      = GbookUtilities::gbookIP();
 
@@ -51,7 +51,7 @@ include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 $xoopsTpl->assign('lang_back', _MD_GBOOK_BACK);
 $xoopsTpl->assign('lang_desc', _MD_GBOOK_DESC);
 
-if (empty($_POST['submit'])) {
+if ('' == Request::getString('submit', '', 'POST')) {
     $gbookform = GbookUtilities::getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
     $gbookform->assign($xoopsTpl);
 } else {

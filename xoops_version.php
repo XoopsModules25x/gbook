@@ -68,8 +68,8 @@ $modversion = array(
     'modicons32'          => 'assets/images/icons/32',
     //About
     'version'             => 1.11,
-    'module_status'       => 'Beta 1',
-    'release_date'        => '2016/09/06', //yyyy/mm/dd
+    'module_status'       => 'Final',
+    'release_date'        => '2016/09/10', //yyyy/mm/dd
     //    'release'             => '2015-04-04',
     'demo_site_url'       => 'http://www.xoops.org',
     'demo_site_name'      => 'XOOPS Site',

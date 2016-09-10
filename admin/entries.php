@@ -71,6 +71,7 @@ switch ($op) {
         } else {
             $obj = $entriesHandler->create();
         }
+
         $obj->setVar('name', Request::getString('name', '', 'POST'));
         $obj->setVar('email', Request::getString('email', '', 'POST'));
         $obj->setVar('url', Request::getString('url', '', 'POST'));

@@ -46,7 +46,7 @@ class GbookEntries extends XoopsObject
         $this->initVar('name', XOBJ_DTYPE_TXTBOX);
         $this->initVar('email', XOBJ_DTYPE_TXTBOX);
         $this->initVar('url', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('message', XOBJ_DTYPE_OTHER);
+        $this->initVar('message', XOBJ_DTYPE_TXTAREA);
         $this->initVar('note', XOBJ_DTYPE_OTHER);
         $this->initVar('time', XOBJ_DTYPE_INT);
         $this->initVar('date', XOBJ_DTYPE_TXTBOX);
@@ -109,6 +109,6 @@ class GbookEntriesHandler extends XoopsPersistableObjectHandler
      */
     public function __construct(XoopsDatabase $db)
     {
-        parent::__construct($db, 'gbook_entries', 'gbookEntries', 'id', 'name', 'email', 'url', 'message', 'note', 'time', 'date', 'ip', 'admin');
+        parent::__construct($db, 'gbook_entries', 'GbookEntries', 'id', 'name', 'email', 'url', 'message', 'note', 'time', 'date', 'ip', 'admin');
     }
 }
