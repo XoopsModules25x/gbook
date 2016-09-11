@@ -46,8 +46,8 @@ class GbookEntries extends XoopsObject
         $this->initVar('name', XOBJ_DTYPE_TXTBOX);
         $this->initVar('email', XOBJ_DTYPE_TXTBOX);
         $this->initVar('url', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('message', XOBJ_DTYPE_OTHER);
-        $this->initVar('note', XOBJ_DTYPE_OTHER);
+        $this->initVar('message', XOBJ_DTYPE_TXTAREA);
+        $this->initVar('note', XOBJ_DTYPE_TXTAREA);
         $this->initVar('time', XOBJ_DTYPE_INT);
         $this->initVar('date', XOBJ_DTYPE_TXTBOX);
         $this->initVar('ip', XOBJ_DTYPE_TXTBOX);
@@ -83,11 +83,11 @@ class GbookEntries extends XoopsObject
         $form->addElement(new XoopsFormText(_AM_GBOOK_EMAIL, 'email', 35, 255, $this->getVar('email')));
         $form->addElement(new XoopsFormText(_AM_GBOOK_URL, 'url', 35, 255, $this->getVar('url')));
 
-        $messageEditor = GBookUtilities::getEditor('message', $this->getVar('message', 'e'));
+        $messageEditor = GbookUtilities::getEditor('message', $this->getVar('message', 'e'));
         //        $form->addElement(new XoopsFormTextArea(_AM_GBOOK_MESSAGE, 'message', $this->getVar('message', 'e')));
         $form->addElement($messageEditor);
 
-        $noteEditor = GBookUtilities::getEditor('note', $this->getVar('note', 'e'));
+        $noteEditor = GbookUtilities::getEditor('note', $this->getVar('note', 'e'));
         //        $form->addElement(new XoopsFormTextArea(_AM_GBOOK_NOTE, 'note', $this->getVar('note', 'e')));
         $form->addElement($noteEditor);
 
@@ -109,6 +109,6 @@ class GbookEntriesHandler extends XoopsPersistableObjectHandler
      */
     public function __construct(XoopsDatabase $db)
     {
-        parent::__construct($db, 'gbook_entries', 'gbookEntries', 'id', 'name', 'email', 'url', 'message', 'note', 'time', 'date', 'ip', 'admin');
+        parent::__construct($db, 'gbook_entries', 'GbookEntries', 'id', 'name', 'email', 'url', 'message', 'note', 'time', 'date', 'ip', 'admin');
     }
 }

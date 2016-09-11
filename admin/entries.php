@@ -42,7 +42,8 @@ $tempOp = Request::getCmd('op', Request::getCmd('op', '', 'POST'), 'GET');
 $template_main = '';
 $op            = '' !== $tempOp ? $tempOp : (0 !== $tempId ? 'edit' : 'list');
 
-$handler = xoops_getModuleHandler('entries');
+/** @var GbookEntriesHandler $entriesHandler */
+$entriesHandler = xoops_getModuleHandler('entries');
 
 switch ($op) {
     default:
@@ -50,12 +51,12 @@ switch ($op) {
         $criteria = new CriteriaCompo();
         $criteria->setSort('id');
         $criteria->setOrder('DESC');
-        $GLOBALS['xoopsTpl']->assign('entries', $handler->getObjects($criteria, true, false));
+        $GLOBALS['xoopsTpl']->assign('entries', $entriesHandler->getObjects($criteria, true, false));
         $template_main = 'gbook_admin_entries.tpl';
         break;
 
     case 'edit':
-        $obj  = $handler->get(Request::getInt('id', '', 'GET'));
+        $obj  = $entriesHandler->get(Request::getInt('id', '', 'GET'));
         $form = $obj->getForm();
         $form->display();
         break;
@@ -66,16 +67,17 @@ switch ($op) {
         }
         $tempId = Request::getInt('id', 0, 'GET');
         if (0 !== $tempId) {
-            $obj = $handler->get($tempId);
+            $obj = $entriesHandler->get($tempId);
         } else {
-            $obj = $handler->create();
+            $obj = $entriesHandler->create();
         }
+
         $obj->setVar('name', Request::getString('name', '', 'POST'));
         $obj->setVar('email', Request::getString('email', '', 'POST'));
         $obj->setVar('url', Request::getString('url', '', 'POST'));
         $obj->setVar('message', Request::getText('message', '', 'POST'));
         $obj->setVar('note', Request::getText('note', '', 'POST'));
-        if ($handler->insert($obj)) {
+        if ($entriesHandler->insert($obj)) {
             redirect_header('entries.php', 3, _AM_GBOOK_ENTRY_EDITED);
         }
         include_once dirname(__DIR__) . '/include/forms.php';
@@ -87,13 +89,13 @@ switch ($op) {
     case 'delete':
         $tempId = Request::getInt('id', 0, 'GET');
         $tempOk = Request::getInt('ok', 0, 'POST');
-        $obj    = $handler->get($tempId);
+        $obj    = $entriesHandler->get($tempId);
 
         if (0 !== $tempOk && $tempOk === 1) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 redirect_header('entries.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
             }
-            if ($handler->delete($obj)) {
+            if ($entriesHandler->delete($obj)) {
                 redirect_header('entries.php', 3, sprintf(_AM_GBOOK_DELETE_SUCCESS, $obj->getVar('name')));
             } else {
                 echo $obj->getHtmlErrors();

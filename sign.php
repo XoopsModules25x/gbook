@@ -32,16 +32,15 @@ use Xmf\Request;
 
 include_once __DIR__ . '/header.php';
 include_once __DIR__ . '/class/utilities.php';
-
+global $xoopsUser;
 //Assign info
 $myts = MyTextSanitizer::getInstance();
-
 $nameTmp    = Request::getString('Name', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('uname', 'E') : '');
-$emailTmp   = Request::getEmail('Email', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('email', 'E') : '');
-$urlTmp     = Request::getUrl('URL', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('url', 'E') : '');
-$messageTmp = Request::getString('Message', '', 'POST') ?: '';
+$emailTmp   = Request::getString('Email', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('email', 'E') : '');
+$urlTmp     = Request::getString('URL', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('url', 'E') : '');
+$messageTmp = Request::getText('Message', '', 'POST') ?: '';
 $timeTmp    = time();
-$ipTmp      = GBookUtilities::gbookIP();
+$ipTmp      = GbookUtilities::gbookIP();
 
 $GLOBALS['xoopsOption']['template_main']       = 'gbook_sign.tpl';
 $GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" />';
@@ -52,8 +51,8 @@ include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 $xoopsTpl->assign('lang_back', _MD_GBOOK_BACK);
 $xoopsTpl->assign('lang_desc', _MD_GBOOK_DESC);
 
-if (empty($_POST['submit'])) {
-    $gbookform = GBookUtilities::getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
+if ('' == Request::getString('submit', '', 'POST')) {
+    $gbookform = GbookUtilities::getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
     $gbookform->assign($xoopsTpl);
 } else {
     $stop = '';
@@ -68,21 +67,22 @@ if (empty($_POST['submit'])) {
     if ('' !== $stop) {
         $stop .= '<br />';
         $GLOBALS['xoopsTpl']->assign('stop', $stop);
-        $gbookform = GBookUtilities::getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
+        $gbookform = GbookUtilities::getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
         $gbookform->assign($xoopsTpl);
     } else {
-        $handler = xoops_getModuleHandler('entries');
-        $obj     = $handler->create();
+        /** @var GbookEntriesHandler $entriesHandler */
+        $entriesHandler = xoops_getModuleHandler('entries');
+        $obj     = $entriesHandler->create();
         $obj->setVar('name', $nameTmp);
         $obj->setVar('email', $emailTmp);
         $obj->setVar('url', formatURL($urlTmp));
         $obj->setVar('message', $messageTmp);
         $obj->setVar('time', $timeTmp);
         $obj->setVar('ip', $ipTmp);
-        if ($handler->insert($obj)) {
+        if ($entriesHandler->insert($obj)) {
             redirect_header('index.php', 3, _MD_GBOOK_SIGNED);
         }
-        include_once dirname(__DIR__) . '/include/forms.php';
+//        include_once dirname(__DIR__) . '/include/forms.php';
         echo $obj->getHtmlErrors();
         $form = $obj->getForm();
         $form->display();

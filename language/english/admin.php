@@ -40,3 +40,11 @@ define('_AM_GBOOK_DELETE_SUCCESS', 'Entry from \'%s\' successfully deleted.');
 define('_AM_GBOOK_DELETE_SURE', 'Are you sure you want to delete entry from \'%s\'?');
 define('_AM_GBOOK_ENTRY_EDIT', 'Edit Entry');
 define('_AM_GBOOK_ENTRY_EDITED', 'Entry successfully edited.');
+//1.11
+define('_AM_GBOOK_UPGRADEFAILED0', "Update failed - couldn't rename field '%s'");
+define('_AM_GBOOK_UPGRADEFAILED1', "Update failed - couldn't add new fields");
+define('_AM_GBOOK_UPGRADEFAILED2', "Update failed - couldn't rename table '%s'");
+define('_AM_GBOOK_ERROR_COLUMN', 'Could not create column in database : %s');
+define('_AM_GBOOK_ERROR_BAD_XOOPS', 'This module requires XOOPS %s+ (%s installed)');
+define('_AM_GBOOK_ERROR_BAD_PHP', 'This module requires PHP version %s+ (%s installed)');
+define('_AM_GBOOK_ERROR_TAG_REMOVAL', 'Could not remove tags from Tag Module');
