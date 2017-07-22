@@ -1,4 +1,4 @@
-![alt XOOPS CMS](http://xoops.org/images/logoXoops4GithubRepository.png)
+![alt XOOPS CMS](https://xoops.org/images/logoXoops4GithubRepository.png)
 ## gBook module for [XOOPS CMS 2.5.8+](https://xoops.org)
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/mambax7/gbook.svg?style=flat)](https://scrutinizer-ci.com/g/mambax7/gbook/?branch=master)
@@ -8,14 +8,14 @@
 [![Latest Pre-Resease](https://img.shields.io/github/tag/XoopsModules25x/gbook.svg?style=flat)](https://github.com/XoopsModules25x/gbook/tags/)
 [![Latest Version](https://img.shields.io/github/release/XoopsModules25x/gbook.svg?style=flat)](https://github.com/XoopsModules25x/gbook/releases/)
 
-**gBook** is a simple Guest Book for [XOOPS CMS](http://xoops.org) 
+**gBook** is a simple Guest Book for [XOOPS CMS](https://xoops.org) 
 
-[![Tutorial Available](http://xoops.org/images/tutorial-available-blue.svg)](https://www.gitbook.com/book/xoops/xoops-gbook-tutorial/) Tutorial: see [here](https://www.gitbook.com/book/xoops/xoops-gbook-tutorial/).
+[![Tutorial Available](https://xoops.org/images/tutorial-available-blue.svg)](https://www.gitbook.com/book/xoops/xoops-gbook-tutorial/) Tutorial: see [here](https://www.gitbook.com/book/xoops/xoops-gbook-tutorial/).
 To contribute to the Tutorial, [fork it on GitHub](https://github.com/XoopsDocs/gbook-tutorial)
 
-[![Translations on Transifex](http://xoops.org/images/translations-transifex-blue.svg)](https://www.transifex.com/xoops)
+[![Translations on Transifex](https://xoops.org/images/translations-transifex-blue.svg)](https://www.transifex.com/xoops)
 
-Please visit us on http://xoops.org
+Please visit us on https://xoops.org
 
 The upcoming "next generation" version of XOOPS CMS is being crafted on GitHub at: https://github.com/XOOPS
 
