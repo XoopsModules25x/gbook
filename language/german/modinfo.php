@@ -36,6 +36,6 @@ define('_MI_GBOOK_EDITOR_USER_DESC', 'Wählen Sie bitte Editor für die Anwender
 define('_MI_GBOOK_MANAGE_ENTRIES', 'Eintäge Verwalten');
 //Help
 define('_MI_GBOOK_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_GBOOK_HELP_HEADER', __DIR__ . '/help/helpheader.html');
+define('_MI_GBOOK_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_GBOOK_BACK_2_ADMIN', 'Zurück zum Admin von ');
 define('_MI_GBOOK_HELP_OVERVIEW', 'Overview');
