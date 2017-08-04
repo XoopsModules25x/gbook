@@ -32,7 +32,7 @@ use Xmf\Request;
 
 include_once __DIR__ . '/../../mainfile.php';
 
-$GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" />';
+$GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" >';
 
 $pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);
 $pathIcon32 = \Xmf\Module\Admin::iconUrl('', 32);

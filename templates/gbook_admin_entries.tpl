@@ -9,7 +9,7 @@
         <td><{$entry.name}></td>
         <td><{$entry.message}></td>
         <td align="center" width=50px>
-            <a href="entries.php?id=<{$entry.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>"/></a>
+            <a href="entries.php?id=<{$entry.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>"></a>
             &nbsp;<a href="entries.php?op=delete&amp;id=<{$entry.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>"</a>
         </td>
     </tr>

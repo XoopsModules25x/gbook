@@ -3,7 +3,7 @@
 </div>
 <{if $lang_desc}>
 <div id="gbook" class="gbook-view"><{$lang_desc}></div>
-<br class='clear'/>
+<br class='clear'>
 <{/if}>
 <{if $stop}>
 <div class="errorMsg txtleft"><{$stop}></div>

@@ -32,7 +32,7 @@ use Xmf\Request;
 
 include_once __DIR__ . '/header.php';
 
-//$GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" />';
+//$GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" >';
 
 /** @var GbookEntriesHandler $entriesHandler */
 $entriesHandler = xoops_getModuleHandler('entries');
@@ -67,10 +67,10 @@ foreach ($all_entries as $entry) {
         if ($xoopsUser && $xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
             $xoopsTpl->assign('isadmin', '1');
             $entry['admin'] = "<a href='http://whois.domaintools.com/" . $entry['ip']
-                              . "' target='_blank'><img src='./assets/images/ip.png' border='0' /></a>&nbsp;"
+                              . "' target='_blank'><img src='./assets/images/ip.png' border='0' ></a>&nbsp;"
                               . "<a href='admin/entries.php?id=" . $entry['id'] . "'><img src='" . $pathIcon16
-                              . "/edit.png' border='0' /></a>&nbsp;" . "<a href='admin/entries.php?op=delete&id="
-                              . $entry['id'] . "'><img src='" . $pathIcon16 . "/delete.png' border='0' /></a>&nbsp;";
+                              . "/edit.png' border='0' ></a>&nbsp;" . "<a href='admin/entries.php?op=delete&id="
+                              . $entry['id'] . "'><img src='" . $pathIcon16 . "/delete.png' border='0' ></a>&nbsp;";
         }
         $xoopsTpl->append('entries', $entry);
     }

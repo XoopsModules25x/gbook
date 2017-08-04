@@ -14,9 +14,9 @@
     <div id="gbook" class="gbook-title">
         <{$entry.date}>, <{$entry.name}>&nbsp;&nbsp;
         <{if $isadmin == 1}>
-        <{if $entry.email != ""}><a href='mailto:<{$entry.email}>'><img src='./assets/images/email.png' border='0'/></a><{/if}>
+        <{if $entry.email != ""}><a href='mailto:<{$entry.email}>'><img src='./assets/images/email.png' border='0'></a><{/if}>
         <{/if}>
-        <{if $entry.url != ""}><a href='<{$entry.url}>' target="_blank"><img src='./assets/images/url.png' border='0'/></a><{/if}>
+        <{if $entry.url != ""}><a href='<{$entry.url}>' target="_blank"><img src='./assets/images/url.png' border='0'></a><{/if}>
     </div>
     <div id="gbook" class="gbook-entry"><{$entry.message}></div>
     <{if $entry.note != ""}>

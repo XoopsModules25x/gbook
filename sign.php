@@ -43,7 +43,7 @@ $timeTmp    = time();
 $ipTmp      = GbookUtilities::gbookIP();
 
 $GLOBALS['xoopsOption']['template_main']       = 'gbook_sign.tpl';
-$GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" />';
+$GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" >';
 include XOOPS_ROOT_PATH . '/header.php';
 include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
@@ -65,7 +65,7 @@ if ('' == Request::getString('submit', '', 'POST')) {
         $stop .= _MD_GBOOK_EMAIL_INVALID;
     }
     if ('' !== $stop) {
-        $stop .= '<br />';
+        $stop .= '<br >';
         $GLOBALS['xoopsTpl']->assign('stop', $stop);
         $gbookform = GbookUtilities::getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
         $gbookform->assign($xoopsTpl);

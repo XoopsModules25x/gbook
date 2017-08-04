@@ -43,7 +43,7 @@ class GbookUtilities
             }
         }
         catch (Exception $e) {
-            echo 'Caught exception: ', $e->getMessage(), "\n", '<br/>';
+            echo 'Caught exception: ', $e->getMessage(), "\n", '<br>';
         }
     }
 
@@ -62,7 +62,7 @@ class GbookUtilities
         //                return copy($file, $folder);
         //            }
         //        } catch (Exception $e) {
-        //            echo 'Caught exception: ', $e->getMessage(), "\n", "<br/>";
+        //            echo 'Caught exception: ', $e->getMessage(), "\n", "<br>";
         //        }
         //        return false;
     }
@@ -193,7 +193,7 @@ class GbookUtilities
                     break;
                 }
             } else {
-                if ((int)$v > 0) { // handles things like x.x.x.0_RC2
+                if ((int)$v > 0) { // handles versions like x.x.x.0_RC2
                     $success = false;
                     break;
                 }
