@@ -31,7 +31,7 @@
 use Xmf\Request;
 
 include_once __DIR__ . '/header.php';
-include_once __DIR__ . '/class/utilities.php';
+include_once __DIR__ . '/class/utility.php';
 global $xoopsUser;
 //Assign info
 $myts = MyTextSanitizer::getInstance();
@@ -40,7 +40,7 @@ $emailTmp   = Request::getString('Email', '', 'POST') ?: (is_object($xoopsUser) 
 $urlTmp     = Request::getString('URL', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('url', 'E') : '');
 $messageTmp = Request::getText('Message', '', 'POST') ?: '';
 $timeTmp    = time();
-$ipTmp      = GbookUtilities::gbookIP();
+$ipTmp      = GbookUtility::gbookIP();
 
 $GLOBALS['xoopsOption']['template_main']       = 'gbook_sign.tpl';
 $GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" >';
@@ -51,8 +51,8 @@ include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 $xoopsTpl->assign('lang_back', _MD_GBOOK_BACK);
 $xoopsTpl->assign('lang_desc', _MD_GBOOK_DESC);
 
-if ('' == Request::getString('submit', '', 'POST')) {
-    $gbookform = GbookUtilities::getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
+if ('' === Request::getString('submit', '', 'POST')) {
+    $gbookform = GbookUtility::getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
     $gbookform->assign($xoopsTpl);
 } else {
     $stop = '';
@@ -67,7 +67,7 @@ if ('' == Request::getString('submit', '', 'POST')) {
     if ('' !== $stop) {
         $stop .= '<br >';
         $GLOBALS['xoopsTpl']->assign('stop', $stop);
-        $gbookform = GbookUtilities::getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
+        $gbookform = GbookUtility::getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp);
         $gbookform->assign($xoopsTpl);
     } else {
         /** @var GbookEntriesHandler $entriesHandler */
@@ -84,6 +84,7 @@ if ('' == Request::getString('submit', '', 'POST')) {
         }
 //        include_once dirname(__DIR__) . '/include/forms.php';
         echo $obj->getHtmlErrors();
+        /** @var \XoopsThemeForm $form */
         $form = $obj->getForm();
         $form->display();
     }

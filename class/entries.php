@@ -75,7 +75,7 @@ class GbookEntries extends XoopsObject
         $title = _AM_GBOOK_ENTRY_EDIT;
 
         include_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
-        include_once dirname(__DIR__) . '/class/utilities.php';
+        include_once dirname(__DIR__) . '/class/utility.php';
 
         $form = new XoopsThemeForm($title, 'form', $action, 'post', true);
 
@@ -83,11 +83,11 @@ class GbookEntries extends XoopsObject
         $form->addElement(new XoopsFormText(_AM_GBOOK_EMAIL, 'email', 35, 255, $this->getVar('email')));
         $form->addElement(new XoopsFormText(_AM_GBOOK_URL, 'url', 35, 255, $this->getVar('url')));
 
-        $messageEditor = GbookUtilities::getEditor('message', $this->getVar('message', 'e'));
+        $messageEditor = GbookUtility::getEditor('message', $this->getVar('message', 'e'));
         //        $form->addElement(new XoopsFormTextArea(_AM_GBOOK_MESSAGE, 'message', $this->getVar('message', 'e')));
         $form->addElement($messageEditor);
 
-        $noteEditor = GbookUtilities::getEditor('note', $this->getVar('note', 'e'));
+        $noteEditor = GbookUtility::getEditor('note', $this->getVar('note', 'e'));
         //        $form->addElement(new XoopsFormTextArea(_AM_GBOOK_NOTE, 'note', $this->getVar('note', 'e')));
         $form->addElement($noteEditor);
 

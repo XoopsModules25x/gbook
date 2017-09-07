@@ -32,7 +32,10 @@
 $moduleDirName = basename(__DIR__);
 
 // ------------------- Informations ------------------- //
-$modversion = array(
+$modversion = [
+    'version'             => 1.12,
+    'module_status'       => 'Beta 1',
+    'release_date'        => '2017/08/14', //yyyy/mm/dd
     'name'                => _MI_GBOOK_NAME,
     'description'         => _MI_GBOOK_DESC,
     'official'            => 0, //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
@@ -51,25 +54,17 @@ $modversion = array(
     'manual'              => 'link to manual file',
     'manual_file'         => XOOPS_URL . "/modules/$moduleDirName/docs/install.txt",
     'min_php'             => '5.5',
-    'min_xoops'           => '2.5.8',
+    'min_xoops'           => '2.5.9',
     'min_admin'           => '1.2',
-    'min_db'              => array('mysql' => '5.0.7', 'mysqli' => '5.0.7'),
+    'min_db'              => ['mysql' => '5.5'],
     // images
     'image'               => 'assets/images/logoModule.png',
     'iconsmall'           => 'assets/images/iconsmall.png',
     'iconbig'             => 'assets/images/iconbig.png',
     'dirname'             => $moduleDirName,
-    //Frameworks
-    'dirmoduleadmin'      => 'Frameworks/moduleclasses/moduleadmin',
-    'sysicons16'          => 'Frameworks/moduleclasses/icons/16',
-    'sysicons32'          => 'Frameworks/moduleclasses/icons/32',
     // Local path icons
     'modicons16'          => 'assets/images/icons/16',
     'modicons32'          => 'assets/images/icons/32',
-    //About
-    'version'             => 1.11,
-    'module_status'       => 'Final',
-    'release_date'        => '2016/09/10', //yyyy/mm/dd
     //    'release'             => '2015-04-04',
     'demo_site_url'       => 'https://xoops.org',
     'demo_site_name'      => 'XOOPS Site',
@@ -100,59 +95,59 @@ $modversion = array(
     'onUpdate'            => 'include/onupdate.php'
     //  'onUninstall'         => 'include/onuninstall.php'
 
-);
+];
 
 // ------------------- Mysql ------------------- //
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 
 // Tables created by sql file (without prefix!)
-$modversion['tables'] = array(
+$modversion['tables'] = [
     $moduleDirName . '_' . 'entries'
-);
+];
 
 // ------------------- Templates ------------------- //
 
-$modversion['templates'] = array(
-    array('file' => 'gbook_admin_entries.tpl', 'description' => 'Admin list to manage entries.'),
-    array('file' => 'gbook_view_entries.tpl', 'description' => 'Shows entries of guestbook.'),
-    array('file' => 'gbook_sign.tpl', 'description' => 'Sign the guestbook.')
-);
+$modversion['templates'] = [
+    ['file' => 'gbook_admin_entries.tpl', 'description' => 'Admin list to manage entries.'],
+    ['file' => 'gbook_view_entries.tpl', 'description' => 'Shows entries of guestbook.'],
+    ['file' => 'gbook_sign.tpl', 'description' => 'Sign the guestbook.']
+];
 
 // ------------------- Config Options ------------------- //
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'num_entries',
     'title'       => '_MI_GBOOK_NUM_TITLE',
     'description' => '_MI_GBOOK_NUM_DESCRIPTION',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 5
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'order_entries',
     'title'       => '_MI_GBOOK_ORDER_TITLE',
     'description' => '_MI_GBOOK_ORDER_DESCRIPTION',
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'DESC',
-    'options'     => array('_MI_GBOOK_ORDER_ASC' => 'ASC', '_MI_GBOOK_ORDER_DESC' => 'DESC')
-);
+    'options'     => ['_MI_GBOOK_ORDER_ASC' => 'ASC', '_MI_GBOOK_ORDER_DESC' => 'DESC']
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'date_format',
     'title'       => '_MI_GBOOK_DFORMAT_TITLE',
     'description' => '_MI_GBOOK_DFORMAT_DESCRIPTION',
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'Y-m-d',
-    'options'     => array('Y-m-d' => 'Y-m-d', 'd-m-Y' => 'd-m-Y', 'Y/m/d' => 'Y/m/d')
-);
+    'options'     => ['Y-m-d' => 'Y-m-d', 'd-m-Y' => 'd-m-Y', 'Y/m/d' => 'Y/m/d']
+];
 
 xoops_load('XoopsEditorHandler');
 $editorHandler = XoopsEditorHandler::getInstance();
 $editorList    = array_flip($editorHandler->getList());
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'editorAdmin',
     'title'       => '_MI_GBOOK_EDITOR_ADMIN',
     'description' => '_MI_GBOOK_EDITOR_ADMIN_DESC',
@@ -161,9 +156,9 @@ $modversion['config'][] = array(
     'valuetype' => 'text',
     'options'   => $editorList,
     'default'   => 'dhtmltextarea'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'editorUser',
     'title'       => '_MI_GBOOK_EDITOR_USER',
     'description' => '_MI_GBOOK_EDITOR_USER_DESC',
@@ -171,4 +166,4 @@ $modversion['config'][] = array(
     'valuetype'   => 'text',
     'options'     => $editorList,
     'default'     => 'dhtmltextarea'
-);
+];

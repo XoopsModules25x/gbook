@@ -101,9 +101,11 @@ switch ($op) {
                 echo $obj->getHtmlErrors();
             }
         } else {
-            xoops_confirm(array('ok' => 1, 'id' => Request::getInt('id', 0, 'GET'), 'op' => 'delete'),
+            xoops_confirm(
+                ['ok' => 1, 'id' => Request::getInt('id', 0, 'GET'), 'op' => 'delete'],
                           Request::getString('REQUEST_URI', '', 'SERVER'),
-                          sprintf(_AM_GBOOK_DELETE_SURE, $obj->getVar('name')));
+                          sprintf(_AM_GBOOK_DELETE_SURE, $obj->getVar('name'))
+            );
         }
         break;
 }

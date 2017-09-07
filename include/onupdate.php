@@ -31,7 +31,7 @@ function tableExists($tablename)
 {
     $result = $GLOBALS['xoopsDB']->queryF("SHOW TABLES LIKE '$tablename'");
 
-    return ($GLOBALS['xoopsDB']->getRowsNum($result) > 0) ? true : false;
+    return $GLOBALS['xoopsDB']->getRowsNum($result) > 0;
 }
 
 /**
@@ -44,17 +44,17 @@ function tableExists($tablename)
 function xoops_module_pre_update_gbook(XoopsModule $module)
 {
     $moduleDirName = basename(dirname(__DIR__));
-    $className = ucfirst($moduleDirName) . 'Utilities';
+    $className = ucfirst($moduleDirName) . 'Utility';
     if (!class_exists($className)) {
-        xoops_load('utilities', $moduleDirName);
+        xoops_load('utility', $moduleDirName);
     }
     //check for minimum XOOPS version
-    if (!$className::checkXoopsVer($module)) {
+    if (!$className::checkVerXoops($module)) {
         return false;
     }
 
     // check for minimum PHP version
-    if (!$className::checkPHPVer($module)) {
+    if (!$className::checkVerPhp($module)) {
         return false;
     }
     return true;
@@ -76,7 +76,7 @@ function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
         // delete old HTML template files ============================
         $templateDirectory = $GLOBALS['xoops']->path('modules/' . $module->getVar('dirname', 'n') . '/templates/');
         if (is_dir($templateDirectory)) {
-            $templateList = array_diff(scandir($templateDirectory), array('..', '.'));
+            $templateList = array_diff(scandir($templateDirectory, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($templateList as $k => $v) {
                 $fileInfo = new SplFileInfo($templateDirectory . $v);
                 if ($fileInfo->getExtension() === 'html' && $fileInfo->getFilename() !== 'index.html') {
@@ -90,7 +90,7 @@ function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
         $templateDirectory = $GLOBALS['xoops']->path('modules/' . $module->getVar('dirname', 'n')
                                                      . '/templates/blocks/');
         if (is_dir($templateDirectory)) {
-            $templateList = array_diff(scandir($templateDirectory), array('..', '.'));
+            $templateList = array_diff(scandir($templateDirectory, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($templateList as $k => $v) {
                 $fileInfo = new SplFileInfo($templateDirectory . $v);
                 if ($fileInfo->getExtension() === 'html' && $fileInfo->getFilename() !== 'index.html') {
@@ -101,10 +101,10 @@ function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
             }
         }
         //delete old files: ===================
-        $oldFiles = array(
+        $oldFiles = [
             '/assets/images/logo_module.png',
             '/templates/gbook.css'
-        );
+        ];
 
         foreach (array_keys($oldFiles) as $file) {
             if (is_file($file)) {
@@ -113,8 +113,10 @@ function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
         }
 
         //delete .html entries from the tpl table
-        $sql = 'DELETE FROM ' . $xoopsDB->prefix('tplfile') . " WHERE `tpl_module` = '" . $module->getVar('dirname',
-                                                                                                          'n')
+        $sql = 'DELETE FROM ' . $xoopsDB->prefix('tplfile') . " WHERE `tpl_module` = '" . $module->getVar(
+            'dirname',
+                                                                                                          'n'
+        )
                . "' AND `tpl_file` LIKE '%.html%'";
         $xoopsDB->queryF($sql);
 

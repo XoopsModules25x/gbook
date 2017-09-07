@@ -30,20 +30,20 @@
 
 $pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _AM_MODULEADMIN_HOME,
     'link'  => 'admin/index.php',
     'icon'  => $pathIcon32 . '/home.png'
-);
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _MI_GBOOK_MANAGE_ENTRIES,
     'link'  => 'admin/entries.php',
     'icon'  => $pathIcon32 . '/manage.png'
-);
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _AM_MODULEADMIN_ABOUT,
     'link'  => 'admin/about.php',
     'icon'  => $pathIcon32 . '/about.png'
-);
+];

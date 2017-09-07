@@ -32,25 +32,31 @@
 use Xmf\Request;
 
 $moduleDirName = basename(dirname(__DIR__));
-include_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
-include_once $GLOBALS['xoops']->path('www/include/cp_functions.php');
-include_once $GLOBALS['xoops']->path('www/include/cp_header.php');
+//include_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
+//include_once $GLOBALS['xoops']->path('www/include/cp_functions.php');
+//include_once $GLOBALS['xoops']->path('www/include/cp_header.php');
+require_once __DIR__ . '/../../../include/cp_header.php';
 include_once $GLOBALS['xoops']->path('www/class/xoopsformloader.php');
 
-xoops_loadLanguage('admin', $moduleDirName);
-xoops_loadLanguage('modinfo', $moduleDirName);
-xoops_loadLanguage('main', $moduleDirName);
+if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
+} else {
+    $moduleHelper = Xmf\Module\Helper::getHelper('system');
+}
+/** @var Xmf\Module\Admin $adminObject */
+$adminObject = Xmf\Module\Admin::getInstance();
 
-$pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);
-$pathIcon32 = \Xmf\Module\Admin::iconUrl('', 32);
+$myts = MyTextSanitizer::getInstance();
 
-/** @var XoopsModuleHandler $moduleHandler */
-$moduleHandler = xoops_getHandler('module');
-$module        = $moduleHandler->getByDirname($moduleDirName);
-$pathModIcon32 = XOOPS_URL . '/' . $module->getInfo('modicons32');
+if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
+    require_once $GLOBALS['xoops']->path('class/template.php');
+    $xoopsTpl = new XoopsTpl();
+}
 
-$myts        = MyTextSanitizer::getInstance();
-$adminObject = \Xmf\Module\Admin::getInstance();
+$pathIcon16      = Xmf\Module\Admin::iconUrl('', 16);
+$pathIcon32      = Xmf\Module\Admin::iconUrl('', 32);
+$pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 
-
-
+// Load language files
+$moduleHelper->loadLanguage('admin');
+$moduleHelper->loadLanguage('modinfo');
+$moduleHelper->loadLanguage('main');

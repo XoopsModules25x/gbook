@@ -26,17 +26,18 @@
 function xoops_module_pre_install_gbook(XoopsModule $module)
 {
     $moduleDirName = basename(dirname(__DIR__));
-    $className = ucfirst($moduleDirName) . 'Utilities';
-    if (!class_exists($className)) {
-        xoops_load('utilities', $moduleDirName);
+    /** @var \GbookUtility $utilityClass */
+    $utilityClass = ucfirst($moduleDirName) . 'Utility';
+    if (!class_exists($utilityClass)) {
+        xoops_load('utility', $moduleDirName);
     }
     //check for minimum XOOPS version
-    if (!$className::checkXoopsVer($module)) {
+    if (!$utilityClass::checkVerXoops($module)) {
         return false;
     }
 
     // check for minimum PHP version
-    if (!$className::checkPhpVer($module)) {
+    if (!$utilityClass::checkVerPhp($module)) {
         return false;
     }
 
