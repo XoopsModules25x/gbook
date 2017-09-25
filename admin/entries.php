@@ -91,7 +91,7 @@ switch ($op) {
         $tempOk = Request::getInt('ok', 0, 'POST');
         $obj    = $entriesHandler->get($tempId);
 
-        if (0 !== $tempOk && $tempOk === 1) {
+        if (0 !== $tempOk && 1 === $tempOk) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 redirect_header('entries.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
             }

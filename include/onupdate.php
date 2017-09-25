@@ -79,7 +79,7 @@ function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
             $templateList = array_diff(scandir($templateDirectory, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($templateList as $k => $v) {
                 $fileInfo = new SplFileInfo($templateDirectory . $v);
-                if ($fileInfo->getExtension() === 'html' && $fileInfo->getFilename() !== 'index.html') {
+                if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
                     if (file_exists($templateDirectory . $v)) {
                         unlink($templateDirectory . $v);
                     }
@@ -93,7 +93,7 @@ function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
             $templateList = array_diff(scandir($templateDirectory, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($templateList as $k => $v) {
                 $fileInfo = new SplFileInfo($templateDirectory . $v);
-                if ($fileInfo->getExtension() === 'html' && $fileInfo->getFilename() !== 'index.html') {
+                if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
                     if (file_exists($templateDirectory . $v)) {
                         unlink($templateDirectory . $v);
                     }

@@ -69,7 +69,7 @@ class GbookEntries extends XoopsObject
      */
     public function getForm($action = false)
     {
-        if ($action === false) {
+        if (false === $action) {
             $action = Request::getString('REQUEST_URI', '', 'SERVER');
         }
         $title = _AM_GBOOK_ENTRY_EDIT;
