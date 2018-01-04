@@ -31,10 +31,10 @@
 use Xmf\Request;
 
 include_once __DIR__ . '/header.php';
-include_once __DIR__ . '/class/utility.php';
+include_once __DIR__ . '/class/Utility.php';
 global $xoopsUser;
 //Assign info
-$myts = MyTextSanitizer::getInstance();
+$myts = \MyTextSanitizer::getInstance();
 $nameTmp    = Request::getString('Name', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('uname', 'E') : '');
 $emailTmp   = Request::getString('Email', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('email', 'E') : '');
 $urlTmp     = Request::getString('URL', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('url', 'E') : '');

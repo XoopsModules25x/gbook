@@ -75,7 +75,7 @@ class GbookEntries extends XoopsObject
         $title = _AM_GBOOK_ENTRY_EDIT;
 
         include_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
-        include_once dirname(__DIR__) . '/class/utility.php';
+        include_once dirname(__DIR__) . '/class/Utility.php';
 
         $form = new XoopsThemeForm($title, 'form', $action, 'post', true);
 

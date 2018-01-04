@@ -28,10 +28,16 @@
  * ****************************************************************************
  */
 
+use XoopsModules\Gbook;
+
+require_once __DIR__ . '/../class/Helper.php';
+$helper = Gbook\Helper::getInstance();
+
 $pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
+$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
 $adminmenu[] = [
-    'title' => _AM_MODULEADMIN_HOME,
+    'title' => _MI_GBOOK_HOME,
     'link'  => 'admin/index.php',
     'icon'  => $pathIcon32 . '/home.png'
 ];
@@ -43,7 +49,7 @@ $adminmenu[] = [
 ];
 
 $adminmenu[] = [
-    'title' => _AM_MODULEADMIN_ABOUT,
+    'title' => _MI_GBOOK_ABOUT,
     'link'  => 'admin/about.php',
     'icon'  => $pathIcon32 . '/about.png'
 ];

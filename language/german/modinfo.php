@@ -39,3 +39,6 @@ define('_MI_GBOOK_DIRNAME', basename(dirname(dirname(__DIR__))));
 define('_MI_GBOOK_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_GBOOK_BACK_2_ADMIN', 'Zurück zum Admin von ');
 define('_MI_GBOOK_HELP_OVERVIEW', 'Overview');
+
+define('_MI_GBOOK_HOME', 'Home');
+define('_MI_GBOOK_ABOUT', 'About');

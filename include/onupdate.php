@@ -43,21 +43,15 @@ function tableExists($tablename)
  */
 function xoops_module_pre_update_gbook(XoopsModule $module)
 {
+    /** @var Gbook\Helper $helper */
+    /** @var Gbook\Utility $utility */
     $moduleDirName = basename(dirname(__DIR__));
-    $className = ucfirst($moduleDirName) . 'Utility';
-    if (!class_exists($className)) {
-        xoops_load('utility', $moduleDirName);
-    }
-    //check for minimum XOOPS version
-    if (!$className::checkVerXoops($module)) {
-        return false;
-    }
+    $helper       = Gbook\Helper::getInstance();
+    $utility      = new Gbook\Utility();
 
-    // check for minimum PHP version
-    if (!$className::checkVerPhp($module)) {
-        return false;
-    }
-    return true;
+    $xoopsSuccess = $utility::checkVerXoops($module);
+    $phpSuccess   = $utility::checkVerPhp($module);
+    return $xoopsSuccess && $phpSuccess;
 }
 
 /**
@@ -72,6 +66,18 @@ function xoops_module_pre_update_gbook(XoopsModule $module)
 function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
 {
     global $xoopsDB;
+
+    $moduleDirName = basename(dirname(__DIR__));
+    $capsDirName   = strtoupper($moduleDirName);
+
+    /** @var Gbook\Helper $helper */
+    /** @var Gbook\Utility $utility */
+    /** @var Gbook\Configurator $configurator */
+    $helper  = Gbook\Helper::getInstance();
+    $utility = new Gbook\Utility();
+    $configurator = new Gbook\Configurator();
+
+   
     if ($previousVersion < 111) {
         // delete old HTML template files ============================
         $templateDirectory = $GLOBALS['xoops']->path('modules/' . $module->getVar('dirname', 'n') . '/templates/');
