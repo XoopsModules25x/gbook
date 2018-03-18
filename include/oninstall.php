@@ -15,6 +15,7 @@
  * @author     XOOPS Development Team
  */
 
+use XoopsModules\Gbook;
 
 /**
  *
@@ -23,10 +24,10 @@
  *
  * @return bool true if ready to install, false if not
  */
-function xoops_module_pre_install_gbook(XoopsModule $module)
+function xoops_module_pre_install_gbook(\XoopsModule $module)
 {
     $moduleDirName = basename(dirname(__DIR__));
-    /** @var \GbookUtility $utilityClass */
+    /** @var Gbook\Utility $utilityClass */
     $utilityClass = ucfirst($moduleDirName) . 'Utility';
     if (!class_exists($utilityClass)) {
         xoops_load('utility', $moduleDirName);
@@ -56,7 +57,7 @@ function xoops_module_pre_install_gbook(XoopsModule $module)
  *
  * @return bool true if installation successful, false if not
  */
-function xoops_module_install_gbook(XoopsModule $module)
+function xoops_module_install_gbook(\XoopsModule $module)
 {
     return true;
 }

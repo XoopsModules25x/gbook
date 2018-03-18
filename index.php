@@ -29,12 +29,13 @@
  * ****************************************************************************
  */
 use Xmf\Request;
+use XoopsModules\Gbook;
 
-include_once __DIR__ . '/header.php';
+require_once __DIR__ . '/header.php';
 
 //$GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" >';
 
-/** @var GbookEntriesHandler $entriesHandler */
+/** @var Gbook\EntriesHandler $entriesHandler */
 $entriesHandler = xoops_getModuleHandler('entries');
 
 $start = Request::getInt('start', 0);
@@ -42,7 +43,7 @@ $start = Request::getInt('start', 0);
 $GLOBALS['xoopsOption']['template_main'] = 'gbook_view_entries.tpl';
 include $GLOBALS['xoops']->path('header.php');
 
-$criteria = new CriteriaCompo();
+$criteria = new \CriteriaCompo();
 $criteria->setSort('id');
 $criteria->setOrder($xoopsModuleConfig['order_entries']);
 
@@ -56,8 +57,8 @@ if ($to > $all_count) {
     $to = $all_count;
 }
 
-include_once $GLOBALS['xoops']->path('class/pagenav.php');
-$nav = new XoopsPageNav($all_count, $xoopsModuleConfig['num_entries'], $start);
+require_once $GLOBALS['xoops']->path('class/pagenav.php');
+$nav = new \XoopsPageNav($all_count, $xoopsModuleConfig['num_entries'], $start);
 $xoopsTpl->assign('pagenav', $nav->renderNav());
 
 $count = 0;

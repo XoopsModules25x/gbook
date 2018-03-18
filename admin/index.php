@@ -28,11 +28,11 @@
  * ****************************************************************************
  */
 
-include_once __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
 // Display Admin header
 xoops_cp_header();
 
 echo $adminObject->displayNavigation(basename(__FILE__));
 echo $adminObject->renderIndex();
 
-include_once __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';

@@ -29,6 +29,7 @@
  * ****************************************************************************
  */
 use Xmf\Request;
+use XoopsModules\Gbook;
 
 include __DIR__ . '/admin_header.php';
 xoops_cp_header();
@@ -42,13 +43,13 @@ $tempOp = Request::getCmd('op', Request::getCmd('op', '', 'POST'), 'GET');
 $template_main = '';
 $op            = '' !== $tempOp ? $tempOp : (0 !== $tempId ? 'edit' : 'list');
 
-/** @var GbookEntriesHandler $entriesHandler */
-$entriesHandler = xoops_getModuleHandler('entries');
+/** @var Gbook\EntriesHandler $entriesHandler */
+$entriesHandler = \XoopsModules\Gbook\Helper::getInstance()->getHandler('Entries');
 
 switch ($op) {
     default:
     case 'list':
-        $criteria = new CriteriaCompo();
+        $criteria = new \CriteriaCompo();
         $criteria->setSort('id');
         $criteria->setOrder('DESC');
         $GLOBALS['xoopsTpl']->assign('entries', $entriesHandler->getObjects($criteria, true, false));
@@ -80,7 +81,7 @@ switch ($op) {
         if ($entriesHandler->insert($obj)) {
             redirect_header('entries.php', 3, _AM_GBOOK_ENTRY_EDITED);
         }
-        include_once dirname(__DIR__) . '/include/forms.php';
+        require_once dirname(__DIR__) . '/include/forms.php';
         echo $obj->getHtmlErrors();
         $form = $obj->getForm();
         $form->display();

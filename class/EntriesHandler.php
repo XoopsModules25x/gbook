@@ -1,4 +1,5 @@
-<?php
+<?php namespace XoopsModules\Gbook;
+
 /**
  * ****************************************************************************
  *  GBOOK - MODULE FOR XOOPS
@@ -32,30 +33,18 @@
 use Xmf\Request;
 use XoopsModules\Gbook;
 
-$moduleDirName = basename(dirname(__DIR__));
-//require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
-//require_once $GLOBALS['xoops']->path('www/include/cp_functions.php');
-//require_once $GLOBALS['xoops']->path('www/include/cp_header.php');
-require_once __DIR__ . '/../../../include/cp_header.php';
-require_once $GLOBALS['xoops']->path('www/class/xoopsformloader.php');
 
-$helper = Gbook\Helper::getInstance();
-
-/** @var Xmf\Module\Admin $adminObject */
-$adminObject = Xmf\Module\Admin::getInstance();
-
-$myts = \MyTextSanitizer::getInstance();
-
-if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
-    require_once $GLOBALS['xoops']->path('class/template.php');
-    $xoopsTpl = new \XoopsTpl();
+/**
+ * @package   kernel
+ * @copyright copyright &copy; 2000 XOOPS.org
+ */
+class EntriesHandler extends \XoopsPersistableObjectHandler
+{
+    /**
+     * @param null|\XoopsDatabase $db
+     */
+    public function __construct(\XoopsDatabase $db)
+    {
+        parent::__construct($db, 'gbook_entries', Entries::class, 'id', 'name', 'email', 'url', 'message', 'note', 'time', 'date', 'ip', 'admin');
+    }
 }
-
-$pathIcon16      = Xmf\Module\Admin::iconUrl('', 16);
-$pathIcon32      = Xmf\Module\Admin::iconUrl('', 32);
-$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
-
-// Load language files
-$helper->loadLanguage('admin');
-$helper->loadLanguage('modinfo');
-$helper->loadLanguage('main');

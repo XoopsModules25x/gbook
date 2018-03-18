@@ -16,7 +16,9 @@
  * @author       XOOPS Development Team
  */
 
-if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof XoopsUser)
+use XoopsModules\Gbook;
+
+if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
     || !$GLOBALS['xoopsUser']->IsAdmin()
 ) {
     exit('Restricted access' . PHP_EOL);
@@ -41,7 +43,7 @@ function tableExists($tablename)
  *
  * @return bool true if ready to install, false if not
  */
-function xoops_module_pre_update_gbook(XoopsModule $module)
+function xoops_module_pre_update_gbook(\XoopsModule $module)
 {
     /** @var Gbook\Helper $helper */
     /** @var Gbook\Utility $utility */
@@ -63,7 +65,7 @@ function xoops_module_pre_update_gbook(XoopsModule $module)
  * @return bool true if update successful, false if not
  */
 
-function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
+function xoops_module_update_gbook(\XoopsModule $module, $previousVersion = null)
 {
     global $xoopsDB;
 
@@ -72,7 +74,7 @@ function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
 
     /** @var Gbook\Helper $helper */
     /** @var Gbook\Utility $utility */
-    /** @var Gbook\Configurator $configurator */
+    /** @var Gbook\Common\Configurator $configurator */
     $helper  = Gbook\Helper::getInstance();
     $utility = new Gbook\Utility();
     $configurator = new Gbook\Configurator();
@@ -84,7 +86,7 @@ function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
         if (is_dir($templateDirectory)) {
             $templateList = array_diff(scandir($templateDirectory, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($templateList as $k => $v) {
-                $fileInfo = new SplFileInfo($templateDirectory . $v);
+                $fileInfo = new \SplFileInfo($templateDirectory . $v);
                 if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
                     if (file_exists($templateDirectory . $v)) {
                         unlink($templateDirectory . $v);
@@ -98,7 +100,7 @@ function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
         if (is_dir($templateDirectory)) {
             $templateList = array_diff(scandir($templateDirectory, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($templateList as $k => $v) {
-                $fileInfo = new SplFileInfo($templateDirectory . $v);
+                $fileInfo = new \SplFileInfo($templateDirectory . $v);
                 if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
                     if (file_exists($templateDirectory . $v)) {
                         unlink($templateDirectory . $v);
