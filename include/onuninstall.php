@@ -80,6 +80,4 @@ function xoops_module_uninstall_gbook(\XoopsModule $module)
 
     return $success;
     //------------ END  ----------------
-
 }
-
