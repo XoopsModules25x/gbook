@@ -30,6 +30,8 @@
  */
 use Xmf\Request;
 use XoopsModules\Gbook;
+/** @var Gbook\Helper $helper */
+$helper = Gbook\Helper::getInstance();
 
 require_once __DIR__ . '/header.php';
 
@@ -45,26 +47,26 @@ include $GLOBALS['xoops']->path('header.php');
 
 $criteria = new \CriteriaCompo();
 $criteria->setSort('id');
-$criteria->setOrder($xoopsModuleConfig['order_entries']);
+$criteria->setOrder($helper->getConfig('order_entries'));
 
 // $GLOBALS['xoopsTpl']->assign('entries', $entriesHandler->getObjects($criteria, true, false) );
 $all_entries = $entriesHandler->getObjects($criteria, true, false);
 $all_count   = count($all_entries);
 
-$to = $start + $xoopsModuleConfig['num_entries'];
+$to = $start + $helper->getConfig('num_entries');
 
 if ($to > $all_count) {
     $to = $all_count;
 }
 
 require_once $GLOBALS['xoops']->path('class/pagenav.php');
-$nav = new \XoopsPageNav($all_count, $xoopsModuleConfig['num_entries'], $start);
+$nav = new \XoopsPageNav($all_count, $helper->getConfig('num_entries'), $start);
 $xoopsTpl->assign('pagenav', $nav->renderNav());
 
 $count = 0;
 foreach ($all_entries as $entry) {
     if ($count >= $start && $count < $to) {
-        $entry['date'] = formatTimestamp($entry['time'], $xoopsModuleConfig['date_format']);
+        $entry['date'] = formatTimestamp($entry['time'], $helper->getConfig('date_format'));
         if ($xoopsUser && $xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
             $xoopsTpl->assign('isadmin', '1');
             $entry['admin'] = "<a href='http://whois.domaintools.com/" . $entry['ip']

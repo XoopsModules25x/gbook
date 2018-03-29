@@ -46,7 +46,9 @@ class Utility
      */
     public static function getEditor($name, $value)
     {
-        global $xoopsUser, $xoopsModule, $xoopsModuleConfig;
+        global $xoopsUser, $xoopsModule;
+        /** @var Gbook\Helper $helper */
+        $helper = Gbook\Helper::getInstance();
         $options = [];
         $isAdmin = $xoopsUser->isAdmin($xoopsModule->getVar('mid'));
 
@@ -58,9 +60,9 @@ class Utility
             $options['width']  = '100%';
             $options['height'] = '200px';
             if ($isAdmin) {
-                $descEditor = new \XoopsFormEditor(ucfirst($name), $xoopsModuleConfig['editorAdmin'], $options, $nohtml = false, $onfailure = 'textarea');
+                $descEditor = new \XoopsFormEditor(ucfirst($name), $helper->getConfig('editorAdmin'), $options, $nohtml = false, $onfailure = 'textarea');
             } else {
-                $descEditor = new \XoopsFormEditor(ucfirst($name), $xoopsModuleConfig['editorUser'], $options, $nohtml = false, $onfailure = 'textarea');
+                $descEditor = new \XoopsFormEditor(ucfirst($name), $helper->getConfig('editorUser'), $options, $nohtml = false, $onfailure = 'textarea');
             }
         } else {
             $descEditor = new \XoopsFormDhtmlTextArea(ucfirst($name), $name, $value, '100%', '100%');
