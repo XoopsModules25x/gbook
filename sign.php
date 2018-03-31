@@ -28,6 +28,7 @@
  *
  * ****************************************************************************
  */
+
 use Xmf\Request;
 use XoopsModules\Gbook;
 
@@ -35,11 +36,11 @@ require_once __DIR__ . '/header.php';
 require_once __DIR__ . '/class/Utility.php';
 global $xoopsUser;
 //Assign info
-$myts = \MyTextSanitizer::getInstance();
-$nameTmp    = Request::getString('Name', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('uname', 'E') : '');
-$emailTmp   = Request::getString('Email', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('email', 'E') : '');
-$urlTmp     = Request::getString('URL', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('url', 'E') : '');
-$messageTmp = Request::getText('Message', '', 'POST') ?: '';
+$myts       = \MyTextSanitizer::getInstance();
+$nameTmp    = Request::getString('name', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('uname', 'E') : '');
+$emailTmp   = Request::getString('email', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('email', 'E') : '');
+$urlTmp     = Request::getString('url', '', 'POST') ?: (is_object($xoopsUser) ? $xoopsUser->getVar('url', 'E') : '');
+$messageTmp = Request::getText('message', '', 'POST') ?: '';
 $timeTmp    = time();
 $ipTmp      = Gbook\Utility::gbookIP();
 
@@ -73,7 +74,7 @@ if ('' === Request::getString('submit', '', 'POST')) {
     } else {
         /** @var Gbook\EntriesHandler $entriesHandler */
         $entriesHandler = Gbook\Helper::getInstance()->getHandler('Entries');
-        $obj     = $entriesHandler->create();
+        $obj            = $entriesHandler->create();
         $obj->setVar('name', $nameTmp);
         $obj->setVar('email', $emailTmp);
         $obj->setVar('url', formatURL($urlTmp));
@@ -83,7 +84,7 @@ if ('' === Request::getString('submit', '', 'POST')) {
         if ($entriesHandler->insert($obj)) {
             redirect_header('index.php', 3, _MD_GBOOK_SIGNED);
         }
-//        require_once dirname(__DIR__) . '/include/forms.php';
+        //        require_once dirname(__DIR__) . '/include/forms.php';
         echo $obj->getHtmlErrors();
         /** @var \XoopsThemeForm $form */
         $form = $obj->getForm();

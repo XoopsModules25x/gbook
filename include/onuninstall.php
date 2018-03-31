@@ -8,7 +8,6 @@
  * @link            https://xoops.org XOOPS
  */
 
-
 /**
  * Prepares system prior to attempting to uninstall module
  * @param XoopsModule $module {@link XoopsModule}
@@ -33,20 +32,16 @@ function xoops_module_pre_uninstall_gbook(\XoopsModule $module)
  */
 function xoops_module_uninstall_gbook(\XoopsModule $module)
 {
-//    return true;
+    //    return true;
 
-    $moduleDirName = basename(dirname(__DIR__));
-    $xsitemapHelper      = \Xmf\Module\Helper::getHelper($moduleDirName);
+    $moduleDirName  = basename(dirname(__DIR__));
+    $xsitemapHelper = \Xmf\Module\Helper::getHelper($moduleDirName);
 
-    /** @var Gbook\Utility $utilityClass */
-    $utilityClass     = ucfirst($moduleDirName) . 'Utility';
-    if (!class_exists($utilityClass)) {
-        xoops_load('utility', $moduleDirName);
-    }
+    /** @var Gbook\Utility $utility */
+    $utility = new Gbook\Utility();
 
     $success = true;
     $xsitemapHelper->loadLanguage('admin');
-
 
     //------------------------------------------------------------------
     // Remove uploads folder (and all subfolders) if they exist
@@ -57,7 +52,7 @@ function xoops_module_uninstall_gbook(\XoopsModule $module)
         $dirInfo = new \SplFileInfo($old_dir);
         if ($dirInfo->isDir()) {
             // The directory exists so delete it
-            if (false === $utilityClass::rrmdir($old_dir)) {
+            if (false === $utility::rrmdir($old_dir)) {
                 $module->setErrors(sprintf(constant('CO_' . $moduleDirNameUpper . '_ERROR_BAD_DEL_PATH'), $old_dir));
                 $success = false;
             }

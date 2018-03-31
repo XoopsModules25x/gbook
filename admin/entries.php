@@ -28,6 +28,7 @@
  *
  * ****************************************************************************
  */
+
 use Xmf\Request;
 use XoopsModules\Gbook;
 
@@ -64,6 +65,8 @@ switch ($op) {
 
     case 'save':
         if (!$GLOBALS['xoopsSecurity']->check()) {
+            echo $GLOBALS['xoopsSecurity']->getErrors();
+
             redirect_header('entries.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         $tempId = Request::getInt('id', 0, 'GET');
@@ -102,11 +105,7 @@ switch ($op) {
                 echo $obj->getHtmlErrors();
             }
         } else {
-            xoops_confirm(
-                ['ok' => 1, 'id' => Request::getInt('id', 0, 'GET'), 'op' => 'delete'],
-                          Request::getString('REQUEST_URI', '', 'SERVER'),
-                          sprintf(_AM_GBOOK_DELETE_SURE, $obj->getVar('name'))
-            );
+            xoops_confirm(['ok' => 1, 'id' => Request::getInt('id', 0, 'GET'), 'op' => 'delete'], Request::getString('REQUEST_URI', '', 'SERVER'), sprintf(_AM_GBOOK_DELETE_SURE, $obj->getVar('name')));
         }
         break;
 }

@@ -15,7 +15,7 @@
  * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @since
- * @author     XOOPS Development Team
+ * @author       XOOPS Development Team
  */
 
 //defined('XOOPS_ROOT_PATH') || die('Restricted access');
@@ -55,7 +55,6 @@ class Constants
     const AUTOAPPROVE_BOTH = 4;
 
     const DEFAULT_ELEMENT_SIZE = 1;
-
 
     /**#@-*/
 }

@@ -36,8 +36,8 @@ $moduleDirName = basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion = [
     'version'             => 1.12,
-    'module_status'       => 'Beta 1',
-    'release_date'        => '2017/08/14', //yyyy/mm/dd
+    'module_status'       => 'Final',
+    'release_date'        => '2018/03/30', //yyyy/mm/dd
     'name'                => _MI_GBOOK_NAME,
     'description'         => _MI_GBOOK_DESC,
     'official'            => 0, //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
@@ -82,21 +82,10 @@ $modversion = [
     'adminmenu'           => 'admin/menu.php',
     // Main menu
     'hasMain'             => 1,
-    //Search & Comments
-    //    'hasSearch'           => 1,
-    //    'search'              => array(
-    //        'file'   => 'include/search.inc.php',
-    //        'func'   => 'XXXX_search'),
-    //    'hasComments'         => 1,
-    //    'comments'              => array(
-    //        'pageName'   => 'index.php',
-    //        'itemName'   => 'id'),
-
     // Install/Update
     'onInstall'           => 'include/oninstall.php',
     'onUpdate'            => 'include/onupdate.php'
     //  'onUninstall'         => 'include/onuninstall.php'
-
 ];
 
 // ------------------- Mysql ------------------- //

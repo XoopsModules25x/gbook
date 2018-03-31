@@ -30,9 +30,6 @@
  * ****************************************************************************
  */
 
-use Xmf\Request;
-use XoopsModules\Gbook;
-
 /**
  * @package   kernel
  * @copyright copyright &copy; 2000 XOOPS.org

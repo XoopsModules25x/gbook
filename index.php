@@ -28,17 +28,19 @@
  *
  * ****************************************************************************
  */
+
 use Xmf\Request;
 use XoopsModules\Gbook;
-/** @var Gbook\Helper $helper */
-$helper = Gbook\Helper::getInstance();
 
 require_once __DIR__ . '/header.php';
+
+/** @var Gbook\Helper $helper */
+$helper = Gbook\Helper::getInstance();
 
 //$GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" >';
 
 /** @var Gbook\EntriesHandler $entriesHandler */
-$entriesHandler = xoops_getModuleHandler('entries');
+$entriesHandler = Gbook\Helper::getInstance()->getHandler('Entries');
 
 $start = Request::getInt('start', 0);
 
@@ -69,11 +71,19 @@ foreach ($all_entries as $entry) {
         $entry['date'] = formatTimestamp($entry['time'], $helper->getConfig('date_format'));
         if ($xoopsUser && $xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
             $xoopsTpl->assign('isadmin', '1');
-            $entry['admin'] = "<a href='http://whois.domaintools.com/" . $entry['ip']
+            $entry['admin'] = "<a href='http://whois.domaintools.com/"
+                              . $entry['ip']
                               . "' target='_blank'><img src='./assets/images/ip.png' border='0' ></a>&nbsp;"
-                              . "<a href='admin/entries.php?id=" . $entry['id'] . "'><img src='" . $pathIcon16
-                              . "/edit.png' border='0' ></a>&nbsp;" . "<a href='admin/entries.php?op=delete&id="
-                              . $entry['id'] . "'><img src='" . $pathIcon16 . "/delete.png' border='0' ></a>&nbsp;";
+                              . "<a href='admin/entries.php?id="
+                              . $entry['id']
+                              . "'><img src='"
+                              . $pathIcon16
+                              . "/edit.png' border='0' ></a>&nbsp;"
+                              . "<a href='admin/entries.php?op=delete&id="
+                              . $entry['id']
+                              . "'><img src='"
+                              . $pathIcon16
+                              . "/delete.png' border='0' ></a>&nbsp;";
         }
         $xoopsTpl->append('entries', $entry);
     }

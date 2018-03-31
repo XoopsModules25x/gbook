@@ -22,7 +22,6 @@
 
 //namespace GBook;
 
-use Xmf\Request;
 use XoopsModules\Gbook;
 use XoopsModules\Gbook\Common;
 
@@ -40,32 +39,34 @@ class Utility
     //--------------- Custom module methods -----------------------------
 
     /**
-     * @param $name
-     * @param $value
+     * @param \Xmf\Module\Helper $helper
+     * @param array|null         $options
      * @return \XoopsFormDhtmlTextArea|\XoopsFormEditor
      */
-    public static function getEditor($name, $value)
+    public static function getEditor($helper = null, $options = null)
     {
-        global $xoopsUser, $xoopsModule;
         /** @var Gbook\Helper $helper */
-        $helper = Gbook\Helper::getInstance();
-        $options = [];
-        $isAdmin = $xoopsUser->isAdmin($xoopsModule->getVar('mid'));
-
-        if (class_exists('XoopsFormEditor')) {
-            $options['name']   = $name;
-            $options['value']  = $value;
-            $options['rows']   = 5;
+        if (null === $options) {
+            $options           = [];
+            $options['name']   = 'Editor';
+            $options['value']  = 'Editor';
+            $options['rows']   = 10;
             $options['cols']   = '100%';
             $options['width']  = '100%';
-            $options['height'] = '200px';
+            $options['height'] = '400px';
+        }
+
+        $isAdmin = $helper->isUserAdmin();
+
+        if (class_exists('XoopsFormEditor')) {
+
             if ($isAdmin) {
-                $descEditor = new \XoopsFormEditor(ucfirst($name), $helper->getConfig('editorAdmin'), $options, $nohtml = false, $onfailure = 'textarea');
+                $descEditor = new \XoopsFormEditor($options['name'], $helper->getConfig('editorAdmin'), $options, $nohtml = false, $onfailure = 'textarea');
             } else {
-                $descEditor = new \XoopsFormEditor(ucfirst($name), $helper->getConfig('editorUser'), $options, $nohtml = false, $onfailure = 'textarea');
+                $descEditor = new \XoopsFormEditor($options['name'], $helper->getConfig('editorUser'), $options, $nohtml = false, $onfailure = 'textarea');
             }
         } else {
-            $descEditor = new \XoopsFormDhtmlTextArea(ucfirst($name), $name, $value, '100%', '100%');
+            $descEditor = new \XoopsFormDhtmlTextArea($options['name'], $options['name'], $options['value'], '100%', '100%');
         }
 
         //        $form->addElement($descEditor);

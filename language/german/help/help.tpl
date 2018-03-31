@@ -1,6 +1,6 @@
 <div id="help-template" class="outer">
     <h1 class="head">Hilfe: <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/gbook/admin/index.php" title="Zur&uuml;ck zur Administration von GBook"> GBook
-        <img src="<{xoAdminIcons home.png}>" alt="Zur&uuml;ck zur Administration von GBook"></a></h1>
+            <img src="<{xoAdminIcons home.png}>" alt="Zur&uuml;ck zur Administration von GBook"></a></h1>
     <!-- -----Help Content ---------- -->
     <h4 class="odd">Beschreibung</h4>
     <br>

@@ -19,8 +19,7 @@
 use XoopsModules\Gbook;
 
 if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
-    || !$GLOBALS['xoopsUser']->IsAdmin()
-) {
+    || !$GLOBALS['xoopsUser']->IsAdmin()) {
     exit('Restricted access' . PHP_EOL);
 }
 
@@ -45,11 +44,8 @@ function tableExists($tablename)
  */
 function xoops_module_pre_update_gbook(\XoopsModule $module)
 {
-    /** @var Gbook\Helper $helper */
     /** @var Gbook\Utility $utility */
-    $moduleDirName = basename(dirname(__DIR__));
-    $helper       = Gbook\Helper::getInstance();
-    $utility      = new Gbook\Utility();
+    $utility = new Gbook\Utility();
 
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
@@ -69,17 +65,6 @@ function xoops_module_update_gbook(\XoopsModule $module, $previousVersion = null
 {
     global $xoopsDB;
 
-    $moduleDirName = basename(dirname(__DIR__));
-    $capsDirName   = strtoupper($moduleDirName);
-
-    /** @var Gbook\Helper $helper */
-    /** @var Gbook\Utility $utility */
-    /** @var Gbook\Common\Configurator $configurator */
-    $helper  = Gbook\Helper::getInstance();
-    $utility = new Gbook\Utility();
-    $configurator = new Gbook\Configurator();
-
-   
     if ($previousVersion < 111) {
         // delete old HTML template files ============================
         $templateDirectory = $GLOBALS['xoops']->path('modules/' . $module->getVar('dirname', 'n') . '/templates/');
@@ -95,8 +80,7 @@ function xoops_module_update_gbook(\XoopsModule $module, $previousVersion = null
             }
         }
         // delete old block html template files ============================
-        $templateDirectory = $GLOBALS['xoops']->path('modules/' . $module->getVar('dirname', 'n')
-                                                     . '/templates/blocks/');
+        $templateDirectory = $GLOBALS['xoops']->path('modules/' . $module->getVar('dirname', 'n') . '/templates/blocks/');
         if (is_dir($templateDirectory)) {
             $templateList = array_diff(scandir($templateDirectory, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($templateList as $k => $v) {
@@ -121,11 +105,7 @@ function xoops_module_update_gbook(\XoopsModule $module, $previousVersion = null
         }
 
         //delete .html entries from the tpl table
-        $sql = 'DELETE FROM ' . $xoopsDB->prefix('tplfile') . " WHERE `tpl_module` = '" . $module->getVar(
-            'dirname',
-                                                                                                          'n'
-        )
-               . "' AND `tpl_file` LIKE '%.html%'";
+        $sql = 'DELETE FROM ' . $xoopsDB->prefix('tplfile') . " WHERE `tpl_module` = '" . $module->getVar('dirname', 'n') . "' AND `tpl_file` LIKE '%.html%'";
         $xoopsDB->queryF($sql);
 
         // Load class XoopsFile ====================

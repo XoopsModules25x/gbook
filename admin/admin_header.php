@@ -29,16 +29,14 @@
  * ****************************************************************************
  */
 
-use Xmf\Request;
 use XoopsModules\Gbook;
 
 $moduleDirName = basename(dirname(__DIR__));
-//require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
-//require_once $GLOBALS['xoops']->path('www/include/cp_functions.php');
-//require_once $GLOBALS['xoops']->path('www/include/cp_header.php');
 require_once __DIR__ . '/../../../include/cp_header.php';
 require_once $GLOBALS['xoops']->path('www/class/xoopsformloader.php');
+require_once __DIR__ . '/../include/common.php';
 
+/** @var Gbook\Helper $helper */
 $helper = Gbook\Helper::getInstance();
 
 /** @var Xmf\Module\Admin $adminObject */
@@ -51,8 +49,8 @@ if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl))
     $xoopsTpl = new \XoopsTpl();
 }
 
-$pathIcon16      = Xmf\Module\Admin::iconUrl('', 16);
-$pathIcon32      = Xmf\Module\Admin::iconUrl('', 32);
+$pathIcon16    = Xmf\Module\Admin::iconUrl('', 16);
+$pathIcon32    = Xmf\Module\Admin::iconUrl('', 32);
 $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
 // Load language files

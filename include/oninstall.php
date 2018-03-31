@@ -12,7 +12,7 @@
 /**
  * @copyright    XOOPS Project https://xoops.org/
  * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
- * @author     XOOPS Development Team
+ * @author       XOOPS Development Team
  */
 
 use XoopsModules\Gbook;
@@ -26,19 +26,16 @@ use XoopsModules\Gbook;
  */
 function xoops_module_pre_install_gbook(\XoopsModule $module)
 {
-    $moduleDirName = basename(dirname(__DIR__));
-    /** @var Gbook\Utility $utilityClass */
-    $utilityClass = ucfirst($moduleDirName) . 'Utility';
-    if (!class_exists($utilityClass)) {
-        xoops_load('utility', $moduleDirName);
-    }
+    /** @var Gbook\Utility $utility */
+    $utility = new Gbook\Utility();
+
     //check for minimum XOOPS version
-    if (!$utilityClass::checkVerXoops($module)) {
+    if (!$utility::checkVerXoops($module)) {
         return false;
     }
 
     // check for minimum PHP version
-    if (!$utilityClass::checkVerPhp($module)) {
+    if (!$utility::checkVerPhp($module)) {
         return false;
     }
 
