@@ -117,7 +117,7 @@ function xoops_module_update_gbook(\XoopsModule $module, $previousVersion = null
         $folderHandler->delete($imagesDirectory);
     }
 
-    $gpermHandler = xoops_getHandler('groupperm');
+    $grouppermHandler = xoops_getHandler('groupperm');
 
-    return $gpermHandler->deleteByModule($module->getVar('mid'), 'item_read');
+    return $grouppermHandler->deleteByModule($module->getVar('mid'), 'item_read');
 }
