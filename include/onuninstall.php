@@ -41,7 +41,7 @@ function xoops_module_uninstall_gbook(\XoopsModule $module)
     $utility = new Gbook\Utility();
 
     $success = true;
-    $xsitemapHelper->loadLanguage('admin');
+    $helper->loadLanguage('admin');
 
     //------------------------------------------------------------------
     // Remove uploads folder (and all subfolders) if they exist
