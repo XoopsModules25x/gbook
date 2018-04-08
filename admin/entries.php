@@ -36,7 +36,7 @@ include __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 echo $adminObject->displayNavigation(basename(__FILE__));
-echo $adminObject->renderButton('right', '');
+echo $adminObject->displayButton('right', '');
 
 $tempId = Request::getInt('id', 0, 'GET');
 $tempOp = Request::getCmd('op', Request::getCmd('op', '', 'POST'), 'GET');

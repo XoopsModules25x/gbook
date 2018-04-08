@@ -33,6 +33,6 @@ require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
 echo $adminObject->displayNavigation(basename(__FILE__));
-echo $adminObject->renderIndex();
+echo $adminObject->displayIndex();
 
 require_once __DIR__ . '/admin_footer.php';
