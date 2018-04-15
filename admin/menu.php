@@ -30,7 +30,7 @@
 
 use XoopsModules\Gbook;
 
-// require_once __DIR__ . '/../class/Helper.php';
+// require_once  dirname(__DIR__) . '/class/Helper.php';
 $helper = Gbook\Helper::getInstance();
 
 $pathIcon32    = \Xmf\Module\Admin::menuIconPath('');

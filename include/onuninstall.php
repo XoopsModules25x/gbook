@@ -35,7 +35,7 @@ function xoops_module_uninstall_gbook(\XoopsModule $module)
     //    return true;
 
     $moduleDirName  = basename(dirname(__DIR__));
-    $xsitemapHelper = \Xmf\Module\Helper::getHelper($moduleDirName);
+    $helper = \XoopsModules\Gbook\Helper::getInstance();
 
     /** @var Gbook\Utility $utility */
     $utility = new Gbook\Utility();
