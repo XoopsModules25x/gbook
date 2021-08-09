@@ -1,9 +1,54 @@
-1.11 Final      2016-09-10
----------------------------
+<h5>1.13 Final  [2021-08-08]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.22, PHP 8.0.9
+<hr>
+- fix missing message (mamba)
+- added test data (mamba)
+- PHP 8 Smarty defaults (mamba)
+- PSR-12 (mamba)
+- add strict types declarations (mamba)
+- Return type hint (mamba)
+
+
+<h5>1.12 Final  [2018-03-30]</h5>  Dev: Xoops 2.5.9, PHP 7.2.4
+<hr>
+- namespaces, autolading (mamba)
+
+
+<h5>1.12 Beta 1  [NOT RELEASED]</h5>  Dev: Xoops 2.5.9, PHP 7.2.3
+<hr>
+- XOOPS 2.5.9, PHP 7 (mamba)
+- Converted to XOOPS 2.5.8 Admin GUI (mamba)
+- removed @version (mamba)
+- PSR-2 code cosmetics (mamba)
+- addNavigation(basename(__FILE__))  (mamba)
+- dirname(__FILE__) to __DIR__ (mamba)
+- replaced < br /> with < br > (mamba)
+- Unnecessary double quotes (mamba)
+- reference mismatch (mamba)
+- Hardening to type safe (mamba)
+- update Help, .html to .tpl (mamba)
+- changed _handler to Handler (mamba)
+- removed '/' from void HTML elements (&lt;br>, &lt;img>, etc) (mamba)
+- HTML 5: removed 'selected' and 'checked' (mamba)
+- updated file headers for consistency (mamba)
+- renamed several $indexAdmin with $adminObject for consistency (mamba)
+- Updates for PayPal changes (zyspec)
+- added Contributing.md (mamba)
+- moved functions to Utility class (mamba)
+- require_once to require_once (mamba)
+- php-cs-fixer updates (mamba)
+- started conversion to XMF (mamba)
+    &nbsp;&nbsp;- updated addInfoBoxLine entries (mamba)
+    &nbsp;&nbsp;- displayNavigation(basename(__FILE__))  (mamba)
+    &nbsp;&nbsp;- changed to ->displayButton('left') (mamba)
+
+
+<h5>1.11 Final      [2016-09-10]</h5>
+<hr>
 - fixed HTML issues (mamba)
 
-1.11 Beta 1      NOT RELEASED
----------------------------
+
+<h5>1.11 Beta 1      [NOT RELEASED]</h5>
+<hr>
 - added oninstall.php, onupdate.php (mamba)
 - added checks for PHP & XOOPS Versions (mamba)
 - email visible only to Admin (mamba)
@@ -11,8 +56,8 @@
 - renamed $handler to $entriesHandler (mamba)
 
 
-1.10 Final        2016-06-10
-=================================
+<h5>1.10 Final        [2016-06-10]</h5>
+<hr>
 - code cosmetics (mamba)
 - removed @version (mamba)
 - partial conversion to XMF (mamba)
@@ -28,18 +73,19 @@
 - moved gbook.css to /assets/css (mamba)
 
 
-1.10 Beta 1      NOT RELEASED
----------------------------
+<h5>1.10 Beta 1      [NOT RELEASED]</h5>
+<hr>
 - cosmetic code changes (mamba)
 - conversion to XoopsRequest (mamba)
-- added Utilities class (mamba)
+- added Utility class (mamba)
 - added editors (mamba)
 - removed @version (mamba)
 - single quotes (mamba)
 - XOOPS 2.5.8 and PHP 7 (mamba)
 - PSR-2 adjustments (mamba)
 
-1.00
--------------------
+
+<h5>1.00</h5>
+<hr>
 - first release
 

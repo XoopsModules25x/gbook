@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * ****************************************************************************
  *  GBOOK - MODULE FOR XOOPS
@@ -28,7 +31,6 @@
  *
  * ****************************************************************************
  */
-
 define('_AM_GBOOK_NAME', 'Name');
 define('_AM_GBOOK_MESSAGE', 'Message');
 define('_AM_GBOOK_ACTION', 'Action');

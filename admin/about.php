@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * ****************************************************************************
  *  GBOOK - MODULE FOR XOOPS
@@ -28,11 +31,15 @@
  * ****************************************************************************
  */
 
-include_once __DIR__ . '/admin_header.php';
+use Xmf\Module\Admin;
+
+/** @var Admin $adminObject */
+
+require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
-echo $adminObject->displayNavigation(basename(__FILE__));
-\Xmf\Module\Admin::setPaypal('6KJ7RW5DR3VTJ');
-echo $adminObject->renderAbout(false);
+$adminObject->displayNavigation(basename(__FILE__));
+$adminObject::setPaypal('xoopsfoundation@gmail.com');
+$adminObject->displayAbout(false);
 
-include_once __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';

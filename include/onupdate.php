@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -10,101 +12,80 @@
  */
 
 /**
- * @copyright    XOOPS Project http://xoops.org/
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @copyright    XOOPS Project (https://xoops.org)
+ * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @author       XOOPS Development Team
  */
 
-if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof XoopsUser)
-    || !$GLOBALS['xoopsUser']->IsAdmin()
-) {
+use XoopsModules\Gbook;
+
+if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
+    || !$GLOBALS['xoopsUser']->isAdmin()) {
     exit('Restricted access' . PHP_EOL);
 }
 
-/**
- * @param string $tablename
- *
- * @return bool
- */
-function tableExists($tablename)
-{
-    $result = $GLOBALS['xoopsDB']->queryF("SHOW TABLES LIKE '$tablename'");
 
-    return ($GLOBALS['xoopsDB']->getRowsNum($result) > 0) ? true : false;
-}
 
 /**
- *
  * Prepares system prior to attempting to install module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if ready to install, false if not
  */
-function xoops_module_pre_update_gbook(XoopsModule $module)
+function xoops_module_pre_update_gbook(\XoopsModule $module)
 {
-    $moduleDirName = basename(dirname(__DIR__));
-    $className = ucfirst($moduleDirName) . 'Utilities';
-    if (!class_exists($className)) {
-        xoops_load('utilities', $moduleDirName);
-    }
-    //check for minimum XOOPS version
-    if (!$className::checkXoopsVer($module)) {
-        return false;
-    }
+    $utility = new Gbook\Utility();
 
-    // check for minimum PHP version
-    if (!$className::checkPHPVer($module)) {
-        return false;
-    }
-    return true;
+    $xoopsSuccess = $utility::checkVerXoops($module);
+    $phpSuccess   = $utility::checkVerPhp($module);
+
+    return $xoopsSuccess && $phpSuccess;
 }
 
 /**
- *
  * Performs tasks required during update of the module
- * @param XoopsModule $module {@link XoopsModule}
- * @param null        $previousVersion
+ * @param \XoopsModule $module {@link XoopsModule}
+ * @param null         $previousVersion
  *
  * @return bool true if update successful, false if not
  */
-
-function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
+function xoops_module_update_gbook(\XoopsModule $module, $previousVersion = null)
 {
     global $xoopsDB;
+
     if ($previousVersion < 111) {
         // delete old HTML template files ============================
         $templateDirectory = $GLOBALS['xoops']->path('modules/' . $module->getVar('dirname', 'n') . '/templates/');
         if (is_dir($templateDirectory)) {
-            $templateList = array_diff(scandir($templateDirectory), array('..', '.'));
+            $templateList = array_diff(scandir($templateDirectory, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($templateList as $k => $v) {
-                $fileInfo = new SplFileInfo($templateDirectory . $v);
-                if ($fileInfo->getExtension() === 'html' && $fileInfo->getFilename() !== 'index.html') {
-                    if (file_exists($templateDirectory . $v)) {
+                $fileInfo = new \SplFileInfo($templateDirectory . $v);
+                if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
+                    if (is_file($templateDirectory . $v)) {
                         unlink($templateDirectory . $v);
                     }
                 }
             }
         }
         // delete old block html template files ============================
-        $templateDirectory = $GLOBALS['xoops']->path('modules/' . $module->getVar('dirname', 'n')
-                                                     . '/templates/blocks/');
+        $templateDirectory = $GLOBALS['xoops']->path('modules/' . $module->getVar('dirname', 'n') . '/templates/blocks/');
         if (is_dir($templateDirectory)) {
-            $templateList = array_diff(scandir($templateDirectory), array('..', '.'));
+            $templateList = array_diff(scandir($templateDirectory, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($templateList as $k => $v) {
-                $fileInfo = new SplFileInfo($templateDirectory . $v);
-                if ($fileInfo->getExtension() === 'html' && $fileInfo->getFilename() !== 'index.html') {
-                    if (file_exists($templateDirectory . $v)) {
+                $fileInfo = new \SplFileInfo($templateDirectory . $v);
+                if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
+                    if (is_file($templateDirectory . $v)) {
                         unlink($templateDirectory . $v);
                     }
                 }
             }
         }
         //delete old files: ===================
-        $oldFiles = array(
+        $oldFiles = [
             '/assets/images/logo_module.png',
-            '/templates/gbook.css'
-        );
+            '/templates/gbook.css',
+        ];
 
         foreach (array_keys($oldFiles) as $file) {
             if (is_file($file)) {
@@ -113,9 +94,7 @@ function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
         }
 
         //delete .html entries from the tpl table
-        $sql = 'DELETE FROM ' . $xoopsDB->prefix('tplfile') . " WHERE `tpl_module` = '" . $module->getVar('dirname',
-                                                                                                          'n')
-               . "' AND `tpl_file` LIKE '%.html%'";
+        $sql = 'DELETE FROM ' . $xoopsDB->prefix('tplfile') . " WHERE `tpl_module` = '" . $module->getVar('dirname', 'n') . "' AND `tpl_file` LIKE '%.html%'";
         $xoopsDB->queryF($sql);
 
         // Load class XoopsFile ====================
@@ -127,7 +106,8 @@ function xoops_module_update_gbook(XoopsModule $module, $previousVersion = null)
         $folderHandler->delete($imagesDirectory);
     }
 
-    $gpermHandler = xoops_getHandler('groupperm');
+    /** @var \XoopsGroupPermHandler $grouppermHandler */
+    $grouppermHandler = xoops_getHandler('groupperm');
 
-    return $gpermHandler->deleteByModule($module->getVar('mid'), 'item_read');
+    return $grouppermHandler->deleteByModule($module->getVar('mid'), 'item_read');
 }

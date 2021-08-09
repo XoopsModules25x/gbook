@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * GBOOK module
  *
@@ -11,7 +14,6 @@
  * @author     Muki - http://www.myxoops.org
  * @date       2014/01/19
  */
-
 define('_MD_GBOOK_SIGN', 'Neuen Eintrag in das Gästebuch schreiben');
 define('_MD_GBOOK_TOTAL_ENTRIES', 'Es gibt insgesant %s Einträge im Gästebuch.');
 define('_MD_GBOOK_BACK', 'Zurück zum Gästebuch');

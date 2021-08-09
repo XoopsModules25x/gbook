@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * ****************************************************************************
  *  GBOOK - MODULE FOR XOOPS
@@ -28,7 +31,6 @@
  *
  * ****************************************************************************
  */
-
 define('_MD_GBOOK_SIGN', 'Sign the Guestbook');
 define('_MD_GBOOK_TOTAL_ENTRIES', 'There are %s entries in total.');
 define('_MD_GBOOK_BACK', 'Back to the Guestbook');

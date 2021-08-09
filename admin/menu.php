@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * ****************************************************************************
  *  GBOOK - MODULE FOR XOOPS
@@ -28,22 +31,37 @@
  * ****************************************************************************
  */
 
-$pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
+use Xmf\Module\Admin;
+use XoopsModules\Gbook;
+/** @var Gbook\Helper $helper */
 
-$adminmenu[] = array(
-    'title' => _AM_MODULEADMIN_HOME,
+$moduleDirName = \basename(\dirname(__DIR__));
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+
+$helper = Gbook\Helper::getInstance();
+$helper->loadLanguage('common');
+$helper->loadLanguage('feedback');
+
+$pathIcon32 = Admin::menuIconPath('');
+$pathModIcon32 = XOOPS_URL .   '/modules/' . $moduleDirName . '/assets/images/icons/32/';
+if (is_object($helper->getModule()) && false !== $helper->getModule()->getInfo('modicons32')) {
+    $pathModIcon32 = $helper->url($helper->getModule()->getInfo('modicons32'));
+}
+
+$adminmenu[] = [
+    'title' => _MI_GBOOK_HOME,
     'link'  => 'admin/index.php',
-    'icon'  => $pathIcon32 . '/home.png'
-);
+    'icon'  => $pathIcon32 . '/home.png',
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _MI_GBOOK_MANAGE_ENTRIES,
     'link'  => 'admin/entries.php',
-    'icon'  => $pathIcon32 . '/manage.png'
-);
+    'icon'  => $pathIcon32 . '/manage.png',
+];
 
-$adminmenu[] = array(
-    'title' => _AM_MODULEADMIN_ABOUT,
+$adminmenu[] = [
+    'title' => _MI_GBOOK_ABOUT,
     'link'  => 'admin/about.php',
-    'icon'  => $pathIcon32 . '/about.png'
-);
+    'icon'  => $pathIcon32 . '/about.png',
+];
