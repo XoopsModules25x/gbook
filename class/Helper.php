@@ -1,4 +1,8 @@
-<?php namespace XoopsModules\Gbook;
+<?php
+
+declare(strict_types=1);
+
+namespace XoopsModules\Gbook;
 
 /*
  * You may not change or alter any portion of this comment or credits
@@ -10,14 +14,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+use RuntimeException;
+use XoopsDatabaseFactory;
+
+
+
 /**
- * @copyright    XOOPS Project https://xoops.org/
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @copyright    XOOPS Project (https://xoops.org)
+ * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
+ * @author      XOOPS Development Team
  */
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Helper
@@ -32,16 +38,16 @@ class Helper extends \Xmf\Module\Helper
     public function __construct($debug = false)
     {
         $this->debug   = $debug;
-        $moduleDirName = basename(dirname(__DIR__));
+        $moduleDirName = \basename(\dirname(__DIR__));
         parent::__construct($moduleDirName);
     }
 
     /**
      * @param bool $debug
      *
-     * @return \Xmf\Module\Helper
+     * @return \XoopsModules\Gbook\Helper
      */
-    public static function getInstance($debug = false)
+    public static function getInstance(bool $debug = false): Helper
     {
         static $instance;
         if (null === $instance) {
@@ -54,7 +60,7 @@ class Helper extends \Xmf\Module\Helper
     /**
      * @return string
      */
-    public function getDirname()
+    public function getDirname(): string
     {
         return $this->dirname;
     }
@@ -68,9 +74,17 @@ class Helper extends \Xmf\Module\Helper
      */
     public function getHandler($name)
     {
-        $db    = \XoopsDatabaseFactory::getDatabaseConnection();
-        $class = '\\XoopsModules\\' . ucfirst(strtolower(basename(dirname(__DIR__)))) . '\\' . $name . 'Handler';
-        $ret   = new $class($db);
+        $ret = false;
+
+        $class = __NAMESPACE__ . '\\' . \ucfirst($name) . 'Handler';
+        if (!\class_exists($class)) {
+            throw new RuntimeException("Class '$class' not found");
+        }
+        /** @var \XoopsMySQLDatabase $db */
+        $db     = XoopsDatabaseFactory::getDatabaseConnection();
+        $helper = self::getInstance();
+        $ret    = new $class($db, $helper);
+        $this->addLog("Getting handler '{$name}'");
         return $ret;
     }
 }

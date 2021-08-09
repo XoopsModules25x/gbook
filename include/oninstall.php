@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -10,23 +12,21 @@
  */
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @copyright    XOOPS Project (https://xoops.org)
+ * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @author       XOOPS Development Team
  */
 
 use XoopsModules\Gbook;
 
 /**
- *
  * Prepares system prior to attempting to install module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if ready to install, false if not
  */
 function xoops_module_pre_install_gbook(\XoopsModule $module)
 {
-    /** @var Gbook\Utility $utility */
     $utility = new Gbook\Utility();
 
     //check for minimum XOOPS version
@@ -39,7 +39,7 @@ function xoops_module_pre_install_gbook(\XoopsModule $module)
         return false;
     }
 
-    $mod_tables =& $module->getInfo('tables');
+    $mod_tables = &$module->getInfo('tables');
     foreach ($mod_tables as $table) {
         $GLOBALS['xoopsDB']->queryF('DROP TABLE IF EXISTS ' . $GLOBALS['xoopsDB']->prefix($table) . ';');
     }
@@ -48,9 +48,8 @@ function xoops_module_pre_install_gbook(\XoopsModule $module)
 }
 
 /**
- *
  * Performs tasks required during installation of the module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if installation successful, false if not
  */

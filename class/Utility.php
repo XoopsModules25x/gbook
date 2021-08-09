@@ -1,4 +1,8 @@
-<?php namespace XoopsModules\Gbook;
+<?php
+
+declare(strict_types=1);
+
+namespace XoopsModules\Gbook;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -17,27 +21,20 @@
  * @author      XOOPS Development Team
  * @package     GBook
  * @since       1.03
- *
  */
 
 //namespace GBook;
 
 use XoopsModules\Gbook;
 use XoopsModules\Gbook\Common;
+use XoopsModules\Gbook\Constants;
 
 /**
  * Class Utility
  */
-class Utility
+class Utility extends Common\SysUtility
 {
-    use Common\VersionChecks; //checkVerXoops, checkVerPhp Traits
-
-    use Common\ServerStats; // getServerStats Trait
-
-    use Common\FilesManagement; // Files Management Trait
-
     //--------------- Custom module methods -----------------------------
-
     /**
      * @param \Xmf\Module\Helper $helper
      * @param array|null         $options
@@ -56,10 +53,13 @@ class Utility
             $options['height'] = '400px';
         }
 
+        if (null === $helper) {
+            $helper = Helper::getInstance();
+        }
+
         $isAdmin = $helper->isUserAdmin();
 
-        if (class_exists('XoopsFormEditor')) {
-
+        if (\class_exists('XoopsFormEditor')) {
             if ($isAdmin) {
                 $descEditor = new \XoopsFormEditor($options['name'], $helper->getConfig('editorAdmin'), $options, $nohtml = false, $onfailure = 'textarea');
             } else {
@@ -81,13 +81,13 @@ class Utility
      * @param $messageTmp
      * @return \XoopsThemeForm
      */
-    public static function getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp)
+    public static function getSignForm($nameTmp, $emailTmp, $urlTmp, $messageTmp): \XoopsThemeForm
     {
         $name      = new \XoopsFormText(_MD_GBOOK_NAME, 'Name', 43, 100, $nameTmp);
         $email     = new \XoopsFormText(_MD_GBOOK_EMAIL, 'Email', 43, 100, $emailTmp);
         $url       = new \XoopsFormText(_MD_GBOOK_URL, 'URL', 43, 100, $urlTmp);
         $message   = new \XoopsFormTextArea(_MD_GBOOK_MESSAGE, 'Message', $messageTmp);
-        $submit    = new \XoopsFormButton('', 'submit', _MD_GBOOK_SUBMIT, 'submit');
+        $submit    = new \XoopsFormButton('', 'submit', _SUBMIT, 'submit');
         $gbookform = new \XoopsThemeForm(_MD_GBOOK_SIGN, 'gbookform', 'sign.php');
 
         $gbookform->addElement($name, true);
@@ -103,20 +103,16 @@ class Utility
     /**
      * @return string
      */
-    public static function gbookIP()
+    public static function gbookIP(): string
     {
         $ip = 'UNKNOWN';
-        if (getenv('HTTP_CLIENT_IP')) {
-            $ip = getenv('HTTP_CLIENT_IP');
-        } else {
-            if (getenv('HTTP_X_FORWARDED_FOR')) {
-                $ip = getenv('HTTP_X_FORWARDED_FOR');
-            } else {
-                if (getenv('REMOTE_ADDR')) {
-                    $ip = getenv('REMOTE_ADDR');
+        if (\getenv('HTTP_CLIENT_IP')) {
+            $ip = \getenv('HTTP_CLIENT_IP');
+        } elseif (\getenv('HTTP_X_FORWARDED_FOR')) {
+                $ip = \getenv('HTTP_X_FORWARDED_FOR');
+            } elseif (\getenv('REMOTE_ADDR')) {
+                    $ip = \getenv('REMOTE_ADDR');
                 }
-            }
-        }
 
         return $ip;
     }

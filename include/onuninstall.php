@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * uninstall.php - cleanup on module uninstall
  *
@@ -10,13 +12,17 @@
 
 /**
  * Prepares system prior to attempting to uninstall module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if ready to uninstall, false if not
  */
 
 use XoopsModules\Gbook;
 
+/**
+ * @param \XoopsModule $module
+ * @return bool
+ */
 function xoops_module_pre_uninstall_gbook(\XoopsModule $module)
 {
     // Do some synchronization
@@ -24,9 +30,8 @@ function xoops_module_pre_uninstall_gbook(\XoopsModule $module)
 }
 
 /**
- *
  * Performs tasks required during uninstallation of the module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if uninstallation successful, false if not
  */
@@ -34,10 +39,10 @@ function xoops_module_uninstall_gbook(\XoopsModule $module)
 {
     //    return true;
 
-    $moduleDirName  = basename(dirname(__DIR__));
-    $helper = \XoopsModules\Gbook\Helper::getInstance();
+    $moduleDirName      = \basename(\dirname(__DIR__));
+    $moduleDirNameUpper = mb_strtoupper($moduleDirName);
+    $helper = Gbook\Helper::getInstance();
 
-    /** @var Gbook\Utility $utility */
     $utility = new Gbook\Utility();
 
     $success = true;

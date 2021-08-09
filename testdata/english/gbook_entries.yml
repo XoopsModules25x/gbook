@@ -1,0 +1,18 @@
+-
+    id: '1'
+    name: Visitor
+    email: info@xoops.org
+    url: 'http://xoops.org/'
+    message: 'Great Website created with XOOPS!'
+    note: ''
+    time: '1628485608'
+    ip: '::1'
+-
+    id: '2'
+    name: Superman
+    email: superman@xoops.org
+    url: 'http://krypton.com/'
+    message: '<p><strong>Greetings from Krypton!</strong></p><p>Superman</p>'
+    note: ''
+    time: '1628485694'
+    ip: '::1'

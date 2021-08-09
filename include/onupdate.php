@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -10,8 +12,8 @@
  */
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @copyright    XOOPS Project (https://xoops.org)
+ * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @author       XOOPS Development Team
  */
@@ -19,48 +21,35 @@
 use XoopsModules\Gbook;
 
 if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
-    || !$GLOBALS['xoopsUser']->IsAdmin()) {
+    || !$GLOBALS['xoopsUser']->isAdmin()) {
     exit('Restricted access' . PHP_EOL);
 }
 
-/**
- * @param string $tablename
- *
- * @return bool
- */
-function tableExists($tablename)
-{
-    $result = $GLOBALS['xoopsDB']->queryF("SHOW TABLES LIKE '$tablename'");
 
-    return $GLOBALS['xoopsDB']->getRowsNum($result) > 0;
-}
 
 /**
- *
  * Prepares system prior to attempting to install module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if ready to install, false if not
  */
 function xoops_module_pre_update_gbook(\XoopsModule $module)
 {
-    /** @var Gbook\Utility $utility */
     $utility = new Gbook\Utility();
 
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
+
     return $xoopsSuccess && $phpSuccess;
 }
 
 /**
- *
  * Performs tasks required during update of the module
- * @param XoopsModule $module {@link XoopsModule}
- * @param null        $previousVersion
+ * @param \XoopsModule $module {@link XoopsModule}
+ * @param null         $previousVersion
  *
  * @return bool true if update successful, false if not
  */
-
 function xoops_module_update_gbook(\XoopsModule $module, $previousVersion = null)
 {
     global $xoopsDB;
@@ -73,7 +62,7 @@ function xoops_module_update_gbook(\XoopsModule $module, $previousVersion = null
             foreach ($templateList as $k => $v) {
                 $fileInfo = new \SplFileInfo($templateDirectory . $v);
                 if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
-                    if (file_exists($templateDirectory . $v)) {
+                    if (is_file($templateDirectory . $v)) {
                         unlink($templateDirectory . $v);
                     }
                 }
@@ -86,7 +75,7 @@ function xoops_module_update_gbook(\XoopsModule $module, $previousVersion = null
             foreach ($templateList as $k => $v) {
                 $fileInfo = new \SplFileInfo($templateDirectory . $v);
                 if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
-                    if (file_exists($templateDirectory . $v)) {
+                    if (is_file($templateDirectory . $v)) {
                         unlink($templateDirectory . $v);
                     }
                 }
@@ -95,7 +84,7 @@ function xoops_module_update_gbook(\XoopsModule $module, $previousVersion = null
         //delete old files: ===================
         $oldFiles = [
             '/assets/images/logo_module.png',
-            '/templates/gbook.css'
+            '/templates/gbook.css',
         ];
 
         foreach (array_keys($oldFiles) as $file) {
@@ -117,6 +106,7 @@ function xoops_module_update_gbook(\XoopsModule $module, $previousVersion = null
         $folderHandler->delete($imagesDirectory);
     }
 
+    /** @var \XoopsGroupPermHandler $grouppermHandler */
     $grouppermHandler = xoops_getHandler('groupperm');
 
     return $grouppermHandler->deleteByModule($module->getVar('mid'), 'item_read');

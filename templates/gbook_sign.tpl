@@ -5,7 +5,7 @@
     <div id="gbook" class="gbook-view"><{$lang_desc}></div>
     <br class='clear'>
 <{/if}>
-<{if $stop}>
+<{if $stop|default:''}>
     <div class="errorMsg txtleft"><{$stop}></div>
 <{/if}>
 <div id="gbook" class="gbook-sign">
@@ -15,10 +15,10 @@
         <table class="outer" cellspacing="1">
             <!-- start of form elements loop -->
             <{foreach item=element from=$gbookform.elements}>
-                <{if $element.hidden != true}>
+                <{if $element.hidden|default:false !== true}>
                     <tr>
                         <td class="head">
-                            <div class="xoops-form-element-caption<{if $element.required}>-required<{/if}>"><span class="caption-text"><{$element.caption}></span><span class="caption-marker">&nbsp;*</span></div>
+                            <div class="xoops-form-element-caption<{if $element.required|default:false}>-required<{/if}>"><span class="caption-text"><{$element.caption|default:''}></span><span class="caption-marker">&nbsp;*</span></div>
                         </td>
                         <td class="<{cycle values=" even,odd"}>"><{$element.body}></td>
                     </tr>

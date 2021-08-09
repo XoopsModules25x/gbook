@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * ****************************************************************************
  *  GBOOK - MODULE FOR XOOPS
@@ -34,7 +37,6 @@ use XoopsModules\Gbook;
 
 require_once __DIR__ . '/header.php';
 
-/** @var Gbook\Helper $helper */
 $helper = Gbook\Helper::getInstance();
 
 //$GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" >';
@@ -45,7 +47,7 @@ $entriesHandler = Gbook\Helper::getInstance()->getHandler('Entries');
 $start = Request::getInt('start', 0);
 
 $GLOBALS['xoopsOption']['template_main'] = 'gbook_view_entries.tpl';
-include $GLOBALS['xoops']->path('header.php');
+require_once $GLOBALS['xoops']->path('header.php');
 
 $criteria = new \CriteriaCompo();
 $criteria->setSort('id');
@@ -93,4 +95,4 @@ foreach ($all_entries as $entry) {
 $xoopsTpl->assign('signgbook', _MD_GBOOK_SIGN);
 $xoopsTpl->assign('totalentries', sprintf(_MD_GBOOK_TOTAL_ENTRIES, '<strong>' . $all_count . '</strong>'));
 
-include $GLOBALS['xoops']->path('footer.php');
+require_once $GLOBALS['xoops']->path('footer.php');

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * ****************************************************************************
  *  GBOOK - MODULE FOR XOOPS
@@ -28,7 +31,6 @@
  *
  * ****************************************************************************
  */
-
 define('_MI_GBOOK_NAME', 'GBook');
 define('_MI_GBOOK_DESC', 'The GBook module is for managing a guestbook.');
 
@@ -52,7 +54,7 @@ define('_MI_GBOOK_EDITOR_USER_DESC', 'Select the editor that you would the users
 
 define('_MI_GBOOK_MANAGE_ENTRIES', 'Manage Entries');
 //Help
-define('_MI_GBOOK_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_GBOOK_DIRNAME', basename(dirname(__DIR__, 2)));
 define('_MI_GBOOK_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_GBOOK_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_GBOOK_HELP_OVERVIEW', 'Overview');

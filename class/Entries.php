@@ -1,4 +1,8 @@
-<?php namespace XoopsModules\Gbook;
+<?php
+
+declare(strict_types=1);
+
+namespace XoopsModules\Gbook;
 
 /**
  * ****************************************************************************
@@ -31,35 +35,44 @@
  */
 
 use Xmf\Request;
+use XoopsFormButton;
+use XoopsFormHidden;
+use XoopsFormText;
 use XoopsModules\Gbook;
+use XoopsObject;
+use XoopsThemeForm;
+
+
+
+
 
 /**
  * @package   kernel
  * @copyright copyright &copy; 2000 XOOPS.org
  */
-class Entries extends \XoopsObject
+class Entries extends XoopsObject
 {
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->initVar('id', XOBJ_DTYPE_INT, null, true);
-        $this->initVar('name', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('email', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('url', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('message', XOBJ_DTYPE_TXTAREA);
-        $this->initVar('note', XOBJ_DTYPE_TXTAREA);
-        $this->initVar('time', XOBJ_DTYPE_INT);
-        $this->initVar('date', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('ip', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('admin', XOBJ_DTYPE_TXTBOX);
+        $this->initVar('id', \XOBJ_DTYPE_INT, null, true);
+        $this->initVar('name', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('email', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('url', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('message', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('note', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('time', \XOBJ_DTYPE_INT);
+        $this->initVar('date', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('ip', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('admin', \XOBJ_DTYPE_TXTBOX);
 
-        $this->initVar('dohtml', XOBJ_DTYPE_INT, 1, false);
-        $this->initVar('dosmiley', XOBJ_DTYPE_INT, 1, false);
-        $this->initVar('doxcode', XOBJ_DTYPE_INT, 1, false);
-        $this->initVar('doimage', XOBJ_DTYPE_INT, 1, false);
-        $this->initVar('dobr', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('dohtml', \XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('dosmiley', \XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('doxcode', \XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('doimage', \XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('dobr', \XOBJ_DTYPE_INT, 1, false);
     }
 
     /**
@@ -69,22 +82,22 @@ class Entries extends \XoopsObject
      *
      * @return \XoopsThemeForm
      */
-    public function getForm($action = false)
+    public function getForm($action = false): XoopsThemeForm
     {
         if (false === $action) {
             $action = Request::getString('REQUEST_URI', '', 'SERVER');
         }
-        $title   = _AM_GBOOK_ENTRY_EDIT;
+        $title = _AM_GBOOK_ENTRY_EDIT;
         $helper  = Gbook\Helper::getInstance();
         $utility = new Gbook\Utility();
 
         require_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
 
-        $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
+        $form = new XoopsThemeForm($title, 'form', $action, 'post', true);
 
-        $form->addElement(new \XoopsFormText(_AM_GBOOK_NAME, 'name', 35, 255, $this->getVar('name')));
-        $form->addElement(new \XoopsFormText(_AM_GBOOK_EMAIL, 'email', 35, 255, $this->getVar('email')));
-        $form->addElement(new \XoopsFormText(_AM_GBOOK_URL, 'url', 35, 255, $this->getVar('url')));
+        $form->addElement(new XoopsFormText(_AM_GBOOK_NAME, 'name', 35, 255, $this->getVar('name')));
+        $form->addElement(new XoopsFormText(_AM_GBOOK_EMAIL, 'email', 35, 255, $this->getVar('email')));
+        $form->addElement(new XoopsFormText(_AM_GBOOK_URL, 'url', 35, 255, $this->getVar('url')));
 
         //set Editor options
         $options['name']   = 'message';
@@ -103,8 +116,8 @@ class Entries extends \XoopsObject
         $noteEditor = $utility::getEditor($helper, $options);
         $form->addElement($noteEditor);
 
-        $form->addElement(new \XoopsFormHidden('op', 'save'));
-        $form->addElement(new \XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
+        $form->addElement(new XoopsFormHidden('op', 'save'));
+        $form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
 
         return $form;
     }

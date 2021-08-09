@@ -1,4 +1,11 @@
-<?php namespace XoopsModules\Gbook;
+<?php
+
+declare(strict_types=1);
+
+namespace XoopsModules\Gbook;
+
+use XoopsDatabase;
+use XoopsPersistableObjectHandler;
 
 /**
  * ****************************************************************************
@@ -34,12 +41,12 @@
  * @package   kernel
  * @copyright copyright &copy; 2000 XOOPS.org
  */
-class EntriesHandler extends \XoopsPersistableObjectHandler
+class EntriesHandler extends XoopsPersistableObjectHandler
 {
     /**
      * @param null|\XoopsDatabase $db
      */
-    public function __construct(\XoopsDatabase $db)
+    public function __construct(XoopsDatabase $db = null)
     {
         parent::__construct($db, 'gbook_entries', Entries::class, 'id', 'name', 'email', 'url', 'message', 'note', 'time', 'date', 'ip', 'admin');
     }

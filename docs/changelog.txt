@@ -1,4 +1,15 @@
+<h5>1.13 Final  [2021-08-08]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.22, PHP 8.0.9
+<hr>
+- fix missing message (mamba)
+- added test data (mamba)
+- PHP 8 Smarty defaults (mamba)
+- PSR-12 (mamba)
+- add strict types declarations (mamba)
+- Return type hint (mamba)
+
+
 <h5>1.12 Final  [2018-03-30]</h5>  Dev: Xoops 2.5.9, PHP 7.2.4
+<hr>
 - namespaces, autolading (mamba)
 
 

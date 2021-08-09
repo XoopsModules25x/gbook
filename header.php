@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * ****************************************************************************
  *  GBOOK - MODULE FOR XOOPS
@@ -29,9 +32,11 @@
  * ****************************************************************************
  */
 
-require_once  dirname(dirname(__DIR__)) . '/mainfile.php';
+use Xmf\Module\Admin;
+
+require_once \dirname(__DIR__, 2) . '/mainfile.php';
 
 $GLOBALS['xoopsOption']['xoops_module_header'] = '<link rel="stylesheet" type="text/css" href="assets/css/gbook.css" >';
 
-$pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);
-$pathIcon32 = \Xmf\Module\Admin::iconUrl('', 32);
+$pathIcon16 = Admin::iconUrl('', 16);
+$pathIcon32 = Admin::iconUrl('', 32);

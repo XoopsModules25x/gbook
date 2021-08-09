@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * GBOOK module
  *
@@ -11,7 +14,6 @@
  * @author     Muki - http://www.myxoops.org
  * @date       2014/01/19
  */
-
 define('_AM_GBOOK_NAME', 'Name');
 define('_AM_GBOOK_MESSAGE', 'Eintrag');
 define('_AM_GBOOK_ACTION', 'Aktion');

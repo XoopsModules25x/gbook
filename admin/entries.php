@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * ****************************************************************************
  *  GBOOK - MODULE FOR XOOPS
@@ -32,11 +35,16 @@
 use Xmf\Request;
 use XoopsModules\Gbook;
 
-include __DIR__ . '/admin_header.php';
+use Xmf\Module\Admin;
+use XoopsModules\Gbook\Helper;
+
+/** @var Admin $adminObject */
+
+require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
-echo $adminObject->displayNavigation(basename(__FILE__));
-echo $adminObject->displayButton('right', '');
+$adminObject->displayNavigation(basename(__FILE__));
+$adminObject->displayButton('right', '');
 
 $tempId = Request::getInt('id', 0, 'GET');
 $tempOp = Request::getCmd('op', Request::getCmd('op', '', 'POST'), 'GET');
@@ -45,7 +53,7 @@ $template_main = '';
 $op            = '' !== $tempOp ? $tempOp : (0 !== $tempId ? 'edit' : 'list');
 
 /** @var Gbook\EntriesHandler $entriesHandler */
-$entriesHandler = \XoopsModules\Gbook\Helper::getInstance()->getHandler('Entries');
+$entriesHandler = Helper::getInstance()->getHandler('Entries');
 
 switch ($op) {
     default:
@@ -56,13 +64,12 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('entries', $entriesHandler->getObjects($criteria, true, false));
         $template_main = 'gbook_admin_entries.tpl';
         break;
-
     case 'edit':
-        $obj  = $entriesHandler->get(Request::getInt('id', '', 'GET'));
+        $obj = $entriesHandler->get(Request::getInt('id', '', 'GET'));
+        /** @var \XoopsThemeForm $form */
         $form = $obj->getForm();
         $form->display();
         break;
-
     case 'save':
         if (!$GLOBALS['xoopsSecurity']->check()) {
             echo $GLOBALS['xoopsSecurity']->getErrors();
@@ -84,18 +91,18 @@ switch ($op) {
         if ($entriesHandler->insert($obj)) {
             redirect_header('entries.php', 3, _AM_GBOOK_ENTRY_EDITED);
         }
-        require_once dirname(__DIR__) . '/include/forms.php';
+        require_once \dirname(__DIR__) . '/include/forms.php';
         echo $obj->getHtmlErrors();
+        /** @var \XoopsThemeForm $form */
         $form = $obj->getForm();
         $form->display();
         break;
-
     case 'delete':
         $tempId = Request::getInt('id', 0, 'GET');
         $tempOk = Request::getInt('ok', 0, 'POST');
         $obj    = $entriesHandler->get($tempId);
 
-        if (0 !== $tempOk && 1 === $tempOk) {
+        if (1 === $tempOk) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 redirect_header('entries.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
             }
@@ -113,4 +120,4 @@ switch ($op) {
 if ('' !== $template_main) {
     $GLOBALS['xoopsTpl']->display("db:{$template_main}");
 }
-include __DIR__ . '/admin_footer.php';
+require_once __DIR__ . '/admin_footer.php';
